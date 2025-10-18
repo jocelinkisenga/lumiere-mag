@@ -1,62 +1,52 @@
-@extends("front.front")
-@section("content")
-<div class="auth-card">
-    <h2 class="text-center fw-bold mb-4">L-Event</h2>
+<x-guest-layout>
+    <form method="POST" action="{{ route('register') }}">
+        @csrf
 
-    <!-- Onglets -->
-    <ul class="nav nav-tabs justify-content-center mb-4" id="authTabs" role="tablist">
-
-        <li class="nav-item">
-            <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button">
-                Inscription
-            </button>
-        </li>
-    </ul>
-
-    <div class="tab-content">
-
-
-        <!-- Inscription -->
-        <div class="tab-pane fade show active" id="register" role="tabpanel">
-
-            <form class="mb-3" action="{{ route('register') }}" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label class="form-label">Nom complet</label>
-                    <input type="text" name="name" class="form-control" placeholder="Jean Dupont" required />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control" placeholder="exemple@mail.com" required />
-
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Telephone</label>
-                    <input type="tel" name="phone" class="form-control" placeholder="" required />
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Mot de passe</label>
-                    <input type="password" name="password" class="form-control" placeholder="••••••••" required />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Type de compte</label>
-                    <select class="form-select" name="role" required>
-                        <option value="">Choisir...</option>
-                        <option value="2">Organisateur d'evenement</option>
-                        <option value="3">
-                            Propriétaire d'une salle
-                        </option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-premium w-100">
-                    Créer un compte
-                </button>
-            </form>
-            <a href="{{ route("login") }}" class="text-warning small mt-4" wire:navigate>vous avez un compte? connectez- vous ici</a>
-
+        <!-- Name -->
+        <div>
+            <x-input-label for="name" :value="__('Name')" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
-    </div>
-</div>
 
-@endsection
+        <!-- Email Address -->
+        <div class="mt-4">
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <!-- Password -->
+        <div class="mt-4">
+            <x-input-label for="password" :value="__('Password')" />
+
+            <x-text-input id="password" class="block mt-1 w-full"
+                            type="password"
+                            name="password"
+                            required autocomplete="new-password" />
+
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mt-4">
+            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+
+            <x-text-input id="password_confirmation" class="block mt-1 w-full"
+                            type="password"
+                            name="password_confirmation" required autocomplete="new-password" />
+
+            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        </div>
+
+        <div class="flex items-center justify-end mt-4">
+            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
+                {{ __('Already registered?') }}
+            </a>
+
+            <x-primary-button class="ml-4">
+                {{ __('Register') }}
+            </x-primary-button>
+        </div>
+    </form>
+</x-guest-layout>

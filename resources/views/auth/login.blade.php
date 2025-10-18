@@ -1,53 +1,96 @@
-@extends('front.front')
-@section("content")
-<!-- Carte Auth -->
-<div class="auth-card">
-    <h2 class="text-center fw-bold mb-4">L-Event</h2>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Mon Entreprise</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+/* Personnalisation de la page de connexion */
 
-    <!-- Onglets -->
-    <ul class="nav nav-tabs justify-content-center mb-4" id="authTabs" role="tablist">
-        <li class="nav-item">
-            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button">
-                Connexion
-            </button>
-        </li>
+/* Rendre le corps de la page agréable et centrer si peu de contenu */
+html, body {
+    height: 100%;
+}
 
-    </ul>
+body {
+    display: flex;
+    align-items: center;
+    padding-top: 40px; /* Espace en haut */
+    padding-bottom: 40px; /* Espace en bas */
+}
 
-    <div class="tab-content">
-        <!-- Connexion -->
-        <div class="tab-pane fade show active" id="login" role="tabpanel">
-            <form class="mb-3" action="{{ route("login") }}" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="text" name="input_type" class="form-control" placeholder="" required />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Mot de passe</label>
-                    <input type="password" name="password" class="form-control" placeholder="••••••••" required />
-                </div>
-                <div class="d-flex justify-content-between mb-3">
-                    <div>
-                        <input type="checkbox" id="remember" />
-                        <label for="remember" class="ms-1">Se souvenir de moi</label>
+/* Style pour le logo */
+.logo-login {
+    max-width: 150px; /* Limiter la taille du logo pour qu'il soit élégant */
+    height: auto;
+    display: block; /* S'assurer qu'il prend sa propre ligne */
+    margin: 0 auto; /* Centrer l'image */
+}
+
+/* Ajustement de la carte de connexion */
+.card {
+    border-radius: 1rem; /* Coins plus arrondis */
+    border: none;
+}
+
+/* Rendre le bouton principal un peu plus doux */
+.btn-primary {
+    background-color: #007bff; /* Bleu Bootstrap standard */
+    border-color: #007bff;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+</style>
+</head>
+<body class="bg-light">
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4"> 
+                
+                <div class="card shadow-lg p-4">
+                    <div class="card-body">
+
+                        <div class="text-center mb-4">
+                            <img src="{{asset('Logo.jpg')}}" alt="Logo de l'entreprise" class="img-fluid mb-3 logo-login"> 
+                            
+                            <h5 class="fw-bold text-dark">Ravi de vous revoir !</h5>
+                            <p class="text-muted">Connectez-vous pour accéder à votre espace.</p>
+                        </div>
+                        
+                        <form method="POST" action="{{route('login')}}">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Adresse e-mail</label>
+                                <input type="email" class="form-control" id="email" name="email" required autofocus>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="password" class="form-label">Mot de passe</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">Se connecter</button>
+                            </div>
+                        </form>
+                        
                     </div>
-                    <a href="{{ route("password.request") }}" class="text-warning small">Mot de passe oublié ?</a>
                 </div>
-                <button type="submit" class="btn btn-premium w-100">
-                    Se connecter
-                </button>
-            </form>
 
-            <a href="{{ route("register") }}" class="text-warning small mt-4" wire:navigate>vous n'avez pas de compte, creer ici ?</a>
+                <div class="text-center mt-3">
+                    <a href="/mot-de-passe-oublie" class="text-muted text-decoration-none small">Mot de passe oublié ?</a>
+                </div>
 
-
+            </div>
         </div>
-
-        <!-- Inscription -->
-
     </div>
-</div>
 
-
-@endsection
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

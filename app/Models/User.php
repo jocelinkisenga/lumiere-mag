@@ -21,12 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'speciality',
-        'role',
-        'phone'
+        'role_id'
     ];
-
-
 
     /**
      * The attributes that should be hidden for serialization.
@@ -48,7 +44,5 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function bookings () {
-        $this->hasMany(Reservation::class);
-    }
+
 }

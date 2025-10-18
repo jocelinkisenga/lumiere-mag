@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use View;
 
 class ContactController extends Controller
 {
-    public function index()  {
-
-        return view("front.contact");
-    }
-
-    public function about() {
-        return view('front.about');
+    public function index() : View {
+        return view("pages.contact");
     }
 }

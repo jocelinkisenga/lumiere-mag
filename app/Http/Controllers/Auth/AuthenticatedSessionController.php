@@ -25,28 +25,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        try {
-            $request->authenticate();
+        $request->authenticate();
 
-            $request->session()->regenerate();
-            flash()->option('position', 'top-right')
-                ->option('timeout', '5000')->success('Vous êtes connecté avec succés', 'Connexion etablie');
-            return redirect("/");
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            flash()->error('veuillez remplir toutes les conditions', 'erreur de connexion');
+        $request->session()->regenerate();
 
-            return back()->withErrors($e->validator)->withInput();
-        }
-
-
-
-        // $role = Auth::user()->role;
-        // return match($role){
-        //     1 => redirect()->intended('/dashboard-admin'),
-        //     2 => redirect()->intended('/dashboard-prestataire'),
-        //     3 => redirect()->intended('/dashboard-employeur'),
-        // };
-
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
