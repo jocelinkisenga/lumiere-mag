@@ -18,7 +18,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderBy("created_at","desc")->paginate(10);
-        return view("pages.listArticles", compact("posts"));
+        return view("pages.admin.listArticles", compact("posts"));
     }
 
     public function front(){
@@ -33,7 +33,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view("pages.addArticle",["categories" => $categories]);
+        return view("pages.admin.addArticle",["categories" => $categories]);
     }
 
     /**

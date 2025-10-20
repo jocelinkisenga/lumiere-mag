@@ -1,102 +1,352 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>dashboard</title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="admin/vendors/feather/feather.css">
-  <link rel="stylesheet" href="admin/vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="admin/vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="admin/vendors/typicons/typicons.css">
-  <link rel="stylesheet" href="admin/vendors/simple-line-icons/css/simple-line-icons.css">
-  <link rel="stylesheet" href="admin/vendors/css/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="admin/js/select.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="admin/css/vertical-layout-light/style.css">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="images/favicon.png" />
-<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Admin Magazine</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset("bootstrap/css/bootstrap.min.css") }}">
 
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #95a5a6;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --sidebar-width: 250px;
+        }
 
- <style>
-        /* Styles personnalisés pour une touche d'élégance */
         body {
-            background-color: #f8f9fa; /* Arrière-plan très clair */
-            padding-top: 20px;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
         }
-        .card {
-            border: none; /* Supprimer la bordure par défaut */
-            border-radius: 10px; /* Coins arrondis */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Légère ombre */
-            transition: transform 0.3s ease;
+
+        #sidebar {
+            width: var(--sidebar-width);
+            background: var(--primary);
+            color: white;
+            height: 100vh;
+            position: fixed;
+            transition: all 0.3s;
+            z-index: 1000;
         }
-        .card:hover {
-            transform: translateY(-5px); /* Effet subtil au survol */
+
+        #sidebar .sidebar-header {
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .card-title {
-            font-size: 1rem;
-            color: #6c757d; /* Couleur discrète pour le titre */
+
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1.5rem;
         }
-        .card-text-big {
-            font-size: 2.5rem;
-            font-weight: 700;
+
+        #sidebar ul.components {
+            padding: 1rem 0;
         }
-        .table-custom {
+
+        #sidebar ul li a {
+            padding: 1rem 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        #sidebar ul li a:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            border-left-color: var(--accent);
+        }
+
+        #sidebar ul li.active>a {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-left-color: var(--accent);
+        }
+
+        #sidebar ul li a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        #content {
+            margin-left: var(--sidebar-width);
+            padding: 20px;
+            transition: all 0.3s;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card {
+            background: white;
             border-radius: 10px;
-            overflow: hidden; /* Assurer que les coins arrondis fonctionnent pour le tableau */
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--accent);
         }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .table-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .badge-published {
+            background: #27ae60;
+        }
+
+        .badge-draft {
+            background: #f39c12;
+        }
+
+        .badge-pending {
+            background: #e74c3c;
+        }
+
+        .btn-action {
+            padding: 0.25rem 0.5rem;
+            margin: 0 2px;
+        }
+
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -var(--sidebar-width);
+            }
+
+            #sidebar.active {
+                margin-left: 0;
+            }
+
+            #content {
+                margin-left: 0;
+            }
+
+            #content.active {
+                margin-left: var(--sidebar-width);
+            }
+        }
+
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
 </head>
-<body class="pt-5">
-    <div class="container-scroller">
-        @include("components.nav-link")
-        <div class="container-fluid page-body-wrapper">
-            @include("components.sidebar")
-    @yield("content")
-  <!-- container-scroller -->
+<body>
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <div class="brand-logo text-center">
+                <span style="color: var(--accent);">Mag</span>azine
+            </div>
+            <small class="text-center d-block mt-2">Administration</small>
         </div>
-</div>
- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Tableau de bord
+                </a>
+            </li>
+            <li>
+                <a href="{{ route("posts.index") }}">
+
+                    <i class="fas fa-newspaper"></i>
+                    Articles
+                </a>
+            </li>
+            <li>
+                <a href="{{ route("categories.index") }}">
+
+                    <i class="fas fa-tags"></i>
+                    Catégories
+                </a>
+            </li>
+            <li>
+                <a href="podcasts.html">
+                    <i class="fas fa-podcast"></i>
+                    Podcasts
+                </a>
+            </li>
+            <li>
+                <a href="videos.html">
+                    <i class="fas fa-video"></i>
+                    Vidéos
+                </a>
+            </li>
+            <li>
+                <a href="comments.html">
+                    <i class="fas fa-comments"></i>
+                    Commentaires
+                </a>
+            </li>
+            <li>
+                <a href="users.html">
+                    <i class="fas fa-users"></i>
+                    Utilisateurs
+                </a>
+            </li>
+            <li>
+                <a href="newsletter.html">
+                    <i class="fas fa-envelope"></i>
+                    Newsletter
+                </a>
+            </li>
+            <li>
+                <a href="settings.html">
+                    <i class="fas fa-cog"></i>
+                    Paramètres
+                </a>
+            </li>
+        </ul>
+
+        <div class="position-absolute bottom-0 start-0 end-0 p-3 border-top border-secondary">
+            <div class="d-flex align-items-center">
+                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Admin" class="rounded-circle me-2" width="40" height="40">
+                <div class="flex-grow-1">
+                    <div class="small">Admin</div>
+                    <div class="small text-muted">Administrateur</div>
+                </div>
+                <a href="login.html" class="text-light">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content">
+        <!-- Top Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white rounded-3 mb-4">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div class="d-flex align-items-center">
+                    <div class="input-group me-3" style="width: 300px;">
+                        <input type="text" class="form-control" placeholder="Rechercher...">
+                        <button class="btn btn-outline-secondary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge bg-danger">3</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Nouveau commentaire</a></li>
+                            <li><a class="dropdown-item" href="#">Article en attente</a></li>
+                            <li><a class="dropdown-item" href="#">Nouvel utilisateur</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main content will be loaded here -->
+        <div id="page-content">
+            <!-- This area will be dynamically loaded with specific page content -->
+
+            @yield("content")
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-  const quill = new Quill('#description', {
-    theme: 'snow'
-  });
-</script>
-    
-  <!-- plugins:js -->
-  <script src="admin/vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <script src="admin/vendors/chart.js/Chart.min.js"></script>
-  <script src="admin/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-  <script src="admin/vendors/progressbar.js/progressbar.min.js"></script>
+        // Sidebar toggle
+        document.getElementById('sidebarCollapse').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('content').classList.toggle('active');
+        });
 
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script src="admin/js/off-canvas.js"></script>
-  <script src="admin/js/hoverable-collapse.js"></script>
-  <script src="admin/js/template.js"></script>
-  <script src="admin/js/settings.js"></script>
-  <script src="admin/js/todolist.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <script src="admin/js/jquery.cookie.js" type="text/javascript"></script>
-  <script src="admin/js/dashboard.js"></script>
-  <script src="admin/js/Chart.roundedBarCharts.js"></script>
-  <!-- End custom js for this page-->
+
+        // Initialize charts for dashboard
+        function initializeCharts() {
+            // Traffic Chart
+            const trafficCtx = document.getElementById('trafficChart').getContext('2d');
+            new Chart(trafficCtx, {
+                type: 'line'
+                , data: {
+                    labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun']
+                    , datasets: [{
+                        label: 'Visiteurs'
+                        , data: [12000, 19000, 15000, 25000, 22000, 30000]
+                        , borderColor: '#e74c3c'
+                        , backgroundColor: 'rgba(231, 76, 60, 0.1)'
+                        , tension: 0.4
+                        , fill: true
+                    }]
+                }
+                , options: {
+                    responsive: true
+                    , plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Content Type Chart
+            const contentCtx = document.getElementById('contentChart').getContext('2d');
+            new Chart(contentCtx, {
+                type: 'doughnut'
+                , data: {
+                    labels: ['Articles', 'Podcasts', 'Vidéos']
+                    , datasets: [{
+                        data: [65, 20, 15]
+                        , backgroundColor: [
+                            '#2c3e50'
+                            , '#e74c3c'
+                            , '#3498db'
+                        ]
+                    }]
+                }
+                , options: {
+                    responsive: true
+                    , plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>
+    <script type="script" src="{{ asset("bootstrap/js/bootstrap.bundle.min.js") }}"></script>
 </body>
-
 </html>
-

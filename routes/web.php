@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[HomeController::class,"index"])->name("home");
 Route::get("/live",[HomeController::class,"live"])->name("live");
 Route::get("article/{title}/{id}",[PostController::class,"show"])->name("posts.show");
-Route::get("couponsHome/",[CouponController::class,"index"])->name("coupons.index");
 Route::get("frontPosts",[PostController::class,"front"])->name("posts.front");
 
 Route::get("about", [Aboutcontroller::class,"index"])->name("about");
@@ -42,17 +41,10 @@ Route::middleware('auth')->group(function () {
     Route::get("article",[PostController::class,"create"])->name("posts.create");
     Route::post("articles",[PostController::class,"store"])->name("posts.store");
     Route::get("/dashboard",[HomeController::class,"dashboard"])->name("dashboard");
-    Route::get("/coupons",[CouponController::class,"index"])->name("coupon.index");
-    Route::get("/coupon",[CouponController::class,"create"])->name("coupon.create");
-    Route::post("/coupons",[CouponController::class,"store"])->name("coupon.store");
     Route::get("delete/article/{id}",[PostController::class,"delete"])->name("post.delete");
-    Route::get("delete/coupon/{id}",[CouponController::class,"delete"])->name("coupon.delete");
-    Route::get("coupon/{id}",[CouponController::class,"edit"])->name("coupon.edit");
-    Route::get("/videos",[VideoController::class,"index"])->name("videos.index");
-    Route::get("/video",[VideoController::class,"create"])->name("video.create");
-    Route::post("/video",[VideoController::class,"store"])->name("video.store");
+
     Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
-    Route::get("/videoDelete/{id}",[VideoController::class,"delete"])->name("video.delete");
+
     Route::get("categorie",[CategoryController::class, "create"])->name("categorie.create");
     Route::post("categorie", [CategoryController::class, "store"])->name("categorie.store");
 
