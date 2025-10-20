@@ -1,17 +1,14 @@
 <?php
 
-use App\Http\Controllers\ChatController;
-use App\Http\Controllers\Client\ClientController;
+use App\Http\Controllers\Aboutcontroller;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\MainController;
-use App\Http\Controllers\Owner\BookingController;
-use App\Http\Controllers\Owner\CategoryController;
-use App\Http\Controllers\Owner\OwnerDashboardController;
-use App\Http\Controllers\Owner\ProductController;
-use App\Http\Controllers\Owner\VenueController;
-use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\CouponController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -24,37 +21,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/", [App\Http\Controllers\MainController::class, "index"])->name('home');
-Route::get("/salle/{title}/{id}", [App\Http\Controllers\MainController::class, "show"])->name('salle.single');
-Route::get("venues/", [App\Http\Controllers\MainController::class, "venues"])->name('venues');
-Route::get("/contact", [ContactController::class, 'index'])->name("contact");
-Route::middleware("auth")->group(function () {
-    Route::post("reserve", [ReservationController::class, "store"])->name("store.reservation");
-    Route::get("sent/{id}", [ReservationController::class, "send"])->name("sent.reservation");
-    Route::get("chat/{venueId}",[ChatController::class, "create"])->name("chat.create");
+
+Route::get('/',[HomeController::class,"index"])->name("home");
+Route::get("/live",[HomeController::class,"live"])->name("live");
+Route::get("article/{title}/{id}",[PostController::class,"show"])->name("posts.show");
+Route::get("couponsHome/",[CouponController::class,"index"])->name("coupons.index");
+Route::get("frontPosts",[PostController::class,"front"])->name("posts.front");
+
+Route::get("about", [Aboutcontroller::class,"index"])->name("about");
+Route::get("contact", [ContactController::class, "index"])->name("contact");
+
+Route::get("category/{slug}/{id}", [CategoryController::class, "show"])->name("categorie.show");
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get("articles",[PostController::class,"index"])->name("posts.index");
+    Route::get("article",[PostController::class,"create"])->name("posts.create");
+    Route::post("articles",[PostController::class,"store"])->name("posts.store");
+    Route::get("/dashboard",[HomeController::class,"dashboard"])->name("dashboard");
+    Route::get("/coupons",[CouponController::class,"index"])->name("coupon.index");
+    Route::get("/coupon",[CouponController::class,"create"])->name("coupon.create");
+    Route::post("/coupons",[CouponController::class,"store"])->name("coupon.store");
+    Route::get("delete/article/{id}",[PostController::class,"delete"])->name("post.delete");
+    Route::get("delete/coupon/{id}",[CouponController::class,"delete"])->name("coupon.delete");
+    Route::get("coupon/{id}",[CouponController::class,"edit"])->name("coupon.edit");
+    Route::get("/videos",[VideoController::class,"index"])->name("videos.index");
+    Route::get("/video",[VideoController::class,"create"])->name("video.create");
+    Route::post("/video",[VideoController::class,"store"])->name("video.store");
+    Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get("/videoDelete/{id}",[VideoController::class,"delete"])->name("video.delete");
+    Route::get("categorie",[CategoryController::class, "create"])->name("categorie.create");
+    Route::post("categorie", [CategoryController::class, "store"])->name("categorie.store");
 
 });
-Route::get("/about", [App\Http\Controllers\MainController::class, "about"])->name('about');
-// Routes for owner
-Route::middleware(["auth", "role:3"])->prefix("owner")->group(function () {
-    Route::get("/dashboard", [OwnerDashboardController::class, "index"])->name("owner.dasboard");
-    Route::get("/venues", [VenueController::class, "index"])->name("owner.venues");
-    Route::get("/venuesCreate", [VenueController::class, "create"])->name("owner.venues.create");
-    Route::post("/venuesStore", [VenueController::class, "store"])->name("owner.venues.store");
-    Route::get("bookings/{venueId}", [BookingController::class, "index"])->name("owner.bookings");
-    Route::get("bookingsConfirm/{bookingId}", [BookingController::class, "confirm"])->name("owner.bookings.confirm");
-    Route::get("bookingCancel/{bookingId}", [BookingController::class, "show"])->name("owner.bookings.cancel");
-});
 
-
-//Routes for clients
-Route::middleware(["auth", "role:2", "role:1"])->prefix("client")->group(function () {
-    Route::get("/dashboard", [ClientController::class, "index"])->name("client.dasboard");
-    Route::get("/mesreservations", [ClientController::class, "reservations"])->name("client.reservations");
-    Route::get("bookingClient/{bookingId}", [ClientController::class, "show"])->name("client.bookings.detail");
-});
-// Route::get("/mesreservations",[ClientController::class,"reservations"])->name("client.reservations");
-
-
-require __DIR__ . '/admin.php';
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

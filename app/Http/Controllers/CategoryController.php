@@ -42,7 +42,7 @@ class CategoryController extends Controller
     {
                 $articles = Post::whereCategory_id($id)->orderBy("created_at","desc")->paginate(12);
 
-return view("pages.category",["articles" => $articles]);
+return view("pages.category",["articles" => $articles,"slug"=>$slug]);
     }
 
     /**

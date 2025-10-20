@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'avenir de l'intelligence artificielle | Magazine</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #95a5a6;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --info: #3498db;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+        }
+        
+        .article-header {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(52, 73, 94, 0.9) 100%);
+            color: white;
+            padding: 120px 0 60px;
+            position: relative;
+        }
+        
+        .article-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2.2rem;
+            }
+        }
+        
+        .article-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .article-content {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            padding: 3rem;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        @media (max-width: 768px) {
+            .article-content {
+                padding: 2rem 1.5rem;
+                margin-top: -30px;
+            }
+        }
+        
+        .article-image {
+            width: 100%;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .article-body {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .article-body p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .article-body h2 {
+            margin: 2.5rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .article-body blockquote {
+            border-left: 4px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--dark);
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .article-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            margin: 2rem 0;
+        }
+        
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            background: var(--light);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .action-btn i {
+            margin-right: 8px;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 1.5rem 0;
+        }
+        
+        .tag {
+            background: var(--light);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .author-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .related-articles {
+            margin: 4rem 0 2rem;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .article-card {
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .article-card-image {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-card-image {
+            transform: scale(1.05);
+        }
+        
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border-radius: 3px;
+            z-index: 2;
+        }
+        
+        .reading-time {
+            font-size: 0.85rem;
+            color: var(--secondary);
+        }
+        
+        .comments-section {
+            margin: 3rem 0;
+        }
+        
+        .comment-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .comment-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 4rem;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .scroll-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .navbar {
+            transition: all 0.3s ease;
+            padding: 15px 0;
+        }
+        
+        .navbar.scrolled {
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--accent);
+            width: 0%;
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+        
+        .table-of-contents {
+            position: sticky;
+            top: 100px;
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+        
+        .toc-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc-list a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.3rem 0;
+        }
+        
+        .toc-list a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .toc-list a.active {
+            color: var(--accent);
+            font-weight: 600;
+            border-left: 3px solid var(--accent);
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span style="color: var(--accent);">Mag</span>azine
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Actualités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Culture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Technologie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Lifestyle</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex">
+                    <button class="btn btn-outline-dark me-2">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-primary">
+                        S'abonner
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <span class="badge bg-warning text-dark mb-3">Technologie</span>
+                    <h1 class="article-title" data-aos="fade-up">L'avenir de l'intelligence artificielle dans notre quotidien</h1>
+                    <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">Comment l'IA transforme nos vies, nos emplois et notre société dans les prochaines décennies</p>
+                    
+                    <div class="article-meta justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Auteur" class="author-avatar">
+                        <div class="text-start">
+                            <div class="fw-bold">Marie Lambert</div>
+                            <div>Journaliste technologie</div>
+                            <small>15 mai 2023 • 8 min de lecture</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <div class="container">
+        <div class="row">
+            <!-- Table of Contents -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="table-of-contents">
+                    <div class="toc-title">Sommaire</div>
+                    <ul class="toc-list">
+                        <li><a href="#introduction" class="active">Introduction</a></li>
+                        <li><a href="#impact-quotidien">Impact quotidien</a></li>
+                        <li><a href="#transformation-emplois">Transformation des emplois</a></li>
+                        <li><a href="#defis-ethiques">Défis éthiques</a></li>
+                        <li><a href="#avenir">Perspectives d'avenir</a></li>
+                        <li><a href="#conclusion">Conclusion</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-lg-8">
+                <article class="article-content" data-aos="fade-up">
+                    <div class="article-body">
+                        <h2 id="introduction">Introduction</h2>
+                        <p>L'intelligence artificielle n'est plus un concept de science-fiction. Elle est déjà parmi nous, intégrée dans nos smartphones, nos voitures, nos maisons et nos lieux de travail. Mais où cette révolution technologique nous mène-t-elle vraiment ?</p>
+                        
+                        <p>Dans cet article, nous explorerons les implications profondes de l'IA sur notre société, notre économie et notre vie quotidienne. Des assistants vocaux aux voitures autonomes, des systèmes de recommandation aux diagnostics médicaux, l'IA redéfinit les frontières du possible.</p>
+                        
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Intelligence Artificielle" class="article-image">
+                            <figcaption class="text-center text-muted mt-2">L'IA transforme déjà de nombreux aspects de notre vie quotidienne</figcaption>
+                        </figure>
+                        
+                        <h2 id="impact-quotidien">L'impact sur notre quotidien</h2>
+                        <p>L'IA s'est immiscée dans nos vies de manière si naturelle que nous ne la remarquons souvent même pas. Lorsque Netflix vous recommande un film, que Google Maps vous propose un itinéraire optimal, ou que votre banque détecte une transaction frauduleuse, l'IA est à l'œuvre.</p>
+                        
+                        <p>Dans le domaine de la santé, les algorithmes d'IA aident déjà les radiologues à détecter des tumeurs avec une précision parfois supérieure à l'œil humain. Dans l'éducation, des plateformes adaptatives personnalisent l'apprentissage en fonction des forces et faiblesses de chaque élève.</p>
+                        
+                        <blockquote>
+                            "L'intelligence artificielle est probablement la chose la plus importante sur laquelle l'humanité ait jamais travaillé. Je pense que c'est plus important que l'électricité ou le feu." - Sundar Pichai, PDG de Google
+                        </blockquote>
+                        
+                        <p>Les assistants vocaux comme Alexa, Siri et Google Assistant deviennent de plus en plus sophistiqués, capables de comprendre le contexte et de mener des conversations complexes. Bientôt, ils pourront anticiper nos besoins avant même que nous les exprimions.</p>
+                        
+                        <h2 id="transformation-emplois">La transformation du monde du travail</h2>
+                        <p>L'une des préoccupations majeures concernant l'IA est son impact sur l'emploi. Selon une étude du Forum Économique Mondial, d'ici 2025, 85 millions d'emplois pourraient être déplacés par la transformation du travail entre humains et machines, tandis que 97 millions de nouveaux rôles pourraient émerger.</p>
+                        
+                        <p>Les métiers les plus susceptibles d'être automatisés sont ceux qui impliquent des tâches répétitives et prévisibles. En revanche, les professions nécessitant créativité, intelligence émotionnelle et pensée critique devraient non seulement persister mais gagner en importance.</p>
+                        
+                        <p>L'IA ne remplacera pas nécessairement les humains, mais elle transformera leurs rôles. Les médecins pourront se concentrer davantage sur la relation patient, déléguant certaines analyses à l'IA. Les avocats pourront dédier plus de temps à la stratégie, tandis que l'IA gérera la recherche documentaire.</p>
+                        
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Robot et humain collaborant" class="article-image">
+                            <figcaption class="text-center text-muted mt-2">La collaboration entre humains et IA crée de nouvelles opportunités</figcaption>
+                        </figure>
+                        
+                        <h2 id="defis-ethiques">Les défis éthiques et sociétaux</h2>
+                        <p>Avec le pouvoir de l'IA viennent des responsabilités importantes. Les biais algorithmiques constituent l'un des défis majeurs. Si les données utilisées pour entraîner les systèmes d'IA reflètent des préjugés existants, ces systèmes peuvent perpétuer et même amplifier ces inégalités.</p>
+                        
+                        <p>La protection de la vie privée est une autre préoccupation majeure. Les systèmes d'IA ont besoin de vastes quantités de données pour fonctionner efficacement, ce qui soulève des questions sur la collecte, le stockage et l'utilisation de nos informations personnelles.</p>
+                        
+                        <p>Enfin, la question de la responsabilité se pose : qui est responsable lorsqu'une décision prise par une IA cause un préjudice ? Le développeur, l'utilisateur, ou l'algorithme lui-même ? Ces questions juridiques et éthiques nécessitent un cadre réglementaire solide.</p>
+                        
+                        <h2 id="avenir">Perspectives d'avenir</h2>
+                        <p>À quoi ressemblera notre monde dans dix ou vingt ans, avec une IA de plus en plus sophistiquée ? Les experts prévoient des avancées spectaculaires dans des domaines comme la médecine personnalisée, où les traitements seront adaptés au profil génétique de chaque patient.</p>
+                        
+                        <p>Les villes intelligentes utiliseront l'IA pour optimiser la circulation, réduire la consommation d'énergie et améliorer les services publics. L'agriculture de précision permettra de maximiser les rendements tout en minimisant l'impact environnemental.</p>
+                        
+                        <p>Certains envisagent même la possibilité d'une "IA générale" - une intelligence capable de comprendre, d'apprendre et de s'adapter à n'importe quelle tâche intellectuelle qu'un être humain peut accomplir. Si cette perspective est encore lointaine, elle pourrait représenter le changement le plus profond de l'histoire de l'humanité.</p>
+                        
+                        <h2 id="conclusion">Conclusion</h2>
+                        <p>L'intelligence artificielle n'est pas une force extérieure qui s'impose à nous, mais une technologie que nous développons et que nous devons apprendre à maîtriser. Son avenir dépendra des choix que nous faisons aujourd'hui en matière de régulation, d'éducation et d'éthique.</p>
+                        
+                        <p>Plutôt que de craindre l'IA, nous devrions nous concentrer sur la façon de l'utiliser pour résoudre les grands défis de notre temps : le changement climatique, les inégalités, les maladies. En guidant son développement avec sagesse, nous pouvons créer un avenir où l'IA amplifie le meilleur de l'humanité.</p>
+                        
+                        <p>La révolution de l'IA est en marche, et nous en sommes tous les acteurs. Il appartient à chacun de nous de participer à ce débat crucial sur l'avenir que nous voulons construire avec cette technologie transformatrice.</p>
+                    </div>
+                    
+                    <!-- Article Actions -->
+                    <div class="article-actions">
+                        <div class="d-flex flex-wrap gap-3">
+                            <button class="action-btn">
+                                <i class="far fa-heart"></i> 248
+                            </button>
+                            <button class="action-btn">
+                                <i class="far fa-bookmark"></i> Sauvegarder
+                            </button>
+                            <button class="action-btn">
+                                <i class="fas fa-share-alt"></i> Partager
+                            </button>
+                        </div>
+                        <div>
+                            <span class="reading-time">
+                                <i class="far fa-eye me-1"></i> 12.4K vues
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Tags -->
+                    <div class="tags">
+                        <span class="tag">Intelligence Artificielle</span>
+                        <span class="tag">Technologie</span>
+                        <span class="tag">Innovation</span>
+                        <span class="tag">Futur</span>
+                        <span class="tag">Éthique</span>
+                        <span class="tag">Société</span>
+                    </div>
+                    
+                    <!-- Author Card -->
+                    <div class="author-card" data-aos="fade-up">
+                        <div class="row align-items-center">
+                            <div class="col-md-2 text-center">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Auteur" class="author-avatar">
+                            </div>
+                            <div class="col-md-10">
+                                <h4>Marie Lambert</h4>
+                                <p class="text-muted">Journaliste spécialisée en technologie et innovation. Passionnée par l'impact des nouvelles technologies sur la société et l'économie. Auteure de plusieurs livres sur la transformation numérique.</p>
+                                <div class="d-flex gap-3">
+                                    <a href="#" class="text-dark"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="text-dark"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" class="text-dark"><i class="fas fa-globe"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Comments Section -->
+                <section class="comments-section" data-aos="fade-up">
+                    <h3 class="section-title">Commentaires (12)</h3>
+                    
+                    <!-- Comment Form -->
+                    <div class="comment-card">
+                        <form>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="4" placeholder="Ajouter un commentaire..."></textarea>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="notifyMe">
+                                    <label class="form-check-label small" for="notifyMe">
+                                        Me notifier des réponses
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Publier</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Comment 1 -->
+                    <div class="comment-card">
+                        <div class="d-flex">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Utilisateur" class="comment-avatar me-3">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="mb-0">Thomas Moreau</h6>
+                                    <small class="text-muted">Il y a 2 heures</small>
+                                </div>
+                                <p class="mb-2">Excellent article qui pose les bonnes questions ! Je travaille dans le domaine de l'IA et je trouve que vous avez parfaitement saisi les enjeux éthiques. La régulation est effectivement cruciale pour éviter les dérives.</p>
+                                <div class="d-flex align-items-center">
+                                    <button class="btn btn-sm btn-outline-secondary me-2">
+                                        <i class="far fa-thumbs-up"></i> 8
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary me-2">
+                                        <i class="far fa-thumbs-down"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-link text-decoration-none">Répondre</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Comment 2 -->
+                    <div class="comment-card">
+                        <div class="d-flex">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Utilisateur" class="comment-avatar me-3">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="mb-0">Sophie Martin</h6>
+                                    <small class="text-muted">Il y a 5 heures</small>
+                                </div>
+                                <p class="mb-2">Merci pour cet article très complet. Je m'interroge sur l'impact de l'IA sur les inégalités sociales. Ne risque-t-elle pas d'accentuer le fossé entre ceux qui maîtrisent ces technologies et les autres ?</p>
+                                <div class="d-flex align-items-center">
+                                    <button class="btn btn-sm btn-outline-secondary me-2">
+                                        <i class="far fa-thumbs-up"></i> 5
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary me-2">
+                                        <i class="far fa-thumbs-down"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-link text-decoration-none">Répondre</button>
+                                </div>
+                                
+                                <!-- Reply -->
+                                <div class="comment-card mt-3">
+                                    <div class="d-flex">
+                                        <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Utilisateur" class="comment-avatar me-3">
+                                        <div class="flex-grow-1">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h6 class="mb-0">Pierre Dubois</h6>
+                                                <small class="text-muted">Il y a 3 heures</small>
+                                            </div>
+                                            <p class="mb-2">@Sophie Martin C'est une excellente question. L'éducation et la formation continue seront essentielles pour éviter cette fracture technologique. Heureusement, l'IA peut aussi aider à personnaliser l'apprentissage !</p>
+                                            <div class="d-flex align-items-center">
+                                                <button class="btn btn-sm btn-outline-secondary me-2">
+                                                    <i class="far fa-thumbs-up"></i> 3
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-secondary me-2">
+                                                    <i class="far fa-thumbs-down"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-link text-decoration-none">Répondre</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Related Articles -->
+                <section class="related-articles" data-aos="fade-up">
+                    <h3 class="section-title">Articles similaires</h3>
+                    
+                    <div class="row">
+                        <!-- Related Article 1 -->
+                        <div class="col-md-6 mb-4">
+                            <div class="article-card card h-100">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" class="card-img-top article-card-image" alt="Article 1">
+                                    <span class="category-badge bg-primary">Technologie</span>
+                                </div>
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">Comment la blockchain révolutionne la finance</h5>
+                                    <p class="card-text flex-grow-1">Au-delà du Bitcoin, la technologie blockchain trouve des applications dans de nombreux secteurs.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <small class="text-muted">10 mai 2023</small>
+                                        <span class="reading-time">6 min</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Related Article 2 -->
+                        <div class="col-md-6 mb-4">
+                            <div class="article-card card h-100">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" class="card-img-top article-card-image" alt="Article 2">
+                                    <span class="category-badge bg-success">Innovation</span>
+                                </div>
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">Les villes intelligentes de demain</h5>
+                                    <p class="card-text flex-grow-1">Comment la technologie transforme l'urbanisme et la vie en ville.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <small class="text-muted">8 mai 2023</small>
+                                        <span class="reading-time">7 min</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="mb-3">
+                        <span style="color: var(--accent);">Mag</span>azine
+                    </h3>
+                    <p class="mb-4">Votre source d'informations, d'inspiration et de découvertes. Des contenus de qualité pour les esprits curieux.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">Rubriques</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Actualités</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Culture</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Technologie</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Lifestyle</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Science</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">Contenus</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Articles</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Podcasts</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Vidéos</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Newsletter</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Archives</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="mb-3">À propos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Équipe</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Contact</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Partenariats</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Mentions légales</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">CGU</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row mt-5 pt-4 border-top border-secondary">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 Magazine. Tous droits réservés.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light text-decoration-none me-3">Politique de confidentialité</a>
+                    <a href="#" class="text-light text-decoration-none">Paramètres des cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Scroll to top button
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (window.scrollY > 300) {
+                scrollButton.classList.add('active');
+            } else {
+                scrollButton.classList.remove('active');
+            }
+            
+            // Progress bar
+            const progressBar = document.getElementById('progressBar');
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrollPercentage = (window.scrollY / documentHeight) * 100;
+            progressBar.style.width = scrollPercentage + '%';
+            
+            // Table of contents highlighting
+            const sections = document.querySelectorAll('h2');
+            const navLinks = document.querySelectorAll('.toc-list a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Scroll to top functionality
+        document.querySelector('.scroll-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for table of contents
+        document.querySelectorAll('.toc-list a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

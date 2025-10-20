@@ -15,25 +15,19 @@ class HomeController extends Controller
         $latestPost = Post::latest()->first();
         $popularPosts = Post::latest()->inRandomOrder()->limit(3)->get();
         $recentPosts = Post::latest()->limit(4)->get();
-        $recentCoupons = Coupon::latest()->limit(8)->get();
-        $popularCoupons = Coupon::latest()->first();
         $recentVideos = Video::latest()->limit(8)->get();
         $weekly = $this->weekly();
 
         return view("pages.index",compact("latestPost",
                                          "popularPosts",
                                          "recentPosts",
-                                         "recentCoupons",
-                                         "popularCoupons",
-                                         "recentVideos",
                                         "weekly"));
     }
 
     public function dashboard()  {
         $posts = Post::latest()->get();
-        $coupons = Coupon::latest()->get();
         $videos = Video::latest()->get();
-        return view("dashboard",compact("coupons","posts","videos"));
+        return view("dashboard",compact("posts","videos"));
     }
 
     public function live(){

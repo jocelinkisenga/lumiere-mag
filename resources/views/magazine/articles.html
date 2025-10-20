@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tous les Articles | Magazine</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #95a5a6;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+        
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 100px 0 60px;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .article-card {
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .article-image {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+        
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border-radius: 3px;
+            z-index: 2;
+        }
+        
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .reading-time {
+            font-size: 0.85rem;
+            color: var(--secondary);
+        }
+        
+        .filter-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+        
+        .pagination .page-link {
+            color: var(--primary);
+            border: none;
+            padding: 0.75rem 1rem;
+            margin: 0 3px;
+            border-radius: 5px;
+        }
+        
+        .pagination .page-item.active .page-link {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 4rem;
+        }
+        
+        .navbar {
+            transition: all 0.3s ease;
+            padding: 15px 0;
+        }
+        
+        .navbar.scrolled {
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span style="color: var(--accent);">Mag</span>azine
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="articles.html">Articles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="podcasts.html">Podcasts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="videos.html">Vidéos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="a-propos.html">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex">
+                    <button class="btn btn-outline-dark me-2">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-primary">
+                        S'abonner
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold mb-4">Tous les Articles</h1>
+                    <p class="lead">Découvrez l'ensemble de nos publications, analyses et reportages</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filters & Content -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Filters -->
+            <div class="filter-section">
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-4">
+                        <label for="categoryFilter" class="form-label fw-bold">Catégorie</label>
+                        <select class="form-select" id="categoryFilter">
+                            <option value="">Toutes les catégories</option>
+                            <option value="technologie">Technologie</option>
+                            <option value="culture">Culture</option>
+                            <option value="lifestyle">Lifestyle</option>
+                            <option value="science">Science</option>
+                            <option value="business">Business</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="sortBy" class="form-label fw-bold">Trier par</label>
+                        <select class="form-select" id="sortBy">
+                            <option value="newest">Plus récents</option>
+                            <option value="popular">Plus populaires</option>
+                            <option value="trending">Tendances</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Recherche</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Rechercher un article...">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Articles Grid -->
+            <div class="row">
+                <!-- Article 1 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="article-card card h-100">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" class="card-img-top article-image" alt="Article 1">
+                            <span class="category-badge bg-primary">Technologie</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Les 10 innovations technologiques qui vont changer le monde</h5>
+                            <p class="card-text flex-grow-1">Découvrez les avancées technologiques les plus prometteuses de cette année et leur impact sur notre futur.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Auteur" class="author-avatar me-2">
+                                    <div>
+                                        <small class="d-block">Thomas Moreau</small>
+                                        <small class="text-muted">12 mai 2023</small>
+                                    </div>
+                                </div>
+                                <span class="reading-time">5 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article 2 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="article-card card h-100">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" class="card-img-top article-image" alt="Article 2">
+                            <span class="category-badge bg-success">Culture</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">La renaissance des cinémas indépendants</h5>
+                            <p class="card-text flex-grow-1">Comment les salles alternatives retrouvent leur public à l'ère du streaming.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Auteur" class="author-avatar me-2">
+                                    <div>
+                                        <small class="d-block">Sophie Martin</small>
+                                        <small class="text-muted">10 mai 2023</small>
+                                    </div>
+                                </div>
+                                <span class="reading-time">7 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article 3 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="article-card card h-100">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" class="card-img-top article-image" alt="Article 3">
+                            <span class="category-badge bg-warning text-dark">Business</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Le télétravail a-t-il un avenir en entreprise ?</h5>
+                            <p class="card-text flex-grow-1">Analyse des impacts du travail à distance sur la productivité et la culture d'entreprise.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Auteur" class="author-avatar me-2">
+                                    <div>
+                                        <small class="d-block">Pierre Dubois</small>
+                                        <small class="text-muted">8 mai 2023</small>
+                                    </div>
+                                </div>
+                                <span class="reading-time">6 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional articles would follow the same pattern -->
+                <!-- Article 4 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="article-card card h-100">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" class="card-img-top article-image" alt="Article 4">
+                            <span class="category-badge bg-info">Science</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Les dernières découvertes sur le changement climatique</h5>
+                            <p class="card-text flex-grow-1">Nouvelles recherches et solutions innovantes pour faire face au réchauffement climatique.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Auteur" class="author-avatar me-2">
+                                    <div>
+                                        <small class="d-block">Marie Lambert</small>
+                                        <small class="text-muted">5 mai 2023</small>
+                                    </div>
+                                </div>
+                                <span class="reading-time">8 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 5 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="article-card card h-100">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" class="card-img-top article-image" alt="Article 5">
+                            <span class="category-badge bg-secondary">Lifestyle</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Le minimalisme : vivre mieux avec moins</h5>
+                            <p class="card-text flex-grow-1">Découvrez comment simplifier votre vie peut augmenter votre bonheur et réduire votre stress.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/women/26.jpg" alt="Auteur" class="author-avatar me-2">
+                                    <div>
+                                        <small class="d-block">Claire Lemoine</small>
+                                        <small class="text-muted">3 mai 2023</small>
+                                    </div>
+                                </div>
+                                <span class="reading-time">4 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 6 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="article-card card h-100">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" class="card-img-top article-image" alt="Article 6">
+                            <span class="category-badge bg-danger">Productivité</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Les secrets de productivité des PDG</h5>
+                            <p class="card-text flex-grow-1">Comment les leaders les plus occupés organisent leur temps pour maximiser leur efficacité.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Auteur" class="author-avatar me-2">
+                                    <div>
+                                        <small class="d-block">Marc Bertrand</small>
+                                        <small class="text-muted">1 mai 2023</small>
+                                    </div>
+                                </div>
+                                <span class="reading-time">6 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="mb-3">
+                        <span style="color: var(--accent);">Mag</span>azine
+                    </h3>
+                    <p class="mb-4">Votre source d'informations, d'inspiration et de découvertes. Des contenus de qualité pour les esprits curieux.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">Rubriques</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Actualités</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Culture</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Technologie</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Lifestyle</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Science</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">Contenus</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Articles</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Podcasts</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Vidéos</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Newsletter</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Archives</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="mb-3">À propos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Équipe</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Contact</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Partenariats</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Mentions légales</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">CGU</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row mt-5 pt-4 border-top border-secondary">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 Magazine. Tous droits réservés.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light text-decoration-none me-3">Politique de confidentialité</a>
+                    <a href="#" class="text-light text-decoration-none">Paramètres des cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

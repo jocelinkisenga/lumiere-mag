@@ -25,9 +25,9 @@ return new class extends Migration
         });
 
         User::create([
-            "name" => "Lumiere Magazine",
-            "email" => "lumiere@gmail.com",
-            "password" => Hash::make("12345678"),
+            "name" => "patrick Ngoy",
+            "email" => "visionbilion365@gmail.com",
+            "password" => Hash::make("PatrickNgoy12123"),
             "role_id" => true,
         ]);
     }

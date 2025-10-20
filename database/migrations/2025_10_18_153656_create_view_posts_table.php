@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('view_posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("coupon_id")
-                ->constrained()
-                ->cascadeOnDelete();
-                $table->string("image_url");
-            $table->timestamps();
+            $table->foreignId("post_id")->constrained()->cascadeOnDelete();
+            $table->bigInteger("view_post");
+            $table->ipAddress("ip_adress");
+            $table->unique("post_id","ip_adress");
+           $table->timestamps();
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('view_posts');
     }
 };

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidéos | Magazine</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #95a5a6;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+        
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 100px 0 60px;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .video-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .video-card:hover .video-overlay {
+            opacity: 1;
+        }
+        
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .video-card:hover .play-button {
+            transform: scale(1.1);
+        }
+        
+        .video-duration {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 4rem;
+        }
+        
+        .navbar {
+            transition: all 0.3s ease;
+            padding: 15px 0;
+        }
+        
+        .navbar.scrolled {
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+        
+        .filter-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+        
+        .featured-video {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .featured-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span style="color: var(--accent);">Mag</span>azine
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="articles.html">Articles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="podcasts.html">Podcasts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="videos.html">Vidéos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="a-propos.html">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex">
+                    <button class="btn btn-outline-dark me-2">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-primary">
+                        S'abonner
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold mb-4">Nos Vidéos</h1>
+                    <p class="lead">Découvrez nos reportages, documentaires et interviews en vidéo</p>
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-light btn-lg me-3">
+                            <i class="fab fa-youtube me-2"></i>Notre chaîne YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Videos Content -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Filters -->
+            <div class="filter-section">
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-4">
+                        <label for="categoryFilter" class="form-label fw-bold">Catégorie</label>
+                        <select class="form-select" id="categoryFilter">
+                            <option value="">Toutes les catégories</option>
+                            <option value="reportage">Reportages</option>
+                            <option value="interview">Interviews</option>
+                            <option value="documentaire">Documentaires</option>
+                            <option value="tutoriel">Tutoriels</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="sortBy" class="form-label fw-bold">Trier par</label>
+                        <select class="form-select" id="sortBy">
+                            <option value="newest">Plus récents</option>
+                            <option value="popular">Plus populaires</option>
+                            <option value="duration">Durée</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Recherche</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Rechercher une vidéo...">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Video -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="featured-video">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Vidéo en vedette" class="img-fluid w-100 h-100" style="object-fit: cover;">
+                        <div class="featured-content">
+                            <span class="badge bg-warning text-dark mb-2">En vedette</span>
+                            <h3 class="mb-2">Dans les coulisses de la mode éthique</h3>
+                            <p class="mb-3">Rencontre avec des créateurs engagés pour une mode durable et responsable.</p>
+                            <div class="d-flex align-items-center">
+                                <span class="me-3"><i class="far fa-clock me-1"></i> 15 min</span>
+                                <span class="me-3"><i class="far fa-calendar me-1"></i> 14 mai 2023</span>
+                                <span><i class="far fa-eye me-1"></i> 12.4K vues</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Videos Grid -->
+            <div class="row">
+                <!-- Video 1 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="video-card">
+                        <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Vidéo 1" class="video-thumbnail">
+                        <div class="video-overlay">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-duration">22:45</div>
+                        <div class="p-3">
+                            <h5 class="mb-2">L'art urbain : entre vandalisme et chef-d'œuvre</h5>
+                            <p class="text-muted small mb-2">Exploration du street art à travers les rues de Paris.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small>24K vues • 10 mai 2023</small>
+                                <span class="badge bg-info">Populaire</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 2 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="video-card">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Vidéo 2" class="video-thumbnail">
+                        <div class="video-overlay">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-duration">18:30</div>
+                        <div class="p-3">
+                            <h5 class="mb-2">La collaboration humain-IA en entreprise</h5>
+                            <p class="text-muted small mb-2">Comment les entreprises intègrent l'IA dans leurs processus.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small>15K vues • 8 mai 2023</small>
+                                <span class="badge bg-success">Nouveau</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 3 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="video-card">
+                        <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Vidéo 3" class="video-thumbnail">
+                        <div class="video-overlay">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-duration">25:15</div>
+                        <div class="p-3">
+                            <h5 class="mb-2">L'impact du changement climatique sur l'agriculture</h5>
+                            <p class="text-muted small mb-2">Comment les agriculteurs s'adaptent face aux défis environnementaux.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small>22K vues • 5 mai 2023</small>
+                                <span class="badge bg-warning text-dark">Tendance</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional videos would follow the same pattern -->
+                <!-- Video 4 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="video-card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Vidéo 4" class="video-thumbnail">
+                        <div class="video-overlay">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-duration">12:20</div>
+                        <div class="p-3">
+                            <h5 class="mb-2">Les bienfaits de la méditation sur le cerveau</h5>
+                            <p class="text-muted small mb-2">Découverte des effets neuroscientifiques de la pratique méditative.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small>18K vues • 3 mai 2023</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 5 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="video-card">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Vidéo 5" class="video-thumbnail">
+                        <div class="video-overlay">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-duration">20:05</div>
+                        <div class="p-3">
+                            <h5 class="mb-2">Le minimalisme : mode de vie ou philosophie ?</h5>
+                            <p class="text-muted small mb-2">Portraits de personnes ayant adopté un mode de vie minimaliste.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small>14K vues • 1 mai 2023</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 6 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="video-card">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Vidéo 6" class="video-thumbnail">
+                        <div class="video-overlay">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-duration">16:40</div>
+                        <div class="p-3">
+                            <h5 class="mb-2">Les secrets de productivité des PDG</h5>
+                            <p class="text-muted small mb-2">Comment les leaders organisent leur temps pour maximiser leur efficacité.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small>20K vues • 28 avr. 2023</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="mb-3">
+                        <span style="color: var(--accent);">Mag</span>azine
+                    </h3>
+                    <p class="mb-4">Votre source d'informations, d'inspiration et de découvertes. Des contenus de qualité pour les esprits curieux.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">Rubriques</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Actualités</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Culture</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Technologie</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Lifestyle</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Science</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">Contenus</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Articles</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Podcasts</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Vidéos</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Newsletter</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Archives</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="mb-3">À propos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Équipe</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Contact</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Partenariats</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Mentions légales</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">CGU</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row mt-5 pt-4 border-top border-secondary">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 Magazine. Tous droits réservés.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light text-decoration-none me-3">Politique de confidentialité</a>
+                    <a href="#" class="text-light text-decoration-none">Paramètres des cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

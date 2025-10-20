@@ -6,7 +6,9 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
+use App\Models\ViewPost;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -48,6 +50,7 @@ class PostController extends Controller
             "title" => $request->title,
             "slug" => $request->slug,
             "image" => $imgName,
+            "author" => $request->author,
              "description" => $request->description
         ]);
 
@@ -58,8 +61,18 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $title , int $id)
+    public function show(string $title , int $id, Request $request)
     {
+        try {
+            ViewPost::updateOrCreate([
+                "post_id" => $id,
+                'view_post' => + 1,
+                'ip_adress' => $request->ip()
+            ]);
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
         $post = Post::findOrFail($id);
         $categories = Category::all();
         return view("pages.article",compact("post","categories"));

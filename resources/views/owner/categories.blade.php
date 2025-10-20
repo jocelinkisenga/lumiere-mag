@@ -1,5 +1,0 @@
-@extends("front.front")
-@section("content")
-@livewire("category.category")
-@endsection
-

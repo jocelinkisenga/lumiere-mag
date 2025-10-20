@@ -7,10 +7,10 @@ use App\Models\Category;
 @endphp
 <div class="container">
     <h2 class="mb-4 text-center text-secondary">Aperçu du Contenu 📰</h2>
-    
+
     <div class="row g-4 mb-5">
-        
-        <div class="col-md-6">
+
+        <div class="col-md-4">
             <div class="card bg-white p-4 text-center">
                 <div class="card-body">
                     <p class="card-title text-uppercase">Articles Publiés</p>
@@ -18,8 +18,8 @@ use App\Models\Category;
                 </div>
             </div>
         </div>
-        
-        <div class="col-md-6">
+
+        <div class="col-md-4">
             <div class="card bg-white p-4 text-center">
                 <div class="card-body">
                     <p class="card-title text-uppercase">Catégories Ajoutées</p>
@@ -27,11 +27,19 @@ use App\Models\Category;
                 </div>
             </div>
         </div>
-        
+                <div class="col-md-4">
+                    <div class="card bg-white p-4 text-center">
+                        <div class="card-body">
+                            <p class="card-title text-uppercase">Lectures d'articles</p>
+                            <h5 class="card-text card-text-big text-success">{{ \App\Models\ViewPost::count()}}</h5>
+                        </div>
+                    </div>
+                </div>
+
     </div>
 
     <hr>
-    
+
     <div class="card shadow-sm table-custom">
         <div class="card-header bg-light">
             <h5 class="mb-0 text-dark">Derniers Articles Récents</h5>
@@ -62,6 +70,6 @@ use App\Models\Category;
             </div>
         </div>
     </div>
-    
+
 </div>
 @endsection
