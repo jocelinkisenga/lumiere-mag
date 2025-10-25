@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VideoController;
@@ -47,6 +48,15 @@ Route::middleware('auth')->group(function () {
 
     Route::get("categorie",[CategoryController::class, "create"])->name("categorie.create");
     Route::post("categorie", [CategoryController::class, "store"])->name("categorie.store");
+
+    Route::get("adminPodcast", [PodcastController::class, "index"])->name("podcast.index");
+
+    Route::get("podcast", [PodcastController::class, "create"])->name("podcast.create");
+    Route::post("storePodcast", [PodcastController::class, "store"])->name("podcast.store");
+
+    Route::get("/admin/videos", [VideoController::class, "admin_videos"])->name("admin.videos");
+    Route::get("create/video", [VideoController::class, "create"])->name("video.create");
+    Route::post("store/video", [VideoController::class, "store"])->name("video.store");
 
 });
 

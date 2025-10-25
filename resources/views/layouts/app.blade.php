@@ -193,7 +193,7 @@
                 </a>
             </li>
             <li>
-                <a href="podcasts.html">
+                <a href="{{ route("podcast.index") }}">
                     <i class="fas fa-podcast"></i>
                     Podcasts
                 </a>

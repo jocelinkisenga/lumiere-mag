@@ -51,6 +51,9 @@
                 margin-bottom: 1.5rem;
                 line-height: 1.2;
             }
+            a {
+                text-underline-position: none;
+            }
 
             @media (max-width: 768px) {
                 .hero-title {
@@ -835,4 +838,3 @@
             border-color: var(--accent);
             box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.1);
         }
-        

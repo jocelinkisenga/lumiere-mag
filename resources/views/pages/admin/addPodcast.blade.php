@@ -9,7 +9,7 @@
                     <h4 class="card-title">ajouter un Podcast</h4>
                     <p class="card-description">
                     </p>
-                    <form class="forms-sample" method="POST" action="{{ route("video.store") }}" enctype="multipart/form-data">
+                    <form class="forms-sample" method="POST" action="{{ route("podcast.store") }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <div class="col-6">
@@ -32,14 +32,14 @@
                             <div class="col-12">
                                 <label for="exampleInputEmail2" class="col-sm-3 col-form-label">image de couverture</label>
                                 <div class="col-sm-6">
-                                    <input type="file" class="form-control" id="exampleInputEmail2" name="cover_video">
+                                    <input type="file" class="form-control" id="exampleInputEmail2" name="cover">
                                 </div>
 
                             </div>
                             <div class="col-12">
                                 <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Fichier audio</label>
                                 <div class="col-sm-6">
-                                    <input type="file" class="form-control" id="exampleInputEmail2" name="video_name">
+                                    <input type="file" class="form-control" id="exampleInputEmail2" name="audio_file">
                                 </div>
 
                             </div>

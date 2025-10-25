@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("coupon_id")
+            $table->foreignId(column: "post_id")
                 ->constrained()
                 ->cascadeOnDelete();
                 $table->string("image_url");
