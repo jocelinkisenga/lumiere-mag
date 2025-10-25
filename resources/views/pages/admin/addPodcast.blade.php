@@ -39,7 +39,7 @@
                             <div class="col-12">
                                 <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Fichier audio</label>
                                 <div class="col-sm-6">
-                                    <input type="file" class="form-control" id="exampleInputEmail2" name="audio_file">
+                                    <input type="file" class="form-control" id="exampleInputEmail2" name="audio_file" accept="mp3">
                                 </div>
 
                             </div>

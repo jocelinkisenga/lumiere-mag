@@ -166,14 +166,16 @@
     <nav id="sidebar">
         <div class="sidebar-header">
             <div class="brand-logo text-center">
-                <span style="color: var(--accent);">Mag</span>azine
+                <a href="/"><span style="color: var(--accent);">Mag</span>azine</a>
+
+
             </div>
             <small class="text-center d-block mt-2">Administration</small>
         </div>
 
         <ul class="list-unstyled components">
             <li class="active">
-                <a href="dashboard.html">
+                <a href="{{ route("dashboard") }}">
                     <i class="fas fa-tachometer-alt"></i>
                     Tableau de bord
                 </a>
@@ -199,7 +201,7 @@
                 </a>
             </li>
             <li>
-                <a href="videos.html">
+                <a href="{{ route("admin.videos") }}">
                     <i class="fas fa-video"></i>
                     Vidéos
                 </a>

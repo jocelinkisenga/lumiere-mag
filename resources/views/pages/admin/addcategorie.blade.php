@@ -9,7 +9,6 @@
                     <div class="card-body">
                         <h4 class="card-title">ajouter une categorie</h4>
                         <p class="card-description">
-                            formulaire d'ajout d'un coupon
                         </p>
                         <form class="forms-sample" action="{{ route("categorie.store") }}" method="POST" enctype="multipart/form-data">
                             @csrf

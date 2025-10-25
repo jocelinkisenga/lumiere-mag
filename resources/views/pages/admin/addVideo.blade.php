@@ -6,7 +6,7 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">ajouter un Podcast</h4>
+                    <h4 class="card-title">ajouter une video</h4>
                     <p class="card-description">
                     </p>
                     <form class="forms-sample" method="POST" action="{{ route("video.store") }}" enctype="multipart/form-data">
@@ -37,7 +37,7 @@
 
                             </div>
                             <div class="col-12">
-                                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Fichier audio</label>
+                                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">votre fichier Video</label>
                                 <div class="col-sm-6">
                                     <input type="file" class="form-control" id="exampleInputEmail2" name="video_name">
                                 </div>

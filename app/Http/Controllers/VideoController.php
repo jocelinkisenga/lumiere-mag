@@ -12,11 +12,11 @@ class VideoController extends Controller
     }
 
     public function admin_videos () {
-        return view("admin.videos", ["videos" => Video::latest()->get()]);
+        return view("pages.admin.videos", ["videos" => Video::latest()->get()]);
     }
 
     public function create () {
-        return view("admin.addVideo");
+        return view("pages.admin.addVideo");
     }
 
     public function show ($title, $id) {
@@ -27,7 +27,7 @@ class VideoController extends Controller
     public function store (Request $request) {
 
         $imgName = Carbon::now()->timestamp . 'lumiere.' . $request->file('cover_video')->extension();
-        $path = $request->file("cover")->storeAs('videos/covers', $imgName, 'public');
+        $path = $request->file( "cover_video")->storeAs('videos/covers', $imgName, 'public');
 
         $audioName = Carbon::now()->timestamp . 'lumiere.' . $request->file('video_name')->getClientOriginalName();
 
