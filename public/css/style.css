@@ -1,6 +1,6 @@
 
             :root {
-                --primary: #2c3e50;
+                --primary: hsl(219, 79%, 49%);
                 --secondary: #95a5a6;
                 --accent: #e74c3c;
                 --light: #ecf0f1;
@@ -10,6 +10,7 @@
                 --info: #3498db;
             }
 
+            /* #2c3e50 */
             body {
                 font-family: "Inter", sans-serif;
                 color: #333;
@@ -35,8 +36,8 @@
             .hero-section {
                 background: linear-gradient(
                         135deg,
-                        rgba(44, 62, 80, 0.9) 0%,
-                        rgba(52, 73, 94, 0.9) 100%
+                        var(--primary) 0%,
+                        rgba(52, 101, 151, 0.9) 100%
                     ),
                     url("https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80")
                         center/cover no-repeat;
@@ -52,7 +53,7 @@
                 line-height: 1.2;
             }
             a {
-                text-underline-position: none;
+                text-decoration: none;
             }
 
             @media (max-width: 768px) {
@@ -74,7 +75,7 @@
                 left: 0;
                 width: 60px;
                 height: 3px;
-                background: var(--accent);
+                background: var(--primary);
             }
 
             .article-card {
@@ -91,7 +92,7 @@
             }
 
             .article-image {
-                height: 200px;
+                height: 50vh;
                 object-fit: cover;
                 width: 100%;
                 transition: transform 0.5s ease;
@@ -217,7 +218,11 @@
             }
 
             .footer {
-                background: var(--dark);
+                background: linear-gradient(
+                    135deg,
+                    var(--primary) 0%,
+                    var(--dark) 100%
+                );
                 color: white;
                 padding: 60px 0 30px;
             }
@@ -228,7 +233,7 @@
                 justify-content: center;
                 width: 40px;
                 height: 40px;
-                background: rgba(255, 255, 255, 0.1);
+                background: var(--primary);
                 border-radius: 50%;
                 margin-right: 10px;
                 transition: all 0.3s ease;
@@ -245,7 +250,7 @@
                 right: 30px;
                 width: 50px;
                 height: 50px;
-                background: var(--accent);
+                background: var(--primary);
                 color: white;
                 border-radius: 50%;
                 display: flex;
@@ -310,7 +315,7 @@
         }
 
         .article-header {
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(52, 73, 94, 0.9) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, rgba(52, 73, 94, 0.9) 100%);
             color: white;
             padding: 120px 0 60px;
             position: relative;
@@ -527,54 +532,7 @@
             object-fit: cover;
         }
 
-        .footer {
-            background: var(--dark);
-            color: white;
-            padding: 60px 0 30px;
-            margin-top: 4rem;
-        }
 
-        .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            margin-right: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--accent);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .scroll-to-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
 
         .navbar {
             transition: all 0.3s ease;
@@ -683,7 +641,6 @@
         }
 
         .article-image {
-            height: 200px;
             object-fit: cover;
             width: 100%;
             transition: transform 0.5s ease;

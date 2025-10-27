@@ -20,20 +20,21 @@
 
                 </p>
                 <div class="d-flex align-items-center">
-                    <img src="{{ asset("storage/uploads/".$latestPost->image) }}" alt="Auteur" class="author-avatar me-3" />
+                    <img src=" {{ asset("user.jpg") }}" width="60" height="60" alt="Auteur" class="author-avatar me-3" />
+
 
                     <div>
                         <div>{{ $latestPost->author }}</div>
 
-                        <small>15 mai 2023 • 8 min de lecture</small>
+                        <small>{{ $latestPost->created_at }} • 8 min de lecture</small>
                     </div>
                 </div>
                 <div class="mt-4">
                     <a href="{{ route("posts.show",['title' => $latestPost->title, 'id' => $latestPost->id]) }}" class="btn btn-light btn-lg me-3">Lire l'article</a>
 
-                    <a href="#" class="btn btn-outline-light btn-lg">
+                    {{-- <a href="#" class="btn btn-outline-light btn-lg">
                         <i class="fas fa-play-circle me-2"></i>Écouter
-                    </a>
+                    </a> --}}
                 </div>
             </div>
             <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
@@ -77,7 +78,7 @@
                     </div>
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">
-                           <a href="{{ route("posts.show",['title' => $item->title, 'id' => $item->id]) }}">{{ $item->title }}</a>
+                            <a href="{{ route("posts.show",['title' => $item->title, 'id' => $item->id]) }}">{{ $item->title }}</a>
 
 
 
@@ -88,7 +89,7 @@
                         </p>
                         <div class="d-flex justify-content-between align-items-center mt-auto">
                             <div class="d-flex align-items-center">
-                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Auteur" class="author-avatar me-2" />
+                                <img src="{{ asset("user.jpg") }}" alt="Auteur" class="author-avatar me-2" />
                                 <div>
                                     <small class="d-block">{{ $item->author }}</small>
 
@@ -106,7 +107,7 @@
         </div>
 
         <div class="text-center mt-4" data-aos="fade-up">
-            <a href="#" class="btn btn-outline-primary btn-lg">Voir tous les articles</a>
+            <a href="{{ route("posts.front") }}" class="btn btn-outline-primary btn-lg">Voir tous les articles</a>
         </div>
     </div>
 </section>
@@ -121,9 +122,37 @@
 
         <div class="row">
             <!-- Podcast 1 -->
+            @foreach ($podcasts as $podcast)
             <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="podcast-card">
-                    <div class="d-flex align-items-center mb-3">
+
+                    <div class="card shadow-sm border-0 mb-4" style="max-width: 600px;">
+                        <div class="card-body">
+                            <h5 class="card-title">🎙️ {{ $podcast->title }}</h5>
+                            <p class="card-text text-muted">{{ $podcast->author }} · 24 min</p>
+
+                            <audio id="podcastAudio" src="{{ asset("storage/podcasts/".$podcast->audio_file) }}"></audio>
+
+
+                            <div class="d-flex align-items-center gap-3 mt-3">
+                                <button class="btn btn-outline-secondary btn-sm" onclick="skip(-15)">⏪ 15s</button>
+                                <button class="btn btn-primary btn-sm" id="playPauseBtn" onclick="togglePlayPause()">▶️</button>
+                                <button class="btn btn-outline-secondary btn-sm" onclick="skip(15)">⏩ 15s</button>
+                            </div>
+
+                            <div class="mt-3">
+                                <input type="range" id="progressBar" class="form-range" value="0" step="1">
+                                <div class="d-flex justify-content-between">
+                                    <small id="currentTime">0:00</small>
+                                    <small id="duration">0:00</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    {{-- <div class="d-flex align-items-center mb-3">
                         <div class="bg-primary rounded p-2 me-3">
                             <i class="fas fa-microphone text-white"></i>
                         </div>
@@ -133,92 +162,56 @@
                         </div>
                     </div>
                     <h4>
-                        L'écologie en entreprise : greenwashing ou réel
-                        engagement ?
+                        {{ $podcast->title}}
                     </h4>
-                    <p class="text-muted">
-                        Avec notre invitée spéciale, Dr. Élodie Petit,
-                        experte en RSE.
-                    </p>
-                    <div class="d-flex justify-content-between align-items-center mt-4">
-                        <div class="d-flex align-items-center">
-                            <img src="https://randomuser.me/api/portraits/women/26.jpg" alt="Podcast host" class="author-avatar me-2" />
-                            <small>Claire Lemoine</small>
-                        </div>
-                        <button class="btn btn-primary btn-sm">
-                            <i class="fas fa-play me-1"></i> Écouter
-                        </button>
-                    </div>
-                </div>
-            </div>
+                    <p>
 
-            <!-- Podcast 2 -->
-            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="podcast-card">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="bg-success rounded p-2 me-3">
-                            <i class="fas fa-headphones text-white"></i>
-                        </div>
-                        <div>
-                            <h5 class="mb-0">Épisode 41</h5>
-                            <small class="text-muted">38 min</small>
-                        </div>
-                    </div>
-                    <h4>Les défis de l'éducation à l'ère numérique</h4>
-                    <p class="text-muted">
-                        Comment les nouvelles technologies transforment
-                        l'apprentissage.
-                    </p>
-                    <div class="d-flex justify-content-between align-items-center mt-4">
-                        <div class="d-flex align-items-center">
-                            <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Podcast host" class="author-avatar me-2" />
-                            <small>Marc Bertrand</small>
-                        </div>
-                        <button class="btn btn-primary btn-sm">
-                            <i class="fas fa-play me-1"></i> Écouter
-                        </button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Podcast 3 -->
-            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="podcast-card">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="bg-warning rounded p-2 me-3">
-                            <i class="fas fa-podcast text-white"></i>
+                        <div class="d-flex align-items-center gap-3">
+                            <button id="playBtn" class="btn btn-success btn-sm">Play</button>
+                            <audio controlsList="nodownload" id="audio">
+
+                                <source src="{{ asset("storage/podcasts/".$podcast->audio_file) }}" type="audio/mpeg">
+
+                            </audio>
+
+                            <button id="pauseBtn" class="btn btn-danger btn-sm">Pause</button>
+
+                            <input type="range" id="progress" class="form-range w-25" value="0" step="1">
+                            <span id="time" class="text-muted small">0:00</span>
                         </div>
-                        <div>
-                            <h5 class="mb-0">Épisode 40</h5>
-                            <small class="text-muted">52 min</small>
-                        </div>
-                    </div>
-                    <h4>L'avenir des villes intelligentes</h4>
+
+
+                    </p>
                     <p class="text-muted">
-                        Discussion avec un urbaniste sur les
-                        technologies qui façonnent nos villes.
+
                     </p>
                     <div class="d-flex justify-content-between align-items-center mt-4">
                         <div class="d-flex align-items-center">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Podcast host" class="author-avatar me-2" />
-                            <small>Marie Lambert</small>
+                            <img src="{{ asset("storage/podcasts/covers/".$podcast->cover) }}" alt="Podcast host" class="author-avatar me-2" />
+                            <small>{{ $podcast->autor }}</small>
+
                         </div>
+
                         <button class="btn btn-primary btn-sm">
                             <i class="fas fa-play me-1"></i> Écouter
                         </button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
+            @endforeach
+
         </div>
 
         <div class="text-center mt-4" data-aos="fade-up">
-            <a href="#" class="btn btn-outline-primary btn-lg">Voir tous les podcasts</a>
+            <a href="{{ route("podcast.front") }}" class="btn btn-outline-primary btn-lg">Voir tous les podcasts</a>
+
         </div>
     </div>
 </section>
 
 <!-- Vidéos Section -->
-<section class="py-5">
+<section class="py-5 mt-4">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">
             Reportages Vidéos
@@ -229,57 +222,42 @@
 
         <div class="row">
             <!-- Vidéo 1 -->
+            @foreach ($recentVideos as $video)
             <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="video-card">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Vidéo 1" class="img-fluid w-100" style="height: 300px; object-fit: cover" />
-                    <div class="video-overlay">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
+                    {{-- <img src="{{ asset("storage/videos/covers/".$video->cover_video) }}" alt="Vidéo 1" class="img-fluid w-100" style="height: 300px; object-fit: cover" /> --}}
+                    <video class="embeded-responsive w-100" controlsList="nodownload" controls preload="metadata" poster="{{ asset("storage/videos/covers/".$video->cover_video) }}">
+ <source src="{{ asset("storage/videos/".$video->video_name) }}" type="video/mp4">
+
+                    </video>
+
+
+{{-- <iframe src="{{ asset("storage/videos/".$video->video_name) }}" frameborder="0"></iframe> --}}
+
+
+
                     <div class="p-3">
-                        <h4>Dans les coulisses de la mode éthique</h4>
+                        <h4>{{ $video->title }}</h4>
                         <p class="text-muted">
-                            Rencontre avec des créateurs engagés pour
-                            une mode durable.
+                            {{Str::limit($video->description, 50 )}}
+
+
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <small>15 min • 12K vues</small>
-                            <span class="badge bg-info">Nouveau</span>
+
+
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Vidéo 2 -->
-            <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="video-card">
-                    <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Vidéo 2" class="img-fluid w-100" style="height: 300px; object-fit: cover" />
-                    <div class="video-overlay">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="p-3">
-                        <h4>
-                            L'art urbain : entre vandalisme et
-                            chef-d'œuvre
-                        </h4>
-                        <p class="text-muted">
-                            Exploration du street art à travers les rues
-                            de Paris.
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <small>22 min • 24K vues</small>
-                            <span class="badge bg-info">Populaire</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            @endforeach
         </div>
 
         <div class="text-center mt-4" data-aos="fade-up">
-            <a href="#" class="btn btn-outline-primary btn-lg">Voir toutes les vidéos</a>
+            <a href="{{ route("video.front") }}" class="btn btn-outline-primary btn-lg">Voir toutes les vidéos</a>
+
         </div>
     </div>
 </section>
@@ -296,7 +274,8 @@
 
             <!-- Article Populaire 1 -->
             <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="article-card card">
+                <div class="article-card card shadow-sm border-0 mb-4">
+
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="{{ asset("storage/uploads/".$item->image) }}" class="img-fluid h-100 w-100" style="object-fit: cover" alt="{{ $item->title }}" />
@@ -306,7 +285,7 @@
                                 <span class="badge bg-danger mb-2">{{ $item->category->title }}</span>
 
                                 <h5 class="card-title">
-                                <a href="{{ route("posts.show",['title' => $item->title, 'id' => $item->id]) }}">{{ $item->title }}</a>
+                                    <a href="{{ route("posts.show",['title' => $item->title, 'id' => $item->id]) }}">{{ $item->title }}</a>
 
 
 
@@ -316,7 +295,7 @@
 
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <small class="text-muted">5 mai 2023 • 12 min</small>
+                                    <small class="text-muted">{{ $item->created_at }} • 12 min</small>
                                     <span class="badge bg-light text-dark">
                                         <i class="fas fa-eye me-1"></i>
                                         24K

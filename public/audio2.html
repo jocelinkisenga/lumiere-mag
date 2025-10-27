@@ -1,0 +1,94 @@
+Here’s a fully functional and beautifully styled *Bootstrap podcast player card* you can use in a Laravel Blade view. It includes play/pause, skip forward/backward, progress bar, and time display — all wrapped in a responsive Bootstrap card.
+
+---
+
+*🧱 Blade + Bootstrap Podcast Player Card*
+
+```blade
+<div class="card shadow-sm border-0 mb-4" style="max-width: 600px;">
+    <div class="card-body">
+        <h5 class="card-title">🎙️ Podcast Episode Title</h5>
+        <p class="card-text text-muted">Hosted by Jane Doe · 24 min</p>
+
+        <audio id="podcastAudio" src="{{ asset('audio/podcast.mp3')}}"></audio>
+
+        <div class="d-flex align-items-center gap-3 mt-3">
+            <button class="btn btn-outline-secondary btn-sm" onclick="skip(-15)">⏪ 15s</button>
+            <button class="btn btn-primary btn-sm" onclick="playAudio()">▶️ Play</button>
+            <button class="btn btn-danger btn-sm" onclick="pauseAudio()">⏸️ Pause</button>
+            <button class="btn btn-outline-secondary btn-sm" onclick="skip(15)">⏩ 15s</button>
+        </div>
+
+        <div class="mt-3">
+            <input type="range" id="progressBar" class="form-range" value="0" step="1">
+            <div class="d-flex justify-content-between">
+                <small id="currentTime">0:00</small>
+                <small id="duration">0:00</small>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+---
+
+*🧠 JavaScript Functionality*
+
+```blade
+<script>
+    const audio = document.getElementById('podcastAudio');
+    const progressBar = document.getElementById('progressBar');
+    const currentTime = document.getElementById('currentTime');
+    const duration = document.getElementById('duration');
+
+    function playAudio() {
+        audio.play();
+}
+
+    function pauseAudio() {
+        audio.pause();
+}
+
+    function skip(seconds) {
+        audio.currentTime += seconds;
+}
+
+    audio.addEventListener('loadedmetadata', () => {
+        progressBar.max = audio.duration;
+        duration.textContent = formatTime(audio.duration);
+});
+
+    audio.addEventListener('timeupdate', () => {
+        progressBar.value = audio.currentTime;
+        currentTime.textContent = formatTime(audio.currentTime);
+});
+
+    progressBar.addEventListener('input', () => {
+        audio.currentTime = progressBar.value;
+});
+
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+        return `${mins}:${secs}`;
+}
+</script>
+```
+
+---
+
+*🎨 Optional Styling (if needed)*
+
+```blade
+<style>
+.form-range {
+        height: 4px;
+}
+</style>
+```
+
+---
+
+This player is clean, responsive, and fully customizable. You can easily extend it with volume control, playback speed, or even waveform visualization.
+
+Want help turning this into a reusable Blade component or integrating it with dynamic podcast data from your database?

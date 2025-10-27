@@ -13,11 +13,11 @@ use App\Models\Category;
                 <!-- Page Header -->
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h1 class="h3 mb-0">Tableau de Bord</h1>
-                    <div class="btn-group">
+                    {{-- <div class="btn-group">
                         <button class="btn btn-outline-primary">Aujourd'hui</button>
                         <button class="btn btn-outline-primary active">Cette semaine</button>
                         <button class="btn btn-outline-primary">Ce mois</button>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <!-- Statistics Cards -->

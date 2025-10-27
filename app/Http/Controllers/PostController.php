@@ -42,6 +42,7 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
 
+        
         $imgName = Carbon::now()->timestamp .'patrickngoy.' . $request->file('image')->extension();
         $path = $request->file("image")->storeAs('uploads',$imgName,'public');
 
@@ -75,7 +76,8 @@ class PostController extends Controller
         }
         $post = Post::findOrFail($id);
         $categories = Category::all();
-        return view("pages.article",compact("post","categories"));
+        $related = Post::where("category_id", $post->category_id)->where("id","!=",$id)->latest()->get();
+        return view("pages.article",compact("post", "related","categories"));
     }
 
     /**

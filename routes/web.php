@@ -30,9 +30,9 @@ Route::get("frontPosts",[PostController::class,"front"])->name("posts.front");
 
 Route::get("about", [Aboutcontroller::class,"index"])->name("about");
 Route::get("contact", [ContactController::class, "index"])->name("contact");
-
+Route::get("front/videos", [VideoController::class, "front"])->name("video.front");
 Route::get("category/{slug}/{id}", [CategoryController::class, "show"])->name("categorie.show");
-
+Route::get("front/pdocast", [PodcastController::class, "front"])->name("podcast.front");
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

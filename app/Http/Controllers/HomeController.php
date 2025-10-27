@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coupon;
+use App\Models\Podcast;
 use App\Models\Post;
 use App\Models\Video;
 use Carbon\Carbon;
@@ -17,11 +18,12 @@ class HomeController extends Controller
         $recentPosts = Post::latest()->limit(4)->get();
         $recentVideos = Video::latest()->limit(8)->get();
         $weekly = $this->weekly();
+        $podcasts = Podcast::latest()->limit(3)->get();
 
-        return view("pages.index",compact("latestPost",
+        return view("pages.index",compact("latestPost","recentVideos",
                                          "popularPosts",
                                          "recentPosts",
-                                        "weekly"));
+                                        "weekly","podcasts"));
     }
 
     public function dashboard()  {

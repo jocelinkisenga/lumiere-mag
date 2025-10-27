@@ -43,4 +43,8 @@ class VideoController extends Controller
 
         return redirect()->route("video.admin");
     }
+
+    public function front() {
+        return view("pages.videos",["videos" => Video::latest()->paginate(12)] );
+    }
 }

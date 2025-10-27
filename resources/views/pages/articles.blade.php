@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <!-- Page Header -->
-    <header class="page-header">
+    <header class="page-header mt-4">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center">

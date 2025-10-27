@@ -18,6 +18,10 @@ class PodcastController extends Controller
         return view("pages.admin.addPodcast");
     }
 
+    public function front () {
+        return view("pages.podcasts", ["podcasts" => Podcast::latest()->paginate(12)]);
+    }
+
     public function store(Request $request)
     {
 

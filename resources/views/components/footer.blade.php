@@ -54,21 +54,14 @@
             <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
                 <h5 class="mb-3">Rubriques</h5>
                 <ul class="list-unstyled">
+                     @foreach(\App\Models\Category::limit(4)->get() as $category)
+
                     <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">Actualités</a>
+                        <a href="{{route("categorie.show",["slug" => $category->title,"id" => $category->id])}}" class="text-light text-decoration-none">{{$category->title}}</a>
+
+
                     </li>
-                    <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">Culture</a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">Technologie</a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">Lifestyle</a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">Science</a>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
 
@@ -76,13 +69,14 @@
                 <h5 class="mb-3">Contenus</h5>
                 <ul class="list-unstyled">
                     <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">Articles</a>
+                        <a href="{{ route("posts.front") }}" class="text-light text-decoration-none">Articles</a>
+
                     </li>
                     <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">Podcasts</a>
+                        <a href="{{ route("podcast.front") }}" class="text-light text-decoration-none">Podcasts</a>
                     </li>
                     <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">Vidéos</a>
+                        <a href="{{ route("video.front") }}" class="text-light text-decoration-none">Vidéos</a>
                     </li>
                     <li class="mb-2">
                         <a href="#" class="text-light text-decoration-none">Newsletter</a>
@@ -120,7 +114,7 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <p class="mb-0">
-                    &copy; 2023 Magazine. Tous droits réservés.
+                    &copy; 2023 Lumiere Du monde Magazine. Tous droits réservés.
                 </p>
             </div>
             <div class="col-md-6 text-md-end">

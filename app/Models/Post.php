@@ -17,4 +17,11 @@ class Post extends Model
 public function view_posts () {
    return $this->hasMany(ViewPost::class);
 }
+
+    public function comments()
+    {
+        return $this->hasMany( Comment::class);
+    }
+
+
 }
