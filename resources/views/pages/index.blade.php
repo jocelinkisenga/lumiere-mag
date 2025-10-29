@@ -290,8 +290,8 @@
                             <div class="card-body">
                                 <span class="badge bg-danger mb-2">{{ $item->category->title }}</span>
 
-                                <h5 class="card-title">
-                                    <a href="{{ route("posts.show",['title' => $item->title]) }}">{{ $item->title }}</a>
+                                <h5 class="car{{ route("posts.show", $item->slug) }}">{{ $item->title }}</a>
+
 
 
 
