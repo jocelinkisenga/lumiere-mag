@@ -68,7 +68,7 @@
 
                             <div class="d-flex justify-content-between align-items-center mt-auto">
                                 <div class="d-flex align-items-center">
-                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Auteur" class="author-avatar me-2">
+                                    <img src="{{ asset("user.jpg") }}" alt="Auteur" class="author-avatar me-2">
                                     <div>
                                         <small class="d-block">{{ $item->author }}</small>
 
@@ -76,7 +76,8 @@
 
                                     </div>
                                 </div>
-                                <span class="reading-time">5 min</span>
+                                <span class="reading-time">{{ $item->reading_minutes }} min</span>
+
                             </div>
                         </div>
                     </div>
@@ -86,7 +87,7 @@
             </div>
 
             <!-- Pagination -->
-            <nav aria-label="Page navigation" class="mt-5">
+            {{-- <nav aria-label="Page navigation" class="mt-5">
                 <ul class="pagination justify-content-center">
                     <li class="page-item disabled">
                         <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
@@ -102,7 +103,7 @@
                         </a>
                     </li>
                 </ul>
-            </nav>
+            </nav> --}}
         </div>
     </section>
 

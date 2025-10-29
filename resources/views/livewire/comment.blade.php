@@ -25,8 +25,8 @@
                         <h6 class="mb-0">Anonyme</h6>
                         <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
                     </div>
-                    {{-- <p class="mb-2">{{ $comment->description }}</p>
-                    <div class="d-flex align-items-center">
+                    <p class="mb-2">{{ $comment->description }}</p>
+                    {{-- <div class="d-flex align-items-center">
                         <button class="btn btn-sm btn-outline-secondary me-2">
                             <i class="far fa-thumbs-up"></i> 8
                         </button>

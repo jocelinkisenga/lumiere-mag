@@ -26,7 +26,7 @@
                     <div>
                         <div>{{ $latestPost->author }}</div>
 
-                        <small>{{ $latestPost->created_at }} • 8 min de lecture</small>
+                        <small>{{ $latestPost->created_at }} • {{ $latestPost->reading_minutes }} min de lecture</small>
                     </div>
                 </div>
                 <div class="mt-4">
@@ -97,7 +97,8 @@
 
                                 </div>
                             </div>
-                            <span class="reading-time">5 min</span>
+                            <span class="reading-time">{{ $item->reading_minutes }} min</span>
+
                         </div>
                     </div>
                 </div>
@@ -295,7 +296,8 @@
 
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <small class="text-muted">{{ $item->created_at }} • 12 min</small>
+                                    <small class="text-muted">{{ $item->created_at }} •{{ $item->reading_minutes }} min</small>
+
                                     <span class="badge bg-light text-dark">
                                         <i class="fas fa-eye me-1"></i>
                                         24K

@@ -23,5 +23,15 @@ public function view_posts () {
         return $this->hasMany( Comment::class);
     }
 
+public function getReadingMinutesAttribute () {
+    $wordPerminutes = 220;
+    $cleanContent = strip_tags($this->description);
+
+    $wordCount = str_word_count($cleanContent);
+
+    $minutes = ceil($wordCount / $wordPerminutes);
+
+    return max(1, $minutes);
+}
 
 }

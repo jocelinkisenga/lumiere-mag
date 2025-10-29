@@ -11,7 +11,7 @@
 
                 <h1 class="article-title" data-aos="fade-up">{{$post->title}}</h1>
 
-                <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">Comment {{$post->slug}}</p>
+                <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100"> {{$post->slug}}</p>
 
 
                 <div class="article-meta justify-content-center" data-aos="fade-up" data-aos-delay="200">
@@ -23,7 +23,8 @@
                         <div class="fw-bold">{{ $post->author }}</div>
 
                         <div></div>
-                        <small>15 mai 2023 • 8 min de lecture</small>
+                        <small>{{ $post->created_at }} • {{ $post->reading_minutes }} min de lecture</small>
+
                     </div>
                 </div>
             </div>
@@ -67,32 +68,31 @@
                 <!-- Article Actions -->
                 <div class="article-actions">
                     <div class="d-flex flex-wrap gap-3">
-                        <button class="action-btn">
-                            <i class="far fa-heart"></i> 248
-                        </button>
-                        <button class="action-btn">
+                        {{-- <button class="action-btn">
+                            <i class="far fa-heart"></i> 2
+                        </button> --}}
+                        {{-- <button class="action-btn">
                             <i class="far fa-bookmark"></i> Sauvegarder
-                        </button>
+                        </button> --}}
                         <button class="action-btn">
                             <i class="fas fa-share-alt"></i> Partager
+
                         </button>
+                        <div class="tags flex gap-3 items-center ">
+                            {!! $sharedButtons !!}
+
+                        </div>
+
                     </div>
                     <div>
                         <span class="reading-time">
-                            <i class="far fa-eye me-1"></i> 12.4K vues
+                            <i class="far fa-eye me-1"></i> {{ $post->view_posts->count() }}
                         </span>
                     </div>
                 </div>
 
                 <!-- Tags -->
-                <div class="tags">
-                    <span class="tag">Intelligence Artificielle</span>
-                    <span class="tag">Technologie</span>
-                    <span class="tag">Innovation</span>
-                    <span class="tag">Futur</span>
-                    <span class="tag">Éthique</span>
-                    <span class="tag">Société</span>
-                </div>
+
 
                 <!-- Author Card -->
                 <div class="author-card" data-aos="fade-up">

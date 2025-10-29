@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\ViewPost;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Jorenvh\Share\ShareFacade;
 
 class PostController extends Controller
 {
@@ -17,14 +18,15 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy("created_at","desc")->paginate(10);
+        $posts = Post::orderBy("created_at", "desc")->paginate(10);
         return view("pages.admin.listArticles", compact("posts"));
     }
 
-    public function front(){
-        $articles = Post::orderBy("created_at","desc")->paginate(12);
+    public function front()
+    {
+        $articles = Post::orderBy("created_at", "desc")->paginate(12);
 
-        return view("pages.articles",compact("articles"));
+        return view("pages.articles", compact("articles"));
     }
 
     /**
@@ -33,7 +35,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view("pages.admin.addArticle",["categories" => $categories]);
+        return view("pages.admin.addArticle", ["categories" => $categories]);
     }
 
     /**
@@ -42,9 +44,9 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
 
-        
-        $imgName = Carbon::now()->timestamp .'patrickngoy.' . $request->file('image')->extension();
-        $path = $request->file("image")->storeAs('uploads',$imgName,'public');
+
+        $imgName = Carbon::now()->timestamp . 'patrickngoy.' . $request->file('image')->extension();
+        $path = $request->file("image")->storeAs('uploads', $imgName, 'public');
 
         Post::create([
             "category_id" => $request->category_id,
@@ -52,32 +54,35 @@ class PostController extends Controller
             "slug" => $request->slug,
             "image" => $imgName,
             "author" => $request->author,
-             "description" => $request->description
+            "description" => $request->description
         ]);
 
         return redirect()->route("dashboard");
-
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $title , int $id, Request $request)
+    public function show(string $title, int $id, Request $request)
     {
         try {
             ViewPost::updateOrCreate([
                 "post_id" => $id,
-                'view_post' => + 1,
+                'view_post' => +1,
                 'ip_adress' => $request->ip()
             ]);
-
         } catch (\Throwable $th) {
             throw $th;
-        }
+        } //url("article/{title}/{id}". $post->slug), $post->title
         $post = Post::findOrFail($id);
+
+        $sharedButtons = ShareFacade::currentPage()->facebook()->twitter()->linkedin()->whatsapp()->telegram();
+
         $categories = Category::all();
-        $related = Post::where("category_id", $post->category_id)->where("id","!=",$id)->latest()->get();
-        return view("pages.article",compact("post", "related","categories"));
+       
+        $related = Post::where("category_id", $post->category_id)->where("id", "!=", $id)->latest()->limit(3)->get();
+        
+        return view("pages.article", compact("post", "related", "categories", "sharedButtons"));
     }
 
     /**

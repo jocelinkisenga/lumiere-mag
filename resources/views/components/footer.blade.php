@@ -43,11 +43,15 @@
                     esprits curieux.
                 </p>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f text-white"></i></a>
+                    <a href="#"><i class="fab fa-twitter text-white"></i></a>
+
+                    <a href="#"><i class="fab fa-instagram text-white"></i></a>
+
+                    <a href="#"><i class="fab fa-linkedin-in text-white"></i></a>
+
+                    <a href="#"><i class="fab fa-youtube text-white"></i></a>
+
                 </div>
             </div>
 
