@@ -60,7 +60,7 @@
                         <figcaption class="text-center text-muted mt-2">{{$post->title}}</figcaption>
 
                     </figure>
-                    <p>{{$post->description}}</p>
+                    <p>{!!  $post->description !!}</p>
 
 
                 </div>
