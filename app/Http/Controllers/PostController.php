@@ -87,8 +87,9 @@ class PostController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
+        $url = route('posts.show',$post->slug);
 
-        $sharedButtons = ShareFacade::currentPage()->facebook()->twitter()->linkedin()->whatsapp()->telegram();
+        $sharedButtons = ShareFacade::page($url, $post->title)->facebook()->twitter()->linkedin()->whatsapp()->telegram();
 
         $categories = Category::all();
 

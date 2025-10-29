@@ -44,7 +44,8 @@
 
                              <div class="card shadow-sm border-0 mb-4" style="max-width: 600px;">
                                  <div class="card-body">
-                                     <h5 class="card-title"><a href="{{ route("podcast.show", ["title" => $podcast->title, "id" => $podcast->id]) }}">🎙️ {{ $podcast->title }}</a></h5>
+                                     <h5 class="card-title"><a href="{{ route("podcast.show",$podcast->slug) }}">🎙️ {{ $podcast->title }}</a></h5>
+
 
 
                                      <p class="card-text text-muted">{{ $podcast->author }} </p>

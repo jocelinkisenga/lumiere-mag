@@ -134,7 +134,9 @@
                                 <span class="category-badge bg-primary">{{ $post->category->title }}</span>
                             </div>
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">{{ $post->title }}</h5>
+                                <h5 class="card-title"><a href="{{ route("posts.show", $post->slug) }}">{{ $post->title }}</a></h5>
+
+
                                 <p class="card-text flex-grow-1">{{ $post->slug }}</p>
                                 <div class="d-flex justify-content-between align-items-center mt-auto">
                                     <small class="text-muted">{{ $post->created_at }}</small>

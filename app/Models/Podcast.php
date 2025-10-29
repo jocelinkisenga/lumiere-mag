@@ -14,7 +14,30 @@ class Podcast extends Model
         'author',
         'cover',
         'audio_file',
-        'description'
+        'description',
+        'slug'
     ];
-    
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(
+            function ($podcast) {
+                $podcast->slug = \Illuminate\Support\Str::slug($podcast->title, '-');
+            }
+
+        );
+
+        static::updating(
+            function ($podcast) {
+                $podcast->slug = \Illuminate\Support\Str::slug($podcast->title, '-');
+            }
+
+        );
+    }
+
+    public function getRouteKey()
+    {
+        return 'slug';
+    }
 }

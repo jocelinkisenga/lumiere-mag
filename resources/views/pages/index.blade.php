@@ -86,7 +86,7 @@
 
                         </h5>
                         <p class="card-text flex-grow-1">
-                            {{ $item->slug }}
+                            {!! Str::limit($item->description, 50 ) !!}
 
                         </p>
                         <div class="d-flex justify-content-between align-items-center mt-auto">
@@ -168,7 +168,7 @@
 
                 </div>
                 <div class="col-7">
-                    <h5 class="mb-1"><a href="{{ route("podcast.show", ["title" => $podcast->title, "id" => $podcast->id]) }}">{{ $podcast->title }}</a></h5>
+                    <h5 class="mb-1"><a href="{{ route("podcast.show",$podcast->slug) }}">{{ $podcast->title }}</a></h5>
 
                     <p class="text-muted small mb-2">{{ Str::limit($podcast->description, 50) }}</p>
                     <div class="d-flex align-items-center ">
@@ -242,10 +242,10 @@
 
 
                     <div class="p-3">
-                        <h4><a href="{{ route("video.show", ["title" => $video->title, "id" => $video->id]) }}">{{ $video->title }}</a></h4>
+                        <h4><a href="{{ route("video.show", $video->slug) }}">{{ $video->title }}</a></h4>
 
                         <p class="text-muted">
-                            {{Str::limit($video->description, 50 )}}
+                            {!!  Str::limit($video->description, 50 ) !!}
 
 
                         </p>
@@ -297,7 +297,7 @@
 
                                 </h5>
                                 <p class="card-text">
-                                    {{ $item->slug }}
+                                    {!! Str::limit($item->description, 50) !!}
 
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">

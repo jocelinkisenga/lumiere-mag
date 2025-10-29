@@ -24,10 +24,11 @@ class VideoController extends Controller
         return view("pages.admin.addVideo");
     }
 
-    public function show ($title, $id) {
-        $video  = Video::findOrFail($id);
-        $sharedButtons = ShareFacade::currentPage()->facebook()->twitter()->linkedin()->whatsapp()->telegram();
+    public function show (Video $video) {
 
+        $url = route('video.show', $video->slug);
+
+        $sharedButtons = ShareFacade::page($url, $video->title)->facebook()->twitter()->linkedin()->whatsapp()->telegram();
         return view("pages.video", compact("video", "sharedButtons"));
     }
 
@@ -54,7 +55,7 @@ class VideoController extends Controller
             Mail::to($subscriber->email)
                 ->send(new NewsletterMail($request->title, $request->description));
         }
-        return redirect()->route("video.admin");
+        return redirect()->route("admin.videos");
     }
 
     public function front() {

@@ -17,11 +17,12 @@ class PodcastController extends Controller
         return view("pages.admin.listPodcasts", ["podcasts" => Podcast::latest()->limit(12)->get()]);
     }
 
-    public function show($title, $id)
+    public function show(Podcast $podcast)
     {
-        $podcast  = Podcast::findOrFail($id);
-        $sharedButtons = ShareFacade::currentPage()->facebook()->twitter()->linkedin()->whatsapp()->telegram();
 
+        $url = route('podcast.show', $podcast->slug);
+
+        $sharedButtons = ShareFacade::page($url, $podcast->title)->facebook()->twitter()->linkedin()->whatsapp()->telegram();
         return view("pages.podcast", compact("podcast", "sharedButtons"));
     }
     public function create()

@@ -64,13 +64,13 @@
 
                         </div>
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title"><a href="{{ route("posts.show",['title' => $item->title,'id' => $item->id]) }}"></a>{{ $item->title }}</h5>
+                            <h5 class="card-title"><a href="{{ route("posts.show", $item->slug) }}"></a>{{ $item->title }}</h5>
 
-                            <p class="card-text flex-grow-1">{{ $item->slug }}</p>
+                            <p class="card-text flex-grow-1">{!! Str::limit($item->desciption,50)  !!}</p>
 
                             <div class="d-flex justify-content-between align-items-center mt-auto">
                                 <div class="d-flex align-items-center">
-                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Auteur" class="author-avatar me-2">
+                                    <img src="{{ asset("user.jpg") }}" alt="Auteur" class="author-avatar me-2">
                                     <div>
                                         <small class="d-block">{{ $item->author }}</small>
 
@@ -78,7 +78,7 @@
 
                                     </div>
                                 </div>
-                                <span class="reading-time">5 min</span>
+                                <span class="reading-time"></span>
                             </div>
                         </div>
                     </div>
