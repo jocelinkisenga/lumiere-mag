@@ -169,7 +169,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Ladumor\LaravelPwa\PWAServiceProvider::class,
-        \Jorenvh\Share\Providers\ShareServiceProvider::class
+        \Jorenvh\Share\Providers\ShareServiceProvider::class,
+        \Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class
     ])->toArray(),
 
     /*
@@ -187,7 +188,9 @@ return [
         // 'Example' => App\Facades\Example::class,
         'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
         'Share' => Jorenvh\Share\ShareFacade::class,
-        'TwitterCard' => Artesaos\SEOTools\Facades\TwitterCard::class
+        'TwitterCard' => Artesaos\SEOTools\Facades\TwitterCard::class,
+        'OpenGraph' => Artesaos\SEOTools\Facades\OpenGraph::class,
+        'SEOMeta' => Artesaos\SEOTools\Facades\SEOMeta::class
     ])->toArray(),
 
 ];
