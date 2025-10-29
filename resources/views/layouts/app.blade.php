@@ -235,7 +235,7 @@
                 </a>
             </li>
             <li>
-                <a href="settings.html">
+                <a href="{{ route("settings") }}">
                     <i class="fas fa-cog"></i>
                     Paramètres
                 </a>

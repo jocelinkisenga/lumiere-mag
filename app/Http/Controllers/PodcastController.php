@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Podcast;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Jorenvh\Share\ShareFacade;
 
 class PodcastController extends Controller
 {
@@ -13,6 +14,13 @@ class PodcastController extends Controller
         return view("pages.admin.listPodcasts", ["podcasts" => Podcast::latest()->limit(12)->get()]);
     }
 
+    public function show($title, $id)
+    {
+        $podcast  = Podcast::findOrFail($id);
+        $sharedButtons = ShareFacade::currentPage()->facebook()->twitter()->linkedin()->whatsapp()->telegram();
+
+        return view("pages.podcast", compact("podcast", "sharedButtons"));
+    }
     public function create()
     {
         return view("pages.admin.addPodcast");

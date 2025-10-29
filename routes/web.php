@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,8 @@ Route::get('/',[HomeController::class,"index"])->name("home");
 Route::get("/live",[HomeController::class,"live"])->name("live");
 Route::get("article/{title}/{id}",[PostController::class,"show"])->name("posts.show");
 Route::get("frontPosts",[PostController::class,"front"])->name("posts.front");
-
+Route::get("podcast/{title}/{id}", [PodcastController::class, "show"])->name("podcast.show");
+Route::get("video/{title}/{id}", [VideoController::class, "show"])->name("video.show");
 Route::get("about", [Aboutcontroller::class,"index"])->name("about");
 Route::get("contact", [ContactController::class, "index"])->name("contact");
 Route::get("front/videos", [VideoController::class, "front"])->name("video.front");
@@ -63,6 +65,7 @@ Route::middleware('auth')->group(function () {
     Route::get("delete/category/{id}", [CategoryController::class, "delete"])->name("category.delete");
     Route::get("comments/{id}", [CommentController::class, "comments"])->name("admin.comments");
         Route::get("delete/comment/{id}", [CommentController::class, "delete"])->name("comment.delete");
+    Route::get("settings", [SettingsController::class, "index"])->name("settings");
 });
 
 require __DIR__.'/auth.php';

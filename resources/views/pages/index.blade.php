@@ -129,8 +129,10 @@
 
                     <div class="card shadow-sm border-0 mb-4" style="max-width: 600px;">
                         <div class="card-body">
-                            <h5 class="card-title">🎙️ {{ $podcast->title }}</h5>
-                            <p class="card-text text-muted">{{ $podcast->author }} · 24 min</p>
+                            <h5 class="card-title"><a href="{{ route("podcast.show", ["title" => $podcast->title, "id" => $podcast->id]) }}">🎙️ {{ $podcast->title }}</a></h5>
+
+
+                            <p class="card-text text-muted">{{ $podcast->author }} </p>
 
                             <audio id="podcastAudio" src="{{ asset("storage/podcasts/".$podcast->audio_file) }}"></audio>
 
@@ -238,7 +240,8 @@
 
 
                     <div class="p-3">
-                        <h4>{{ $video->title }}</h4>
+                        <h4><a href="{{ route("video.show", ["title" => $video->title, "id" => $video->id]) }}">{{ $video->title }}</a></h4>
+
                         <p class="text-muted">
                             {{Str::limit($video->description, 50 )}}
 

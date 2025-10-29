@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Jorenvh\Share\ShareFacade;
+
 class VideoController extends Controller
 {
     public function index () {
@@ -21,7 +23,9 @@ class VideoController extends Controller
 
     public function show ($title, $id) {
         $video  = Video::findOrFail($id);
-        return view("video", compact("video"));
+        $sharedButtons = ShareFacade::currentPage()->facebook()->twitter()->linkedin()->whatsapp()->telegram();
+
+        return view("pages.video", compact("video", "sharedButtons"));
     }
 
     public function store (Request $request) {
