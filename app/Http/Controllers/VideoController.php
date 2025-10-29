@@ -47,4 +47,10 @@ class VideoController extends Controller
     public function front() {
         return view("pages.videos",["videos" => Video::latest()->paginate(12)] );
     }
+
+    public function delete(int $id)
+    {
+        Video::destroy($id);
+        return redirect()->back();
+    }
 }

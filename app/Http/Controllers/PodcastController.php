@@ -43,5 +43,13 @@ class PodcastController extends Controller
         ]);
 
         return redirect()->route("podcast.index");
+
+
+    }
+
+    public function delete(int $id)
+    {
+        Podcast::destroy($id);
+        return redirect()->back();
     }
 }

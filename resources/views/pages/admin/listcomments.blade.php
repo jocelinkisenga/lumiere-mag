@@ -9,12 +9,12 @@
                         <div class="row">
                             <div class="col-6">
 
-                                <h4 class="card-title">liste des categories</h4>
+                                <h4 class="card-title">liste des commentaire</h4>
                             </div>
 
-                            <div class="col-6"> <a href="{{ route("categorie.create") }}" class="btn btn-primary" >
-                                    <i class="fas fa-plus me-2"></i>Nouvelle Catégorie
-                                </a></div>
+                            <div class="col-6">
+
+                            </div>
 
                         </div>
 
@@ -30,7 +30,7 @@
                                             N°
                                         </th>
                                         <th>
-                                            Titre
+                                            description
                                         </th>
                                         <th>
                                             Date ajout
@@ -41,19 +41,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($categories as $key => $item)
+                                    @foreach ($comments as $key => $item)
                                     <tr>
                                         <td class="py-1">
                                             {{ $key + 1 }}
                                         </td>
                                         <td>
-                                            {{ $item->title }}
+                                            {{ $item->description }}
                                         </td>
                                         <td>
                                             {{ $item->created_at }}
                                         </td>
                                         <td>
-  <a href="{{ route("category.delete", ["id" => $item->id]) }}" class="btn btn-danger btn-sm"> effacer</a>
+                                            <a href="{{ route("comment.delete", ["id" => $item->id]) }}" class="btn btn-danger btn-sm"> effacer</a>
 
 
                                         </td>
@@ -68,3 +68,4 @@
         </div>
     </div>
     @endsection
+

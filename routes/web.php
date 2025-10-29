@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Aboutcontroller;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\HomeController;
@@ -57,7 +58,11 @@ Route::middleware('auth')->group(function () {
     Route::get("/admin/videos", [VideoController::class, "admin_videos"])->name("admin.videos");
     Route::get("create/video", [VideoController::class, "create"])->name("video.create");
     Route::post("store/video", [VideoController::class, "store"])->name("video.store");
-
+    Route::get("delete/video/{id}", [VideoController::class, "delete"])->name("video.delete");
+    Route::get("delete/podcast/{id}",[PodcastController::class,"delete"])->name("podcast.delete");
+    Route::get("delete/category/{id}", [CategoryController::class, "delete"])->name("category.delete");
+    Route::get("comments/{id}", [CommentController::class, "comments"])->name("admin.comments");
+        Route::get("delete/comment/{id}", [CommentController::class, "delete"])->name("comment.delete");
 });
 
 require __DIR__.'/auth.php';

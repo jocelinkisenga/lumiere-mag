@@ -216,7 +216,7 @@
                     Vidéos
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="comments.html">
                     <i class="fas fa-comments"></i>
                     Commentaires
@@ -227,7 +227,7 @@
                     <i class="fas fa-users"></i>
                     Utilisateurs
                 </a>
-            </li>
+            </li> --}}
             <li>
                 <a href="newsletter.html">
                     <i class="fas fa-envelope"></i>
@@ -249,9 +249,14 @@
                     <div class="small">Admin</div>
                     <div class="small text-muted">Administrateur</div>
                 </div>
-                <a href="login.html" class="text-light">
+                <form action="{{ route("logout") }}" method="POST">
+                    @csrf
+                <button type="submit" class="btn btn-danger btn-sm">
                     <i class="fas fa-sign-out-alt"></i>
-                </a>
+                </button>
+
+                </form>
+
             </div>
         </div>
     </nav>
@@ -273,7 +278,7 @@
                         </button>
                     </div>
 
-                    <div class="dropdown">
+                    {{-- <div class="dropdown">
                         <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
                             <i class="fas fa-bell"></i>
                             <span class="badge bg-danger">3</span>
@@ -283,7 +288,7 @@
                             <li><a class="dropdown-item" href="#">Article en attente</a></li>
                             <li><a class="dropdown-item" href="#">Nouvel utilisateur</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </nav>

@@ -12,7 +12,7 @@
                                 <h4 class="card-title">liste des categories</h4>
                             </div>
 
-                            <div class="col-6"> <a href="{{ route("posts.create") }}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCategoryModal">
+                            <div class="col-6"> <a href="{{ route("posts.create") }}" class="btn btn-primary">
                                     <i class="fas fa-plus me-2"></i>Nouvel article
                                 </a></div>
 
@@ -36,6 +36,10 @@
                                             Date ajout
                                         </th>
                                         <th>
+                                            commentaires
+                                        </th>
+
+                                        <th>
                                             Actions
                                         </th>
                                     </tr>
@@ -53,6 +57,12 @@
                                             {{ $item->created_at }}
                                         </td>
                                         <td>
+                                            <a href="{{ route("admin.comments", ["id" => $item->id]) }}" class="btn btn-success btn-sm"> commentaires</a>
+
+                                        </td>
+
+                                        <td>
+                                            <a href="{{ route("post.delete", ["id" => $item->id]) }}" class="btn btn-danger btn-sm"> effacer</a>
 
                                         </td>
                                     </tr>

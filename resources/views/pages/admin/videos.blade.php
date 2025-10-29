@@ -53,6 +53,8 @@
                                             {{ $item->created_at }}
                                         </td>
                                         <td>
+                                              <a href="{{ route("video.delete", ["id" => $item->id]) }}" class="btn btn-danger btn-sm"> effacer</a>
+
 
                                         </td>
                                     </tr>

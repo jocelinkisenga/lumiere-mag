@@ -64,8 +64,9 @@ return view("pages.category",["articles" => $articles,"slug"=>$slug]);
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function delete(int $id)
     {
-        //
+        Category::destroy($id);
+        return redirect()->back();
     }
 }
