@@ -54,7 +54,7 @@ class PostController extends Controller
         $post = Post::create([
             "category_id" => $request->category_id,
             "title" => $request->title,
-            "slug" => $request->slug,
+
             "image" => $imgName,
             "author" => $request->author,
             "description" => $request->description
@@ -73,25 +73,27 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $title, int $id, Request $request)
+    public function show(Post $post,  Request $request)
     {
+ //url("article/{title}/{id}". $post->slug), $post->title
+        // $post = Post::findOrFail($title);
+
         try {
             ViewPost::updateOrCreate([
-                "post_id" => $id,
+                "post_id" => $post->id,
                 'view_post' => +1,
                 'ip_adress' => $request->ip()
             ]);
         } catch (\Throwable $th) {
             throw $th;
-        } //url("article/{title}/{id}". $post->slug), $post->title
-        $post = Post::findOrFail($id);
+        }
 
         $sharedButtons = ShareFacade::currentPage()->facebook()->twitter()->linkedin()->whatsapp()->telegram();
 
         $categories = Category::all();
-       
-        $related = Post::where("category_id", $post->category_id)->where("id", "!=", $id)->latest()->limit(3)->get();
-        
+
+        $related = Post::where("category_id", $post->category_id)->where("id", "!=", $post->id)->latest()->limit(3)->get();
+
         return view("pages.article", compact("post", "related", "categories", "sharedButtons"));
     }
 

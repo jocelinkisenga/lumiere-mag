@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomeController::class,"index"])->name("home");
 Route::get("/live",[HomeController::class,"live"])->name("live");
-Route::get("article/{title}/{id}",[PostController::class,"show"])->name("posts.show");
+Route::get("article/{post:slug}",[PostController::class,"show"])->name("posts.show");
 Route::get("frontPosts",[PostController::class,"front"])->name("posts.front");
 Route::get("podcast/{title}/{id}", [PodcastController::class, "show"])->name("podcast.show");
 Route::get("video/{title}/{id}", [VideoController::class, "show"])->name("video.show");

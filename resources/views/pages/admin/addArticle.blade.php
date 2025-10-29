@@ -49,10 +49,10 @@
 
                         </div>
 
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="" class="form-label">Excerpt</label>
                             <textarea class="form-control" name="slug" id="" rows="3"></textarea>
-                        </div>
+                        </div> --}}
 
                         <div class="mb-3">
                             <label for="" class="form-label">Description</label>

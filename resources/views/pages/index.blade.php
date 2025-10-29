@@ -16,7 +16,7 @@
 
                 </h1>
                 <p class="lead mb-4">
-                    {{ $latestPost->slug }}
+                    {{ Str::limit($latestPost->slug, 70) }}
 
                 </p>
                 <div class="d-flex align-items-center">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    <a href="{{ route("posts.show",['title' => $latestPost->title, 'id' => $latestPost->id]) }}" class="btn btn-light btn-lg me-3">Lire l'article</a>
+                    <a href="{{ route("posts.show", $latestPost->slug) }}" class="btn btn-light btn-lg me-3">Lire l'article</a>
 
                     {{-- <a href="#" class="btn btn-outline-light btn-lg">
                         <i class="fas fa-play-circle me-2"></i>Écouter
@@ -42,7 +42,8 @@
                     <img src="{{ asset("storage/uploads/".$latestPost->image) }}" alt="Article à la une" class="img-fluid w-100 h-100" style="object-fit: cover" />
 
                     <div class="featured-content">
-                        <h3>{{ $latestPost->title }}</h3>
+                        <h3> <a href="{{ route("posts.show", $latestPost->slug) }}">{{ $latestPost->title }}</a></h3>
+
 
                         <p>
                             {{ $latestPost->author }}
@@ -78,7 +79,8 @@
                     </div>
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">
-                            <a href="{{ route("posts.show",['title' => $item->title, 'id' => $item->id]) }}">{{ $item->title }}</a>
+                            <a href="{{ route("posts.show", $item->slug) }}">{{ $item->title }}</a>
+
 
 
 
@@ -124,7 +126,7 @@
         <div class="row">
             <!-- Podcast 1 -->
             @foreach ($podcasts as $podcast)
-            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+            {{-- <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="podcast-card">
 
                     <div class="card shadow-sm border-0 mb-4" style="max-width: 600px;">
@@ -132,84 +134,84 @@
                             <h5 class="card-title"><a href="{{ route("podcast.show", ["title" => $podcast->title, "id" => $podcast->id]) }}">🎙️ {{ $podcast->title }}</a></h5>
 
 
-                            <p class="card-text text-muted">{{ $podcast->author }} </p>
+            <p class="card-text text-muted">{{ $podcast->author }} </p>
 
-                            <audio id="podcastAudio" src="{{ asset("storage/podcasts/".$podcast->audio_file) }}"></audio>
-
-
-                            <div class="d-flex align-items-center gap-3 mt-3">
-                                <button class="btn btn-outline-secondary btn-sm" onclick="skip(-15)">⏪ 15s</button>
-                                <button class="btn btn-primary btn-sm" id="playPauseBtn" onclick="togglePlayPause()">▶️</button>
-                                <button class="btn btn-outline-secondary btn-sm" onclick="skip(15)">⏩ 15s</button>
-                            </div>
-
-                            <div class="mt-3">
-                                <input type="range" id="progressBar" class="form-range" value="0" step="1">
-                                <div class="d-flex justify-content-between">
-                                    <small id="currentTime">0:00</small>
-                                    <small id="duration">0:00</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <audio id="podcastAudio" src="{{ asset("storage/podcasts/".$podcast->audio_file) }}"></audio>
 
 
+            <div class="d-flex align-items-center gap-3 mt-3">
+                <button class="btn btn-outline-secondary btn-sm" onclick="skip(-15)">⏪ 15s</button>
+                <button class="btn btn-primary btn-sm" id="playPauseBtn" onclick="togglePlayPause()">▶️</button>
+                <button class="btn btn-outline-secondary btn-sm" onclick="skip(15)">⏩ 15s</button>
+            </div>
 
-                    {{-- <div class="d-flex align-items-center mb-3">
-                        <div class="bg-primary rounded p-2 me-3">
-                            <i class="fas fa-microphone text-white"></i>
-                        </div>
-                        <div>
-                            <h5 class="mb-0">Épisode 42</h5>
-                            <small class="text-muted">45 min</small>
-                        </div>
-                    </div>
-                    <h4>
-                        {{ $podcast->title}}
-                    </h4>
-                    <p>
-
-
-                        <div class="d-flex align-items-center gap-3">
-                            <button id="playBtn" class="btn btn-success btn-sm">Play</button>
-                            <audio controlsList="nodownload" id="audio">
-
-                                <source src="{{ asset("storage/podcasts/".$podcast->audio_file) }}" type="audio/mpeg">
-
-                            </audio>
-
-                            <button id="pauseBtn" class="btn btn-danger btn-sm">Pause</button>
-
-                            <input type="range" id="progress" class="form-range w-25" value="0" step="1">
-                            <span id="time" class="text-muted small">0:00</span>
-                        </div>
-
-
-                    </p>
-                    <p class="text-muted">
-
-                    </p>
-                    <div class="d-flex justify-content-between align-items-center mt-4">
-                        <div class="d-flex align-items-center">
-                            <img src="{{ asset("storage/podcasts/covers/".$podcast->cover) }}" alt="Podcast host" class="author-avatar me-2" />
-                            <small>{{ $podcast->autor }}</small>
-
-                        </div>
-
-                        <button class="btn btn-primary btn-sm">
-                            <i class="fas fa-play me-1"></i> Écouter
-                        </button>
-                    </div> --}}
+            <div class="mt-3">
+                <input type="range" id="progressBar" class="form-range" value="0" step="1">
+                <div class="d-flex justify-content-between">
+                    <small id="currentTime">0:00</small>
+                    <small id="duration">0:00</small>
                 </div>
             </div>
-            @endforeach
-
         </div>
+    </div>
 
-        <div class="text-center mt-4" data-aos="fade-up">
-            <a href="{{ route("podcast.front") }}" class="btn btn-outline-primary btn-lg">Voir tous les podcasts</a>
 
+    </div>
+    </div> --}}
+    <div class="col-lg-6 mb-4">
+        <div class="podcast-card">
+            <div class="row align-items-center">
+                <div class="col-3">
+                    <img src="{{ asset("storage/podcasts/covers/".$podcast->cover) }}" alt="Podcast 1" class="podcast-cover w-100">
+
+
+
+                </div>
+                <div class="col-7">
+                    <h5 class="mb-1"><a href="{{ route("podcast.show", ["title" => $podcast->title, "id" => $podcast->id]) }}">{{ $podcast->title }}</a></h5>
+
+                    <p class="text-muted small mb-2">{{ Str::limit($podcast->description, 50) }}</p>
+                    <div class="d-flex align-items-center ">
+                        <audio id="podcastAudio" src="{{ asset("storage/podcasts/".$podcast->audio_file) }}"></audio>
+                        <div class="d-flex align-items-center gap-3 mt-3">
+                            {{-- <button class="btn btn-outline-secondary btn-sm" onclick="skip(-15)">⏪ 15s</button> --}}
+                            {{-- <button class="btn btn-primary btn-sm" id="playPauseBtn" onclick="togglePlayPause()">▶️</button> --}}
+                            {{-- <button class="btn btn-outline-secondary btn-sm" onclick="skip(15)">⏩ 15s</button> --}}
+                        </div>
+
+                        <div class="mt-3">
+                            <input type="range" id="progressBar" class="form-range" value="0" step="1">
+                            <div class="d-flex justify-content-between">
+                                <small id="currentTime">0:00</small>
+                                <small id="duration">0:00</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex align-items-center text-muted">
+                        <small class="me-3"><i class="far fa-clock me-1"></i> </small>
+                        <small><i class="far fa-calendar me-1"></i> {{ $podcast->created_at->diffForHumans() }}</small>
+                    </div>
+                </div>
+                <div class="col-2 text-end">
+                    <button onclick="togglePlayPause()" class="play-button btn p-0" id="playPauseBtn">
+                        ▶️
+
+                    </button>
+                </div>
+            </div>
         </div>
+    </div>
+
+    @endforeach
+
+    </div>
+
+    <div class="text-center mt-4" data-aos="fade-up">
+        <a href="{{ route("podcast.front") }}" class="btn btn-outline-primary btn-lg">Voir tous les podcasts</a>
+
+    </div>
     </div>
 </section>
 
@@ -230,12 +232,12 @@
                 <div class="video-card">
                     {{-- <img src="{{ asset("storage/videos/covers/".$video->cover_video) }}" alt="Vidéo 1" class="img-fluid w-100" style="height: 300px; object-fit: cover" /> --}}
                     <video class="embeded-responsive w-100" controlsList="nodownload" controls preload="metadata" poster="{{ asset("storage/videos/covers/".$video->cover_video) }}">
- <source src="{{ asset("storage/videos/".$video->video_name) }}" type="video/mp4">
+                        <source src="{{ asset("storage/videos/".$video->video_name) }}" type="video/mp4">
 
                     </video>
 
 
-{{-- <iframe src="{{ asset("storage/videos/".$video->video_name) }}" frameborder="0"></iframe> --}}
+                    {{-- <iframe src="{{ asset("storage/videos/".$video->video_name) }}" frameborder="0"></iframe> --}}
 
 
 
@@ -289,7 +291,7 @@
                                 <span class="badge bg-danger mb-2">{{ $item->category->title }}</span>
 
                                 <h5 class="card-title">
-                                    <a href="{{ route("posts.show",['title' => $item->title, 'id' => $item->id]) }}">{{ $item->title }}</a>
+                                    <a href="{{ route("posts.show",['title' => $item->title]) }}">{{ $item->title }}</a>
 
 
 
