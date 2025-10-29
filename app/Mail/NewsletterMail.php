@@ -25,12 +25,12 @@ class NewsletterMail extends Mailable
         $this->content = $content;
     }
 
-    public function build() {
-        return $this->subject($this->subjectLine)->view("emails.newsletter")->with([
-            "content" => $this->content(),
-            "subjectLine" => $this->subjectLine,
-        ]);
-    }
+    // public function build() {
+    //     return $this->subject($this->subjectLine)->view("emails.newsletter")->with([
+    //         "content" => $this->content,
+    //         "subjectLine" => $this->subjectLine,
+    //     ]);
+    // }
 
     /**
      * Get the message envelope.
@@ -38,7 +38,7 @@ class NewsletterMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Newsletter Mail',
+            subject: $this->subjectLine,
         );
     }
 
@@ -48,7 +48,11 @@ class NewsletterMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.newsletter',
+            with : [
+                "content" => $this->content,
+                "subjectLine" => $this->subjectLine,
+            ]
         );
     }
 
