@@ -170,7 +170,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         Ladumor\LaravelPwa\PWAServiceProvider::class,
         \Jorenvh\Share\Providers\ShareServiceProvider::class,
-        \Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class
     ])->toArray(),
 
     /*
