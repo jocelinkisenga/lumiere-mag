@@ -102,7 +102,7 @@ use App\Models\Category;
 
 
                 <!-- Recent Activity & Top Content -->
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-lg-6 mb-4">
                         <div class="table-card">
                             <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
@@ -200,7 +200,7 @@ use App\Models\Category;
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
 @endsection
