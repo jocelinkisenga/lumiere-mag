@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewsletterMail;
 use App\Models\Podcast;
+use App\Models\Subscriber;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Jorenvh\Share\ShareFacade;
 
 class PodcastController extends Controller
@@ -50,6 +53,12 @@ class PodcastController extends Controller
             "description" => $request->description
         ]);
 
+        $subscribers = Subscriber::all();
+
+        foreach ($subscribers as $subscriber) {
+            Mail::to($subscriber->email)
+                ->send(new NewsletterMail($request->title, $request->description));
+        }
         return redirect()->route("podcast.index");
 
 

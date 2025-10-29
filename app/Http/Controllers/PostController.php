@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Mail\NewsletterMail;
 use App\Models\Category;
+use App\Models\Subscriber;
 use App\Models\ViewPost;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Jorenvh\Share\ShareFacade;
 
 class PostController extends Controller
@@ -48,7 +51,7 @@ class PostController extends Controller
         $imgName = Carbon::now()->timestamp . 'patrickngoy.' . $request->file('image')->extension();
         $path = $request->file("image")->storeAs('uploads', $imgName, 'public');
 
-        Post::create([
+        $post = Post::create([
             "category_id" => $request->category_id,
             "title" => $request->title,
             "slug" => $request->slug,
@@ -56,6 +59,13 @@ class PostController extends Controller
             "author" => $request->author,
             "description" => $request->description
         ]);
+
+        $subscribers = Subscriber::all();
+
+        foreach ($subscribers as $subscriber) {
+            Mail::to($subscriber->email)
+                ->send(new NewsletterMail($request->title, $request->description));
+        }
 
         return redirect()->route("dashboard");
     }

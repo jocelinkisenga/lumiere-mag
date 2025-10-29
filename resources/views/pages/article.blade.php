@@ -127,11 +127,11 @@
                     <div class="col-md-6 mb-4">
                         <div class="article-card card h-100">
                             <div class="position-relative">
-                                <h5 class="card-title">{{ $post->title }}</h5>
+                                {{-- <h5 class="card-title">{{ $post->title }}</h5> --}}
                                 <img src="{{ asset("storage/uploads/".$post->image) }}" class="card-img-top article-card-image" alt="{{ $post->title }}">
 
 
-                                <span class="category-badge bg-primary">$post->category->title</span>
+                                <span class="category-badge bg-primary">{{ $post->category->title }}</span>
                             </div>
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">{{ $post->title }}</h5>
