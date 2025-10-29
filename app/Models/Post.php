@@ -40,6 +40,8 @@ class Post extends Model
         return max(1, $minutes);
     }
 
+
+
     protected static function boot()
     {
         parent::boot();

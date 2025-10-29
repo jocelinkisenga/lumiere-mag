@@ -186,7 +186,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
-        'Share' => Jorenvh\Share\ShareFacade::class
+        'Share' => Jorenvh\Share\ShareFacade::class,
+        'TwitterCard' => Artesaos\SEOTools\Facades\TwitterCard::class
     ])->toArray(),
 
 ];

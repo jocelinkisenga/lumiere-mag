@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Mail\NewsletterMail;
 use App\Models\Podcast;
 use App\Models\Subscriber;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\TwitterCard;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Jorenvh\Share\ShareFacade;
+use Str;
 
 class PodcastController extends Controller
 {
@@ -23,6 +27,14 @@ class PodcastController extends Controller
         $url = route('podcast.show', $podcast->slug);
 
         $sharedButtons = ShareFacade::page($url, $podcast->title)->facebook()->twitter()->linkedin()->whatsapp()->telegram();
+        SEOMeta::setTitle($podcast->title);
+        SEOMeta::setDescription(Str::limit(strip_tags($podcast->descrption), 160));
+        SEOMeta::setCanonical($url);
+
+        OpenGraph::setTitle($podcast->title)->setDescription(description: Str::limit(strip_tags($podcast->descrption), 160))->setUrl($url)->addImage(asset("storage/uploads/" . $podcast->image));
+
+        TwitterCard::setTitle($podcast->title)->setDescription(Str::limit(strip_tags($podcast->descrption), 160))->setImage(asset("storage/uploads/" . $podcast->image));
+
         return view("pages.podcast", compact("podcast", "sharedButtons"));
     }
     public function create()

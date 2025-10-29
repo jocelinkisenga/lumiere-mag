@@ -10,6 +10,9 @@
                     <textarea class="form-control" wire:model="description" rows="4" placeholder="Ajouter un commentaire..."></textarea>
                 </div>
                 <button class="btn btn-primary" type=" submit">Envoyer le commentaire</button>
+                @error("description")
+                    <span class="text-danger">Le message requis</span>
+                @enderror
             </form>
         </div>
 

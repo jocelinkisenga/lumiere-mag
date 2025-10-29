@@ -9,11 +9,14 @@ use App\Mail\NewsletterMail;
 use App\Models\Category;
 use App\Models\Subscriber;
 use App\Models\ViewPost;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\TwitterCard;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Jorenvh\Share\ShareFacade;
-
+use Str;
 class PostController extends Controller
 {
     /**
@@ -75,25 +78,43 @@ class PostController extends Controller
      */
     public function show(Post $post,  Request $request)
     {
- //url("article/{title}/{id}". $post->slug), $post->title
-        // $post = Post::findOrFail($title);
-
-        try {
-            ViewPost::updateOrCreate([
-                "post_id" => $post->id,
-                'view_post' => +1,
-                'ip_adress' => $request->ip()
-            ]);
-        } catch (\Throwable $th) {
-            throw $th;
+        // try {
+        //     ViewPost::updateOrCreate([
+        //         "post_id" => $post->id,
+        //         'view_post' => +1,
+        //         'ip_adress' => $request->ip()
+        //     ]);
+        // } catch (\Throwable $th) {
+        //     throw $th;
+        // }
+        $views = ViewPost::where("post_id", $post->id)->where("ip_adress", $request->ip())->first();
+        if($views) {
+            $views->increment("view_post");
+        }
+        else {
+                ViewPost::updateOrCreate([
+                    "post_id" => $post->id,
+                    'view_post' => 1,
+                    'ip_adress' => $request->ip()
+                ]);
         }
         $url = route('posts.show',$post->slug);
+
+
 
         $sharedButtons = ShareFacade::page($url, $post->title)->facebook()->twitter()->linkedin()->whatsapp()->telegram();
 
         $categories = Category::all();
 
         $related = Post::where("category_id", $post->category_id)->where("id", "!=", $post->id)->latest()->limit(3)->get();
+
+        SEOMeta::setTitle($post->title);
+        SEOMeta::setDescription(Str::limit(strip_tags($post->descrption), 160));
+        SEOMeta::setCanonical($url);
+
+        OpenGraph::setTitle($post->title)->setDescription(Str::limit(strip_tags($post->descrption), 160))->setUrl($url)->addImage(asset("storage/uploads/" . $post->image));
+
+        TwitterCard::setTitle($post->title)->setDescription(Str::limit(strip_tags($post->descrption), 160))->setImage(asset("storage/uploads/" . $post->image));
 
         return view("pages.article", compact("post", "related", "categories", "sharedButtons"));
     }
