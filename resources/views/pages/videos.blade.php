@@ -56,7 +56,7 @@
 
 
                     <div class="p-3">
-                        <h4><a href="{{ route("video.show", ["title" => $video->title, "id" => $video->id]) }}">{{ $video->title }}</a></h4>
+                        <h4><a href="{{ route("video.show", $video->slug) }}">{{ $video->title }}</a></h4>
 
 
                         <p class="text-muted">

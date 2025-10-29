@@ -132,7 +132,7 @@
 
                 </div>
                 <div class="col-7">
-                    <h5 class="mb-1"> <a href="{{ route("podcast.show", ["title" => $podcast->title, "id" => $podcast->id]) }}">{{ $podcast->title }}</a></h5>
+                    <h5 class="mb-1"> <a href="{{ route("podcast.show", $podcast->slug) }}">{{ $podcast->title }}</a></h5>
 
 
                     <p class="text-muted small mb-2">{{ Str::limit($podcast->description, 50) }}</p>
