@@ -62,9 +62,9 @@
 
                         </div>
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title"><a href="{{ route("posts.show",['title' => $item->title,'id' => $item->id]) }}"></a>{{ $item->title }}</h5>
+                            <h5 class="card-title"><a href="{{ route("posts.show",['title' => $item->title,'id' => $item->id]) }}">{{ $item->title }}</a></h5>
 
-                            <p class="card-text flex-grow-1">{{ $item->slug }}</p>
+                            <p class="card-text flex-grow-1">{{ Str::limit($item->slug, 70) }}</p>
 
                             <div class="d-flex justify-content-between align-items-center mt-auto">
                                 <div class="d-flex align-items-center">

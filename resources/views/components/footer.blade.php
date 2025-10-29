@@ -35,7 +35,8 @@
         <div class="row">
             <div class="col-lg-4 mb-4 mb-lg-0">
                 <h3 class="mb-3">
-                    <span style="color: var(--accent)">Mag</span>azine
+                    <span style="color: white">Lumiere du Monde Mag</span>azine
+
                 </h3>
                 <p class="mb-4">
                     Votre source d'informations, d'inspiration et de
@@ -58,7 +59,7 @@
             <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
                 <h5 class="mb-3">Rubriques</h5>
                 <ul class="list-unstyled">
-                     @foreach(\App\Models\Category::limit(4)->get() as $category)
+                    @foreach(\App\Models\Category::limit(4)->get() as $category)
 
                     <li class="mb-2">
                         <a href="{{route("categorie.show",["slug" => $category->title,"id" => $category->id])}}" class="text-light text-decoration-none">{{$category->title}}</a>
@@ -176,5 +177,3 @@
         });
 
 </script>
-
-

@@ -541,7 +541,12 @@
             object-fit: cover;
         }
 
-
+ .navbar-nav .nav-link {
+    color: var(--primary) !important;
+    font-weight: 700;
+    transition: color 0.3s ease;
+    font-size: 1.125rem;
+ }
 
         .navbar {
             transition: all 0.3s ease;
@@ -762,7 +767,7 @@
         .stat-number {
             font-size: 3rem;
             font-weight: 700;
-            color: var(--accent);
+            color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
@@ -790,7 +795,7 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
-            color: var(--accent);
+            color: var(--primary);
             font-size: 1.5rem;
         }
 
