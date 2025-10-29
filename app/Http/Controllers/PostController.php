@@ -87,17 +87,17 @@ class PostController extends Controller
         // } catch (\Throwable $th) {
         //     throw $th;
         // }
-        $views = ViewPost::where("post_id", $post->id)->where("ip_adress", $request->ip())->first();
-        if($views) {
-            $views->increment("view_post");
-        }
-        else {
-                ViewPost::updateOrCreate([
-                    "post_id" => $post->id,
-                    'view_post' => 1,
-                    'ip_adress' => $request->ip()
-                ]);
-        }
+        // $views = ViewPost::where("post_id", $post->id)->where("ip_adress", $request->ip())->first();
+        // if($views) {
+        //     $views->increment("view_post");
+        // }
+        // else {
+        //         ViewPost::updateOrCreate([
+        //             "post_id" => $post->id,
+        //             'view_post' => 1,
+        //             'ip_adress' => $request->ip()
+        //         ]);
+        // }
         $url = route('posts.show',$post->slug);
 
 
