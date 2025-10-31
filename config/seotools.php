@@ -6,25 +6,22 @@
 
 return [
     'inertia' => env('SEO_TOOLS_INERTIA', false),
+
     'meta' => [
-        /*
-         * The default configurations to be used by the meta generator.
-         */
-        'defaults'       => [
-            'title'        => "Lumiere du Monde Magasine", // set false to total remove
-            'titleBefore'  => false, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
-            'description'  => " Votre source d' informations,
-            d 'inspiration et de
-                    découvertes. Des contenus de qualité pour les
-                    esprits curieux.", // set false to total remove
+        'defaults' => [
+            'title'        => "Lumiere du Monde Magazine",
+            'titleBefore'  => false,
+            'description'  => "Explorez, apprenez et inspirez-vous ! Lumiere du Monde Magazine vous éclaire sur l’actualité, la culture, la foi, l’entrepreneuriat et les histoires qui transforment l’Afrique. Un média congolais moderne pour les esprits curieux et éveillés.",
             'separator'    => ' - ',
-            'keywords'     => ['Blog','Magazine', 'RDC', 'Congo', 'Kinshasa', 'article', 'jocelin kisenga', 'lumiere', 'du monde', 'actualite', 'news', 'Lubumbashi', 'radio'],
-            'canonical'    => false, // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
-            'robots'       => false, // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
+            'keywords'     => [
+                'Blog', 'Magazine', 'RDC', 'Congo', 'Lubumbashi', 'Kinshasa', 'actualités', 
+                'culture', 'foi', 'entrepreneuriat', 'inspiration', 'jocelin kisenga', 
+                'lumiere du monde', 'news', 'radio', 'Afrique', 'spiritualité'
+            ],
+            'canonical'    => null,
+            'robots'       => 'index, follow',
         ],
-        /*
-         * Webmaster tags are always added.
-         */
+
         'webmaster_tags' => [
             'google'    => null,
             'bing'      => null,
@@ -36,38 +33,32 @@ return [
 
         'add_notranslate_class' => false,
     ],
+
     'opengraph' => [
-        /*
-         * The default configurations to be used by the opengraph generator.
-         */
         'defaults' => [
-            'title'       => 'Over 9000 Thousand!', // set false to total remove
-            'description' => 'For those who helped create the Genki Dama', // set false to total remove
-            'url'         => false, // Set null for using Url::current(), set false to total remove
-            'type'        => false,
-            'site_name'   => false,
-            'images'      => [],
+            'title'       => 'Lumiere du Monde Magazine',
+            'description' => "Découvrez Lumiere du Monde Magazine : un média congolais qui informe, inspire et élève les consciences. Entre culture, foi, innovation et société, plongez dans des histoires vraies, des analyses profondes et des découvertes inspirantes.",
+            'url'         => null,
+            'type'        => 'website',
+            'site_name'   => 'Lumiere du Monde Magazine',
+            'images'      => [asset('Logo.jpg')],
         ],
     ],
+
     'twitter' => [
-        /*
-         * The default values to be used by the twitter cards generator.
-         */
         'defaults' => [
-            //'card'        => 'summary',
-            //'site'        => '@LuizVinicius73',
+            'card' => 'summary_large_image',
+            'site' => '@lumieredumonde',
         ],
     ],
+
     'json-ld' => [
-        /*
-         * The default configurations to be used by the json-ld generator.
-         */
         'defaults' => [
-            'title'       => 'Over 9000 Thousand!', // set false to total remove
-            'description' => 'For those who helped create the Genki Dama', // set false to total remove
-            'url'         => false, // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
+            'title'       => 'Lumiere du Monde Magazine',
+            'description' => "Lumiere du Monde Magazine : le média congolais qui éclaire l’Afrique à travers des articles de fond, des interviews exclusives et des analyses qui inspirent l’action et le changement.",
+            'url'         => null,
             'type'        => 'WebPage',
-            'images'      => [],
+            'images'      => [asset('Logo.jpg')],
         ],
     ],
 ];
