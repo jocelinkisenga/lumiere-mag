@@ -41,7 +41,7 @@ return [
             'url'         => null,
             'type'        => 'website',
             'site_name'   => 'Lumiere du Monde Magazine',
-            'images'      => [asset('logo.jpg')],
+            'images'      => ['https://lumieredumonde-mag.com/logo.jpg'],
         ],
     ],
 
@@ -49,6 +49,9 @@ return [
         'defaults' => [
             'card' => 'summary_large_image',
             'site' => '@lumieredumonde',
+    'title' => 'Lumiere du monde magazine',
+    'description' => 'Decouvrez Lumière du monde magazine : un média Congolais qui informe, inspire et elève les consciences ',
+    'image' => 'https://lumieredumonde-mag.com/logo.jpg',
         ],
     ],
 
@@ -56,9 +59,9 @@ return [
         'defaults' => [
             'title'       => 'Lumiere du Monde Magazine',
             'description' => "Lumiere du Monde Magazine : le média congolais qui éclaire l’Afrique à travers des articles de fond, des interviews exclusives et des analyses qui inspirent l’action et le changement.",
-            'url'         => null,
+            'url'         => 'https://lumieredumonde-mag.com',
             'type'        => 'WebPage',
-            'images'      => [asset('logo.jpg')],
+            'images'      => ['https://lumieredumonde-mag.com/logo.jpg'],
         ],
     ],
 ];
