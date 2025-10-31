@@ -17,7 +17,20 @@
         tinymce.init({
             selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
             plugins: 'code table lists'
-            , toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+            , toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+            forced_root_block: 'p', // garde la structure cohérente
+  forced_br_newlines: false,
+  force_p_newlines: true,
+  cleanup: true,
+  verify_html: true,
+  valid_elements: 'p,strong,em,br,ul,ol,li,blockquote,h1,h2,h3,a[href],span',
+  content_style: "body { line-height: 1.6; } p { margin: 0 0 0.8em 0; }",
+            toolbar_mode: 'sliding',
+  mobile: {
+    menubar: false,
+    toolbar_mode: 'sliding',
+    toolbar: ['bold italic underline | alignleft aligncenter alignright | bullist numlist | undo redo']
+  }
         });
 
     </script>
