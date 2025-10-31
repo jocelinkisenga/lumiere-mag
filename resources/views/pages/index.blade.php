@@ -260,8 +260,7 @@
                                     <small class="text-muted">{{ $item->created_at }} •{{ $item->reading_minutes }} min</small>
 
                                     <span class="badge bg-light text-dark">
-                                        <i class="fas fa-eye me-1"></i>
-                                        24K
+                                        
                                     </span>
                                 </div>
                             </div>
