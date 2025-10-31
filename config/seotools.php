@@ -41,7 +41,7 @@ return [
             'url'         => null,
             'type'        => 'website',
             'site_name'   => 'Lumiere du Monde Magazine',
-            'images'      => [asset('Logo.jpg')],
+            'images'      => [asset('logo.jpg')],
         ],
     ],
 
@@ -58,7 +58,7 @@ return [
             'description' => "Lumiere du Monde Magazine : le média congolais qui éclaire l’Afrique à travers des articles de fond, des interviews exclusives et des analyses qui inspirent l’action et le changement.",
             'url'         => null,
             'type'        => 'WebPage',
-            'images'      => [asset('Logo.jpg')],
+            'images'      => [asset('logo.jpg')],
         ],
     ],
 ];
