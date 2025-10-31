@@ -126,12 +126,12 @@
         <div class="row">
             <!-- Podcast 1 -->
             @foreach ($podcasts as $podcast)
-            {{-- <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="podcast-card">
 
                     <div class="card shadow-sm border-0 mb-4" style="max-width: 600px;">
                         <div class="card-body">
-                            <h5 class="card-title"><a href="{{ route("podcast.show", ["title" => $podcast->title, "id" => $podcast->id]) }}">🎙️ {{ $podcast->title }}</a></h5>
+                            <h5 class="card-title"><a href="{{ route("podcast.show", $podcast->slug) }}">🎙️ {{ $podcast->title }}</a></h5>
 
 
             <p class="card-text text-muted">{{ $podcast->author }} </p>
@@ -157,52 +157,8 @@
 
 
     </div>
-    </div> --}}
-    <div class="col-lg-6 mb-4">
-        <div class="podcast-card">
-            <div class="row align-items-center">
-                <div class="col-3">
-                    <img src="{{ asset("storage/podcasts/covers/".$podcast->cover) }}" alt="Podcast 1" class="podcast-cover w-100">
-
-
-
-                </div>
-                <div class="col-7">
-                    <h5 class="mb-1"><a href="{{ route("podcast.show",$podcast->slug) }}">{{ $podcast->title }}</a></h5>
-
-                    <p class="text-muted small mb-2">{{ Str::limit($podcast->description, 50) }}</p>
-                    <div class="d-flex align-items-center ">
-                        <audio id="podcastAudio" src="{{ asset("storage/podcasts/".$podcast->audio_file) }}"></audio>
-                        <div class="d-flex align-items-center gap-3 mt-3">
-                            {{-- <button class="btn btn-outline-secondary btn-sm" onclick="skip(-15)">⏪ 15s</button> --}}
-                            {{-- <button class="btn btn-primary btn-sm" id="playPauseBtn" onclick="togglePlayPause()">▶️</button> --}}
-                            {{-- <button class="btn btn-outline-secondary btn-sm" onclick="skip(15)">⏩ 15s</button> --}}
-                        </div>
-
-                        <div class="mt-3">
-                            <input type="range" id="progressBar" class="form-range" value="0" step="1">
-                            <div class="d-flex justify-content-between">
-                                <small id="currentTime">0:00</small>
-                                <small id="duration">0:00</small>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="d-flex align-items-center text-muted">
-                        <small class="me-3"><i class="far fa-clock me-1"></i> </small>
-                        <small><i class="far fa-calendar me-1"></i> {{ $podcast->created_at->diffForHumans() }}</small>
-                    </div>
-                </div>
-                <div class="col-2 text-end">
-                    <button onclick="togglePlayPause()" class="play-button btn p-0" id="playPauseBtn">
-                        ▶️
-
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    </div> 
+    
 
     @endforeach
 
