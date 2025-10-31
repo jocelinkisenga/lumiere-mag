@@ -8,31 +8,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset("bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.tiny.cloud/1/05212pl2lik601zuc8u1kw9r5rjm0v6163l7se9rypgmh4m8/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
     <script>
         tinymce.init({
-            selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
-            plugins: 'code table lists'
-            , toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
-            forced_root_block: 'p', // garde la structure cohérente
-  forced_br_newlines: false,
-  force_p_newlines: true,
-  cleanup: true,
-  verify_html: true,
-  valid_elements: 'p,strong,em,br,ul,ol,li,blockquote,h1,h2,h3,a[href],span',
-  content_style: "body { line-height: 1.6; } p { margin: 0 0 0.8em 0; }",
+            selector: 'textarea#myeditorinstance',
+            plugins: 'code table lists',
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+            forced_root_block: 'p',
+            forced_br_newlines: false,
+            force_p_newlines: true,
+            cleanup: true,
+            verify_html: true,
+            valid_elements: 'p,strong,em,br,ul,ol,li,blockquote,h1,h2,h3,a[href],span',
+            content_style: "body { line-height: 1.6; } p { margin: 0 0 0.8em 0; }",
             toolbar_mode: 'sliding',
-  mobile: {
-    menubar: false,
-    toolbar_mode: 'sliding',
-    toolbar: ['bold italic underline | alignleft aligncenter alignright | bullist numlist | undo redo']
-  }
+            mobile: {
+                menubar: false,
+                toolbar_mode: 'sliding',
+                toolbar: ['bold italic underline | alignleft aligncenter alignright | bullist numlist | undo redo']
+            }
         });
-
     </script>
 
     <style>
@@ -57,8 +56,12 @@
             color: white;
             height: 100vh;
             position: fixed;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             z-index: 1000;
+        }
+
+        #sidebar.collapsed {
+            margin-left: -var(--sidebar-width);
         }
 
         #sidebar .sidebar-header {
@@ -92,7 +95,7 @@
             border-left-color: var(--accent);
         }
 
-        #sidebar ul li.active>a {
+        #sidebar ul li.active > a {
             background: rgba(255, 255, 255, 0.1);
             color: white;
             border-left-color: var(--accent);
@@ -107,61 +110,17 @@
         #content {
             margin-left: var(--sidebar-width);
             padding: 20px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             min-height: 100vh;
+        }
+
+        #content.expanded {
+            margin-left: 0;
         }
 
         .navbar {
             background: white;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            border-left: 4px solid var(--accent);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .stat-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .table-card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-        }
-
-        .badge-published {
-            background: #27ae60;
-        }
-
-        .badge-draft {
-            background: #f39c12;
-        }
-
-        .badge-pending {
-            background: #e74c3c;
-        }
-
-        .btn-action {
-            padding: 0.25rem 0.5rem;
-            margin: 0 2px;
         }
 
         @media (max-width: 768px) {
@@ -181,78 +140,31 @@
                 margin-left: var(--sidebar-width);
             }
         }
-
     </style>
 </head>
+
 <body>
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
             <div class="brand-logo text-center">
                 <a href="/"><span style="color: var(--accent);">Mag</span>azine</a>
-
-
             </div>
             <small class="text-center d-block mt-2">Administration</small>
         </div>
 
         <ul class="list-unstyled components">
             <li class="active">
-                <a href="{{ route("dashboard") }}">
-                    <i class="fas fa-tachometer-alt"></i>
-                    Tableau de bord
+                <a href="{{ route('dashboard') }}">
+                    <i class="fas fa-tachometer-alt"></i> Tableau de bord
                 </a>
             </li>
-            <li>
-                <a href="{{ route("posts.index") }}">
-
-                    <i class="fas fa-newspaper"></i>
-                    Articles
-                </a>
-            </li>
-            <li>
-                <a href="{{ route("categories.index") }}">
-
-                    <i class="fas fa-tags"></i>
-                    Catégories
-                </a>
-            </li>
-            <li>
-                <a href="{{ route("podcast.index") }}">
-                    <i class="fas fa-podcast"></i>
-                    Podcasts
-                </a>
-            </li>
-            <li>
-                <a href="{{ route("admin.videos") }}">
-                    <i class="fas fa-video"></i>
-                    Vidéos
-                </a>
-            </li>
-            {{-- <li>
-                <a href="comments.html">
-                    <i class="fas fa-comments"></i>
-                    Commentaires
-                </a>
-            </li>
-            <li>
-                <a href="users.html">
-                    <i class="fas fa-users"></i>
-                    Utilisateurs
-                </a>
-            </li> --}}
-            <li>
-                <a href="newsletter.html">
-                    <i class="fas fa-envelope"></i>
-                    Newsletter
-                </a>
-            </li>
-            <li>
-                <a href="{{ route("settings") }}">
-                    <i class="fas fa-cog"></i>
-                    Paramètres
-                </a>
-            </li>
+            <li><a href="{{ route('posts.index') }}"><i class="fas fa-newspaper"></i> Articles</a></li>
+            <li><a href="{{ route('categories.index') }}"><i class="fas fa-tags"></i> Catégories</a></li>
+            <li><a href="{{ route('podcast.index') }}"><i class="fas fa-podcast"></i> Podcasts</a></li>
+            <li><a href="{{ route('admin.videos') }}"><i class="fas fa-video"></i> Vidéos</a></li>
+            <li><a href="newsletter.html"><i class="fas fa-envelope"></i> Newsletter</a></li>
+            <li><a href="{{ route('settings') }}"><i class="fas fa-cog"></i> Paramètres</a></li>
         </ul>
 
         <div class="position-absolute bottom-0 start-0 end-0 p-3 border-top border-secondary">
@@ -262,14 +174,12 @@
                     <div class="small">Admin</div>
                     <div class="small text-muted">Administrateur</div>
                 </div>
-                <form action="{{ route("logout") }}" method="POST">
+                <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                <button type="submit" class="btn btn-danger btn-sm">
-                    <i class="fas fa-sign-out-alt"></i>
-                </button>
-
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
                 </form>
-
             </div>
         </div>
     </nav>
@@ -279,7 +189,7 @@
         <!-- Top Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-white rounded-3 mb-4">
             <div class="container-fluid">
-                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <button type="button" id="sidebarToggle" class="btn btn-primary">
                     <i class="fas fa-bars"></i>
                 </button>
 
@@ -290,93 +200,38 @@
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-
-                    {{-- <div class="dropdown">
-                        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-bell"></i>
-                            <span class="badge bg-danger">3</span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Nouveau commentaire</a></li>
-                            <li><a class="dropdown-item" href="#">Article en attente</a></li>
-                            <li><a class="dropdown-item" href="#">Nouvel utilisateur</a></li>
-                        </ul>
-                    </div> --}}
                 </div>
             </div>
         </nav>
 
-        <!-- Main content will be loaded here -->
         <div id="page-content">
-            <!-- This area will be dynamically loaded with specific page content -->
-
-            @yield("content")
+            @yield('content')
         </div>
     </div>
 
+    <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Sidebar toggle
-        document.getElementById('sidebarCollapse').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('content').classList.toggle('active');
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('content');
+        const toggleBtn = document.getElementById('sidebarToggle');
+        const toggleIcon = toggleBtn.querySelector('i');
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+            content.classList.toggle('expanded');
+
+            // Change icon dynamically
+            if (sidebar.classList.contains('collapsed')) {
+                toggleIcon.classList.remove('fa-bars');
+                toggleIcon.classList.add('fa-times');
+            } else {
+                toggleIcon.classList.remove('fa-times');
+                toggleIcon.classList.add('fa-bars');
+            }
         });
-
-
-        // Initialize charts for dashboard
-        function initializeCharts() {
-            // Traffic Chart
-            const trafficCtx = document.getElementById('trafficChart').getContext('2d');
-            new Chart(trafficCtx, {
-                type: 'line'
-                , data: {
-                    labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun']
-                    , datasets: [{
-                        label: 'Visiteurs'
-                        , data: [12000, 19000, 15000, 25000, 22000, 30000]
-                        , borderColor: '#e74c3c'
-                        , backgroundColor: 'rgba(231, 76, 60, 0.1)'
-                        , tension: 0.4
-                        , fill: true
-                    }]
-                }
-                , options: {
-                    responsive: true
-                    , plugins: {
-                        legend: {
-                            display: false
-                        }
-                    }
-                }
-            });
-
-            // Content Type Chart
-            const contentCtx = document.getElementById('contentChart').getContext('2d');
-            new Chart(contentCtx, {
-                type: 'doughnut'
-                , data: {
-                    labels: ['Articles', 'Podcasts', 'Vidéos']
-                    , datasets: [{
-                        data: [65, 20, 15]
-                        , backgroundColor: [
-                            '#2c3e50'
-                            , '#e74c3c'
-                            , '#3498db'
-                        ]
-                    }]
-                }
-                , options: {
-                    responsive: true
-                    , plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }
-            });
-        }
-
     </script>
-    <script type="script" src="{{ asset("bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+
+    <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
