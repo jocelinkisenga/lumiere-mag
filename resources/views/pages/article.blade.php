@@ -83,7 +83,7 @@
                     </div>
                     <div>
                         <span class="reading-time">
-                            <i class="fa fa-eye me-1"></i> {{ $post->view_posts->count() }}
+                            {{-- <i class="fa fa-eye me-1"></i> {{ $post->view_posts->count() }} --}}
                         </span>
                     </div>
                 </div>
