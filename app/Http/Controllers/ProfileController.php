@@ -13,7 +13,11 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        return view("profile.profile");
+
+        return view("profile.profile", [
+            'lastSaved' => auth()->user()->bookmarks()->latest()->first(),
+            'saved' => auth()->user()->bookmarks()->latest()->limit(5)->get()
+        ]);
     }
     /**
      * Display the user's profile form.

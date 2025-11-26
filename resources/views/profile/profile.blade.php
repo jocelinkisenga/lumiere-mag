@@ -24,7 +24,7 @@
     .btn-premium {
         background: linear-gradient(45deg, hsl(234, 65%, 52%), #0e3dbd);
         border: none;
-        color: #111;
+        color: #ffffff;
         font-weight: 600;
     }
 
@@ -84,44 +84,31 @@
         <!-- Prochaine réservation -->
         <section class="container my-5">
             <div class="highlight-card">
-                <h4><i class="bi bi-calendar-event"></i> Votre prochaine réservation</h4>
-                <p class="mt-3 fw-bold">Salle Prestige – Paris</p>
-                <p><i class="bi bi-calendar"></i> 12 Octobre 2025 · 👥 100 pers. · 💶 300€</p>
-                <a href="details-reservation.html" class="btn btn-premium mt-2">Voir détails</a>
+                <h4><i class="bi bi-calendar-event"></i> Votre dernier article</h4>
+                <p class="mt-3 fw-bold">{{ $lastSaved->title }}</p>
+                <a href="{{ route("posts.show",$lastSaved->slug) }}" class="btn btn-primary mt-2">lire l'article</a>
             </div>
         </section>
 
         <!-- Dernières réservations -->
         <section class="container my-5">
-            <h4 class="mb-3">Dernières réservations</h4>
+            <h4 class="mb-3">Dernièrs articles enregistrés</h4>
+            @foreach ($saved as $post)
             <div class="info-card">
                 <div class="d-flex justify-content-between">
-                    <span>Salle Élite – Lyon</span>
-                    <span class="text-warning">À venir</span>
+                    <span>{{ $post->title }}</span>
+                    <a href="{{ route("posts.show",$lastSaved->slug) }}" class="btn btn-primary btn-sm"><span class="text-white">lire l'article</span></a>
                 </div>
-                <p class="text-secondary mb-0"><i class="bi bi-calendar"></i> 5 Novembre 2025 · 💶 200€</p>
             </div>
-            <div class="info-card">
-                <div class="d-flex justify-content-between">
-                    <span>Salle Horizon – Marseille</span>
-                    <span class="text-info">Terminée</span>
-                </div>
-                <p class="text-secondary mb-0"><i class="bi bi-calendar"></i> 20 Septembre 2025 · 💶 250€</p>
-            </div>
-            <div class="info-card">
-                <div class="d-flex justify-content-between">
-                    <span>Salle Classique – Bordeaux</span>
-                    <span class="text-danger">Annulée</span>
-                </div>
-                <p class="text-secondary mb-0"><i class="bi bi-calendar"></i> 10 Août 2025 · 💶 150€</p>
-            </div>
+
+            @endforeach
+
         </section>
 
         <!-- Actions rapides -->
         <section class="container text-center my-5">
             <div class="d-grid gap-3 col-12 col-md-6 mx-auto">
                 <a href="recherche.html" class="btn btn-premium"><i class="bi bi-plus-circle"></i> Nouvelle réservation</a>
-                <a href="mes-reservations.html" class="btn btn-outline-light"><i class="bi bi-journal-text"></i> Voir toutes mes réservations</a>
             </div>
         </section>
     </div>
