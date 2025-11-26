@@ -1,0 +1,160 @@
+<!-- categories.html -->
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-0">Catégories</h1>
+            <p class="text-muted mb-0">Organisez vos articles par catégories</p>
+        </div>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCategoryModal">
+            <i class="fas fa-plus me-2"></i>Nouvelle Catégorie
+        </button>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="table-card">
+                <div class="p-3 border-bottom">
+                    <h5 class="mb-0">Liste des Catégories</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Nom</th>
+                                <th>Slug</th>
+                                <th>Articles</th>
+                                <th>Couleur</th>
+                                <th width="100">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-primary me-2" style="width: 20px; height: 20px;"></span>
+                                        Technologie
+                                    </div>
+                                </td>
+                                <td>technologie</td>
+                                <td>45 articles</td>
+                                <td>#2c3e50</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-primary btn-action">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger btn-action">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-success me-2" style="width: 20px; height: 20px;"></span>
+                                        Culture
+                                    </div>
+                                </td>
+                                <td>culture</td>
+                                <td>32 articles</td>
+                                <td>#27ae60</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-primary btn-action">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger btn-action">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-warning me-2" style="width: 20px; height: 20px;"></span>
+                                        Lifestyle
+                                    </div>
+                                </td>
+                                <td>lifestyle</td>
+                                <td>28 articles</td>
+                                <td>#f39c12</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-primary btn-action">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger btn-action">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="table-card">
+                <div class="p-3 border-bottom">
+                    <h5 class="mb-0">Statistiques des Catégories</h5>
+                </div>
+                <div class="p-3">
+                    <div class="mb-4">
+                        <h6>Répartition des articles</h6>
+                        <canvas id="categoriesChart" height="200"></canvas>
+                    </div>
+                    <div>
+                        <h6>Performances</h6>
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <span>Technologie</span>
+                                <span class="badge bg-primary">45 articles</span>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <span>Culture</span>
+                                <span class="badge bg-success">32 articles</span>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <span>Lifestyle</span>
+                                <span class="badge bg-warning text-dark">28 articles</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Categories chart
+    const categoriesCtx = document.getElementById('categoriesChart').getContext('2d');
+    new Chart(categoriesCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Technologie', 'Culture', 'Lifestyle', 'Science', 'Business'],
+            datasets: [{
+                data: [45, 32, 28, 25, 20],
+                backgroundColor: [
+                    '#2c3e50',
+                    '#27ae60',
+                    '#f39c12',
+                    '#3498db',
+                    '#e74c3c'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+</script>
