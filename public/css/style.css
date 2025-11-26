@@ -11,9 +11,12 @@
 
 /* #2c3e50 */
 body {
-    font-family: "Inter", sans-serif;
+    font-family: "Roboto", sans-serif;
     color: #333;
     line-height: 1.6;
+    background-color: #f8f9fa; /* Fond gris très léger pour desktop */
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 h1,
@@ -812,4 +815,180 @@ h6 {
 .form-control:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.1);
+}
+
+/* le figaro */
+:root {
+    --lefigaro-blue: #0f49a0; /* Bleu caractéristique */
+    --lefigaro-text: #222;
+}
+
+@media (max-width: 768px) {
+    /* Conteneur principal simulé mobile sur desktop */
+    .mobile-container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #fff;
+        min-height: 100vh;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+
+    /* --- HEADER --- */
+    .main-header {
+        border-bottom: 1px solid #e0e0e0;
+        background: #fff;
+    }
+
+    .logo-text {
+        display: none;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        color: var(--lefigaro-blue);
+        font-size: 1.5rem;
+        letter-spacing: -0.5px;
+    }
+
+    /* Navigation horizontale (Scrollable) */
+    .nav-scroller {
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch; /* Smooth scroll iOS */
+    }
+
+    .nav-scroller::-webkit-scrollbar {
+        display: none; /* Cacher la scrollbar */
+    }
+
+    .nav-link-custom {
+        display: inline-block;
+        color: #555;
+        text-decoration: none;
+        padding: 10px 15px;
+        font-size: 0.95rem;
+        font-weight: 500;
+    }
+
+    .nav-link-custom:first-child {
+        padding-left: 20px;
+    }
+
+    /* --- CONTENU --- */
+    .ad-placeholder {
+        background-color: #f0f0f0;
+        color: #888;
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .article-title {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        color: var(--lefigaro-blue);
+        line-height: 1.2;
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+
+    .article-image {
+        width: 100%;
+        height: auto;
+        border-radius: 2px;
+        object-fit: cover;
+    }
+
+    .related-link {
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        color: var(--lefigaro-blue);
+        text-decoration: none;
+        line-height: 1.3;
+    }
+
+    /* --- BOTTOM NAV BAR --- */
+    .bottom-nav {
+        max-width: 480px; /* S'aligne avec le container */
+        margin: 0 auto;
+        background: #fff;
+        border-top: 1px solid #ddd;
+        left: 0;
+        right: 0;
+    }
+
+    .nav-item-bottom {
+        color: #666;
+        text-align: center;
+        font-size: 0.7rem;
+        padding: 8px 0;
+        flex: 1;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .nav-item-bottom i {
+        font-size: 1.2rem;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .nav-item-bottom.active {
+        color: var(--lefigaro-blue);
+        font-weight: bold;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-nav .nav-link {
+        color: var(--primary) !important;
+        font-weight: 700;
+        transition: color 0.3s ease;
+        font-size: 1.125rem;
+    }
+    /* --- HEADER --- */
+    .main-header {
+        border-bottom: 1px solid #e0e0e0;
+        background: #fff;
+    }
+
+    .logo-text {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        color: var(--lefigaro-blue);
+        font-size: 1.5rem;
+        letter-spacing: -0.5px;
+    }
+
+    /* Navigation horizontale (Scrollable) */
+    .nav-scroller {
+        overflow-x: auto;
+        white-space: nowrap;
+        display: flex;
+        justify-content: center; /* Centre tous les liens */
+        border-bottom: 2px solid #e0e0e0; /* Mieux sur desktop */
+    }
+
+    .nav-scroller::-webkit-scrollbar {
+        display: none; /* Cacher la scrollbar */
+    }
+
+    .nav-link-custom {
+        display: block; /* Flexbox gère l'alignement, on n'a plus besoin du inline-block */
+        padding: 10px 15px;
+        color: #555;
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    .nav-link-custom:first-child {
+        padding-left: 20px;
+    }
+}
+
+.nav-link-custom {
+    text-transform: uppercase;
 }

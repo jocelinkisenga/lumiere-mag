@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <style>
         a {
             text-decoration: none;
@@ -46,10 +50,17 @@
     @livewireStyles
 </head>
 <body>
-    @include("components.navbar")
-    <!-- Navigation -->
-    @yield("content")
-    @include("components.footer")
+
+    <div class="mobile-container">
+
+        @include("components.navbar")
+        <div>
+
+            <!-- Navigation -->
+            @yield("content")
+        </div>
+        @include("components.footer")
+    </div>
     @livewireScripts
     <script src="{{ asset("bootstrap/js/bootstrap.min.js") }}"></script>
     <script>
