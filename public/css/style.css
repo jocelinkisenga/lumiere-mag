@@ -946,7 +946,7 @@ h6 {
         color: var(--primary) !important;
         font-weight: 700;
         transition: color 0.3s ease;
-        font-size: 1.125rem;
+        font-size: 1.5rem;
     }
     /* --- HEADER --- */
     .main-header {

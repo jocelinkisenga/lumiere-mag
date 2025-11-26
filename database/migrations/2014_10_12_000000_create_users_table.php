@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer("role")->default(0);
             $table->rememberToken();
             $table->boolean("role_id")->default(false);
             $table->timestamps();
@@ -29,6 +30,7 @@ return new class extends Migration
             "email" => "lumieredumonde@gmail.com",
             "password" => Hash::make("lumiere du monde 2025"),
             "role_id" => true,
+            "role" => 1
         ]);
     }
 

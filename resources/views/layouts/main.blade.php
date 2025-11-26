@@ -39,8 +39,8 @@
         /* --- 6. R&eacute;activit&eacute; (Mobile & Tablette) --- */
         @media (max-width: 900px) {
             .img-logo {
-                max-width: 160px;
-                height: 58px;
+                max-width: 200px;
+                height: 65px;
             }
 
     </style>

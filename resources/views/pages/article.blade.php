@@ -89,6 +89,14 @@
                 </div>
 
                 <!-- Tags -->
+                <div class="tags">
+                    <span class="tag">Intelligence Artificielle</span>
+                    <span class="tag">Technologie</span>
+                    <span class="tag">Innovation</span>
+                    <span class="tag">Futur</span>
+                    <span class="tag">Éthique</span>
+                    <span class="tag">Société</span>
+                </div>
 
 
                 <!-- Author Card -->
