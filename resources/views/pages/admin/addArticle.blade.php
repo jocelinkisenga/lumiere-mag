@@ -31,48 +31,64 @@
                             </div>
                             <div class="col-6">
                                 <div class="col-sm-9">
-                                                               <label for="my-select">Auteur</label>
-                                                               <select id="my-select" class="form-control" name="author_id">
-                                                                   <option selected>selectionner un auteur</option>
-                                                                   @foreach (\App\Models\Author::get() as $item)
-                                                                   <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                                   @endforeach
-                                                               </select>
+                                    <label for="my-select">Auteur</label>
+                                    <select id="my-select" class="form-control" name="author_id">
+                                        <option selected>selectionner un auteur</option>
+                                        @foreach (\App\Models\Author::get() as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
 
                                 </div>
 
                             </div>
 
                         </div>
-                        <div class="form-group row">
-                            <div class="col-8">
+                        <div class="row">
+                            <div class="form-group>
+                            <div class=" col-6">
                                 <label for="exampleInputEmail2" class="col-sm-3 col-form-label">image</label>
                                 <div class="col-sm-9">
                                     <input type="file" class="form-control" id="exampleInputEmail2" name="image">
                                 </div>
 
                             </div>
+                            <div class="form-group">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">tags <span class="text-danger">(ex : separés par des virgules)</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="exampleInputEmail2" name="tags" placeholder="ex: technologie, culture, a la une ">
+                                    </div>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
-                        {{-- <div class="mb-3">
+
+
+                </div>
+
+
+                {{-- <div class="mb-3">
                             <label for="" class="form-label">Excerpt</label>
                             <textarea class="form-control" name="slug" id="" rows="3"></textarea>
                         </div> --}}
 
-                        <div class="mb-3">
-                            <label for="" class="form-label">Description</label>
-                            <textarea class="form-control" name="description" id="myeditorinstance" rows="3"></textarea>
+                <div class="mb-3">
+                    <label for="" class="form-label">Description</label>
+                    <textarea class="form-control" name="description" id="myeditorinstance" rows="3"></textarea>
 
-                        </div>
-
-
-                        <button type="submit" class="btn btn-primary me-2">enregistrer</button>
-                        <button class="btn btn-light">Annuler</button>
-                    </form>
                 </div>
+
+
+                <button type="submit" class="btn btn-primary me-2">enregistrer</button>
+                <button class="btn btn-light">Annuler</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

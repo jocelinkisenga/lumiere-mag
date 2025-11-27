@@ -80,8 +80,7 @@
                 </div>
             </div>
         </section>
-
-        <!-- Prochaine réservation -->
+        @empty(!$lastSaved)
         <section class="container my-5">
             <div class="highlight-card">
                 <h4><i class="bi bi-calendar-event"></i> Votre dernier article</h4>
@@ -89,6 +88,10 @@
                 <a href="{{ route("posts.show",$lastSaved->slug) }}" class="btn btn-primary mt-2">lire l'article</a>
             </div>
         </section>
+
+        @endempty
+        <!-- Prochaine réservation -->
+
 
         <!-- Dernières réservations -->
         <section class="container my-5">

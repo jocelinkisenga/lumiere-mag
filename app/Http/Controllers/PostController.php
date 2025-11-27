@@ -8,7 +8,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Mail\NewsletterMail;
 use App\Models\Category;
 use App\Models\Subscriber;
-use App\Models\ViewPost;
+use App\Models\Tag;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\TwitterCard;
@@ -63,6 +63,19 @@ class PostController extends Controller
             "author_id" => $request->author_id,
             "description" => $request->description
         ]);
+
+        // tags pour chaque article
+        $tags = array_map('trim', explode(',', $request->tags));
+        $tagsId = [];
+
+        foreach ($tags as $tag) {
+            if ($tag !== '') {
+                $srv = Tag::firstOrCreate(['name' => $tag]);
+                $tagsId[] = $srv->id;
+            }
+        }
+
+        $post->tags()->sync($tagsId);
 
         $subscribers = Subscriber::all();
 
