@@ -7,9 +7,11 @@
 
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <a class="navbar-toggler text-primary btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                {{-- <span class="navbar-toggler-icon"></span> --}}
+                <i class="fas fa-bars text-secondary fs-5 text-primary"></i>
+
+            </a>
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
@@ -36,6 +38,10 @@
 
                     @endguest
                     @auth
+                    @if(auth()->user()->role_id == 1)
+                    <a href="{{ route("dashboard") }}" class="btn btn-primary"><span><i class=""></i></span> Dashboard</a>
+
+                    @endif
                     <a href="{{ route("profile") }}" class="btn btn-primary"><span><i class="fa fa-eye"></i></span> Profile</a>
 
 
