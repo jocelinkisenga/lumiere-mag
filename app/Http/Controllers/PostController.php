@@ -9,6 +9,7 @@ use App\Mail\NewsletterMail;
 use App\Models\Category;
 use App\Models\Subscriber;
 use App\Models\Tag;
+use App\Services\PostService;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\TwitterCard;
@@ -20,18 +21,20 @@ use Str;
 
 class PostController extends Controller
 {
+
+    public function __construct(public PostService $postService) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::orderBy("created_at", "desc")->paginate(10);
+        $posts = $this->postService->getAllPosts();
         return view("pages.admin.listArticles", compact("posts"));
     }
 
     public function front()
     {
-        $articles = Post::orderBy("created_at", "desc")->paginate(12);
+        $articles = $this->postService->getAllPosts();
 
         return view("pages.articles", compact("articles"));
     }
@@ -51,32 +54,12 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
 
-
         $imgName = Carbon::now()->timestamp . 'patrickngoy.' . $request->file('image')->extension();
         $path = $request->file("image")->storeAs('uploads', $imgName, 'public');
 
-        $post = Post::create([
-            "category_id" => $request->category_id,
-            "title" => $request->title,
-
-            "image" => $imgName,
-            "author_id" => $request->author_id,
-            "description" => $request->description
-        ]);
-
+        $post = $this->postService->CreatePost($request, $imgName);
         // tags pour chaque article
-        $tags = array_map('trim', explode(',', $request->tags));
-        $tagsId = [];
-
-        foreach ($tags as $tag) {
-            if ($tag !== '') {
-                $srv = Tag::firstOrCreate(['name' => $tag]);
-                $tagsId[] = $srv->id;
-            }
-        }
-
-        $post->tags()->sync($tagsId);
-
+        $this->postService->createTags($post, $request->tags);
         $subscribers = Subscriber::all();
 
         foreach ($subscribers as $subscriber) {
