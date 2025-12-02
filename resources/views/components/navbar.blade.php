@@ -79,12 +79,12 @@
         <i class="fas fa-user text-secondary fs-5"></i>
     </div>
 
-    <nav class="nav-scroller border-top">
+    <nav class="nav-scroller border-top ">
         @foreach(\App\Models\Category::all() as $category)
 
         <a href="{{route("categorie.show",["slug" => $category->title,"id" => $category->id])}}" class="nav-link-custom text-dark">{{ $category->title }}</a>
 
 
-        @endforeach
+        @endforeachs
     </nav>
 </header>

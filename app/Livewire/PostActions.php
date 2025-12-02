@@ -30,7 +30,7 @@ class PostActions extends Component
                 $like->delete();
                 $this->isLiked = false;
                 $this->showPopup = true;
-                $this->popupMessage = "oups! vous avez retiré votre like";
+                // $this->popupMessage = "oups! vous avez retiré votre like";
             } else {
                 Like::create(['post_id' => $this->post->id, "user_id" => auth()->user()->id]);
                 $this->isLiked = true;
@@ -39,7 +39,8 @@ class PostActions extends Component
             }
         } else {
             $this->showPopup = true;
-            $this->popupMessage = "oups! vous devez vous connecter";
+            // $this->popupMessage = "oups! vous devez vous connecter";
+            flash()->error('Oups vous devez vous connecter', 'Sorry');
         }
     }
 
