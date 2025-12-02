@@ -85,6 +85,6 @@
         <a href="{{route("categorie.show",["slug" => $category->title,"id" => $category->id])}}" class="nav-link-custom text-dark">{{ $category->title }}</a>
 
 
-        @endforeachs
+        @endforeach
     </nav>
 </header>

@@ -853,6 +853,8 @@ h6 {
     .nav-scroller {
         overflow-x: auto;
         white-space: nowrap;
+        background-color: white;
+        margin-top: 25px;
         -webkit-overflow-scrolling: touch; /* Smooth scroll iOS */
     }
 
@@ -965,6 +967,7 @@ h6 {
     /* Navigation horizontale (Scrollable) */
     .nav-scroller {
         overflow-x: auto;
+        margin-top: 20px;
         white-space: nowrap;
         display: flex;
         justify-content: center; /* Centre tous les liens */
