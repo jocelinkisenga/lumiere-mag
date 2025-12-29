@@ -9,29 +9,31 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('flora/froala_editor.pkgd.min.css') }}">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.tiny.cloud/1/05212pl2lik601zuc8u1kw9r5rjm0v6163l7se9rypgmh4m8/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+
     <script>
         tinymce.init({
-            selector: 'textarea#myeditorinstance',
-            plugins: 'code table lists',
-            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
-            forced_root_block: 'p',
-            forced_br_newlines: false,
-            force_p_newlines: true,
-            cleanup: true,
-            verify_html: true,
-            valid_elements: 'p,strong,em,br,ul,ol,li,blockquote,h1,h2,h3,a[href],span',
-            content_style: "body { line-height: 1.6; } p { margin: 0 0 0.8em 0; }",
-            toolbar_mode: 'sliding',
-            mobile: {
-                menubar: false,
-                toolbar_mode: 'sliding',
-                toolbar: ['bold italic underline | alignleft aligncenter alignright | bullist numlist | undo redo']
+            selector: 'textarea#myeditorinstance'
+            , plugins: 'code table lists'
+            , toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+            , forced_root_block: 'p'
+            , forced_br_newlines: false
+            , force_p_newlines: true
+            , cleanup: true
+            , verify_html: true
+            , valid_elements: 'p,strong,em,br,ul,ol,li,blockquote,h1,h2,h3,a[href],span'
+            , content_style: "body { line-height: 1.6; } p { margin: 0 0 0.8em 0; }"
+            , toolbar_mode: 'sliding'
+            , mobile: {
+                menubar: false
+                , toolbar_mode: 'sliding'
+                , toolbar: ['bold italic underline | alignleft aligncenter alignright | bullist numlist | undo redo']
             }
         });
+
     </script>
 
     <style>
@@ -95,7 +97,7 @@
             border-left-color: var(--accent);
         }
 
-        #sidebar ul li.active > a {
+        #sidebar ul li.active>a {
             background: rgba(255, 255, 255, 0.1);
             color: white;
             border-left-color: var(--accent);
@@ -140,6 +142,13 @@
                 margin-left: var(--sidebar-width);
             }
         }
+
+        div#editor {
+            width: 81%;
+            margin: auto;
+            text-align: left;
+        }
+
     </style>
 </head>
 
@@ -231,8 +240,18 @@
                 toggleIcon.classList.add('fa-bars');
             }
         });
+
     </script>
 
+
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('flora/froala_editor.pkgd.min.js') }}"></script>
+    <script>
+        (function() {
+            new FroalaEditor("#edit")
+        })()
+
+    </script>
+
 </body>
 </html>

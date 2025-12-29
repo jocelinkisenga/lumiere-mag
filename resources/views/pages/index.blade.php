@@ -59,7 +59,7 @@
 
 <!-- Articles Récents -->
 <section class="py-5">
-    <div class="container">
+    <di v class="container">
         <h2 class="section-title" data-aos="fade-up">
             Dernières Publications
         </h2>
@@ -112,7 +112,7 @@
         <div class="text-center mt-4" data-aos="fade-up">
             <a href="{{ route("posts.front") }}" class="btn btn-outline-primary btn-lg">Voir tous les articles</a>
         </div>
-    </div>
+    </di>
 </section>
 
 <!-- Podcasts Section -->
@@ -134,40 +134,40 @@
                             <h5 class="card-title"><a href="{{ route("podcast.show", $podcast->slug) }}">🎙️ {{ $podcast->title }}</a></h5>
 
 
-            <p class="card-text text-muted">{{ $podcast->author }} </p>
+                            <p class="card-text text-muted">{{ $podcast->author }} </p>
 
-            <audio id="podcastAudio" src="{{ asset("storage/podcasts/".$podcast->audio_file) }}"></audio>
+                            <audio id="podcastAudio" src="{{ asset("storage/podcasts/".$podcast->audio_file) }}"></audio>
 
 
-            <div class="d-flex align-items-center gap-3 mt-3">
-                <button class="btn btn-outline-secondary btn-sm" onclick="skip(-15)">⏪ 15s</button>
-                <button class="btn btn-primary btn-sm" id="playPauseBtn" onclick="togglePlayPause()">▶️</button>
-                <button class="btn btn-outline-secondary btn-sm" onclick="skip(15)">⏩ 15s</button>
-            </div>
+                            <div class="d-flex align-items-center gap-3 mt-3">
+                                <button class="btn btn-outline-secondary btn-sm" onclick="skip(-15)">⏪ 15s</button>
+                                <button class="btn btn-primary btn-sm" id="playPauseBtn" onclick="togglePlayPause()">▶️</button>
+                                <button class="btn btn-outline-secondary btn-sm" onclick="skip(15)">⏩ 15s</button>
+                            </div>
 
-            <div class="mt-3">
-                <input type="range" id="progressBar" class="form-range" value="0" step="1">
-                <div class="d-flex justify-content-between">
-                    <small id="currentTime">0:00</small>
-                    <small id="duration">0:00</small>
+                            <div class="mt-3">
+                                <input type="range" id="progressBar" class="form-range" value="0" step="1">
+                                <div class="d-flex justify-content-between">
+                                    <small id="currentTime">0:00</small>
+                                    <small id="duration">0:00</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
+
+
+            @endforeach
+
         </div>
-    </div>
 
+        <div class="text-center mt-4" data-aos="fade-up">
+            <a href="{{ route("podcast.front") }}" class="btn btn-outline-primary btn-lg">Voir tous les podcasts</a>
 
-    </div>
-    </div>
-
-
-    @endforeach
-
-    </div>
-
-    <div class="text-center mt-4" data-aos="fade-up">
-        <a href="{{ route("podcast.front") }}" class="btn btn-outline-primary btn-lg">Voir tous les podcasts</a>
-
-    </div>
+        </div>
     </div>
 </section>
 
@@ -201,7 +201,7 @@
                         <h4><a href="{{ route("video.show", $video->slug) }}">{{ $video->title }}</a></h4>
 
                         <p class="text-muted">
-                            {!!  Str::limit($video->description, 50 ) !!}
+                            {!! Str::limit($video->description, 50 ) !!}
 
 
                         </p>

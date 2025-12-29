@@ -43,43 +43,10 @@
 
         <!-- Header -->
         <section class="container my-5 text-center">
-            <h1 class="fw-bold">Bienvenue, Jean 👋</h1>
-            <p class="text-secondary">Voici un aperçu de vos réservations</p>
+            <h1 class="fw-bold">Bienvenue, {{ auth()->user()->name }} 👋</h1>
+            <p class="text-secondary">Voici un aperçu de vos lectures</p>
         </section>
 
-        <!-- Statistiques -->
-        <section class="container my-4">
-            <div class="row g-3">
-                <div class="col-6 col-md-3">
-                    <div class="card-stat">
-                        <i class="bi bi-calendar-check text-success fs-2"></i>
-                        <h3>3</h3>
-                        <p>Confirmées</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="card-stat">
-                        <i class="bi bi-hourglass-split text-warning fs-2"></i>
-                        <h3>2</h3>
-                        <p>À venir</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="card-stat">
-                        <i class="bi bi-check2-circle text-info fs-2"></i>
-                        <h3>5</h3>
-                        <p>Terminées</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="card-stat">
-                        <i class="bi bi-x-circle text-danger fs-2"></i>
-                        <h3>1</h3>
-                        <p>Annulées</p>
-                    </div>
-                </div>
-            </div>
-        </section>
         @empty(!$lastSaved)
         <section class="container my-5">
             <div class="highlight-card">
@@ -108,12 +75,6 @@
 
         </section>
 
-        <!-- Actions rapides -->
-        <section class="container text-center my-5">
-            <div class="d-grid gap-3 col-12 col-md-6 mx-auto">
-                <a href="recherche.html" class="btn btn-premium"><i class="bi bi-plus-circle"></i> Nouvelle réservation</a>
-            </div>
-        </section>
     </div>
 </div>
 
