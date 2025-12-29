@@ -16,6 +16,7 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Jorenvh\Share\ShareFacade;
 use Str;
 
@@ -119,9 +120,11 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(int $id)
     {
-        //
+
+        $categories = Category::all();
+        return view("pages.admin.editarticle", ["categories" => $categories, 'post' => Post::whereId($id)->with('author')->first()]);
     }
 
     /**
@@ -129,7 +132,12 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $imgName = Carbon::now()->timestamp . 'patrickngoy.' . $request->file('image')->extension();
+        $path = $request->file("image")->storeAs('uploads', $imgName, 'public');
+
+        $post = $this->postService->CreatePost($request, $imgName);
+        // tags pour chaque article
+        $this->postService->createTags($post, $request->tags);
     }
 
     /**
@@ -139,5 +147,25 @@ class PostController extends Controller
     {
         Post::destroy($id);
         return redirect()->back();
+    }
+
+    public function floara(Request $request)
+    {
+        // 1. Validation basique
+        if ($request->hasFile('file')) { // Froala envoie le fichier sous le nom 'file' par défaut
+
+            // 2. Stockage de l'image (dans storage/app/public/uploads)
+            $path = $request->file('file')->store('public/uploads');
+
+            // 3. Génération de l'URL accessible (nécessite php artisan storage:link)
+            $url = Storage::url($path);
+
+            // 4. Retourner le JSON attendu par Froala
+            return response()->json([
+                'link' => $url
+            ]);
+        }
+
+        return response()->json(['error' => 'Aucun fichier reçu'], 400);
     }
 }

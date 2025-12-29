@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Admin Magazine</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -248,7 +249,24 @@
     <script src="{{ asset('flora/froala_editor.pkgd.min.js') }}"></script>
     <script>
         (function() {
-            new FroalaEditor("#edit")
+            new FroalaEditor("#edit", {
+                // URL pour l'upload des images
+                imageUploadURL: 'articles/floara',
+
+
+                // URL pour l'upload des fichiers (documents PDF, etc.)
+                fileUploadURL: '/froala/upload-file',
+
+                // Paramètres additionnels pour passer le CSRF Token de Laravel
+                requestHeaders: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+
+                // Pour forcer la réponse en JSON attendue par Froala
+                imageUploadMethod: 'POST'
+
+            })
+
         })()
 
     </script>

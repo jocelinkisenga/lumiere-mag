@@ -62,6 +62,8 @@
                                         </td>
 
                                         <td>
+                                            <a href="{{ route("post.edit", ["id" => $item->id]) }}" class="btn btn-primary btn-sm"> editer </a>
+
                                             <a href="{{ route("post.delete", ["id" => $item->id]) }}" class="btn btn-danger btn-sm"> effacer</a>
 
                                         </td>
