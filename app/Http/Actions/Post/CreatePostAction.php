@@ -15,7 +15,7 @@ class CreatePostAction
         $post = Post::create([
             "category_id" => $attributes->category_id,
             "title" => $attributes->title,
-
+            "excerpt" => $attributes->excerpt,
             "image" => $postImage,
             "author_id" => $attributes->author_id,
             "description" => $attributes->description

@@ -86,7 +86,7 @@
 
                         </h5>
                         <p class="card-text flex-grow-1">
-                            {!! Str::limit($item->description, 50 ) !!}
+                            {!! Str::limit($item->excerpt, 50 ) !!}
 
                         </p>
                         <div class="d-flex justify-content-between align-items-center mt-auto">
@@ -253,7 +253,7 @@
 
                                 </h5>
                                 <p class="card-text">
-                                    {!! Str::limit($item->description, 50) !!}
+                                    {!! Str::limit($item->excerpt, 50) !!}
 
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">

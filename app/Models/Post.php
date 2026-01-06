@@ -13,7 +13,7 @@ use Str;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ["category_id", "title", "slug", "description", "author_id", "image"];
+    protected $fillable = ["category_id", "title", "slug", "description", "excerpt", "author_id", "image"];
 
     public function category(): BelongsTo
     {

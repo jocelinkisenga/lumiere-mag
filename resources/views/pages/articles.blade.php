@@ -17,7 +17,7 @@
 <section class="py-5">
     <div class="container">
         <!-- Filters -->
-{{-- filter livewire --}}
+        {{-- filter livewire --}}
         @livewire('search-form')
         <!-- Articles Grid -->
         <div class="row">
@@ -35,7 +35,7 @@
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title"><a href="{{ route("posts.show",$item->slug) }}">{{ $item->title }}</a></h5>
 
-                        <p class="card-text flex-grow-1">{{ Str::limit($item->description, 70) }}</p>
+                        <p class="card-text flex-grow-1">{!! Str::limit($item->excerpt, 70) !!}</p>
 
                         <div class="d-flex justify-content-between align-items-center mt-auto">
                             <div class="d-flex align-items-center">
