@@ -1,8 +1,5 @@
 @extends("layouts.main")
-@push('styles')
-<link rel="stylesheet" href="{{ asset('flora/froala_style.min.css') }}">
 
-@endpush
 @section('content')
 <div class="progress-bar" id="progressBar"></div>
 
@@ -65,7 +62,7 @@
                         <figcaption class="text-center text-muted mt-2">{{$post->title}}</figcaption>
 
                     </figure>
-                    <div class="fr-view">{!! $post->description !!}</div>
+                    <div>{!! $post->description !!}</div>
 
 
                 </div>
