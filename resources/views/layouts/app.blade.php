@@ -173,7 +173,7 @@
             <li><a href="{{ route('categories.index') }}"><i class="fas fa-tags"></i> Catégories</a></li>
             <li><a href="{{ route('podcast.index') }}"><i class="fas fa-podcast"></i> Podcasts</a></li>
             <li><a href="{{ route('admin.videos') }}"><i class="fas fa-video"></i> Vidéos</a></li>
-            <li><a href="newsletter.html"><i class="fas fa-envelope"></i> Newsletter</a></li>
+            <li><a href="{{ route("subscribers.index") }}"><i class="fas fa-envelope"></i> Newsletter</a></li>
             <li><a href="{{ route('authors.index') }}"><i class="fas fa-video"></i> Les Auteurs</a></li>
             <li><a href="{{ route('settings') }}"><i class="fas fa-cog"></i> Paramètres</a></li>
         </ul>
