@@ -1,255 +1,245 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Admin Magazine</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Purple Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
+
+
+    <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
+
+
+    <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}">
+
+
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}" />
+
+
+    <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
+
     <link rel="stylesheet" href="{{ asset('flora/froala_editor.pkgd.min.css') }}">
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.tiny.cloud/1/05212pl2lik601zuc8u1kw9r5rjm0v6163l7se9rypgmh4m8/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('flora/froala_editor.min.css') }}">
 
-    <script>
-        tinymce.init({
-            selector: 'textarea#myeditorinstance'
-            , plugins: 'code table lists'
-            , toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
-            , forced_root_block: 'p'
-            , forced_br_newlines: false
-            , force_p_newlines: true
-            , cleanup: true
-            , verify_html: true
-            , valid_elements: 'p,strong,em,br,ul,ol,li,blockquote,h1,h2,h3,a[href],span'
-            , content_style: "body { line-height: 1.6; } p { margin: 0 0 0.8em 0; }"
-            , toolbar_mode: 'sliding'
-            , mobile: {
-                menubar: false
-                , toolbar_mode: 'sliding'
-                , toolbar: ['bold italic underline | alignleft aligncenter alignright | bullist numlist | undo redo']
-            }
-        });
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-    </script>
 
-    <style>
-        :root {
-            --primary: #2c3e50;
-            --secondary: #95a5a6;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --sidebar-width: 250px;
-        }
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa;
-            overflow-x: hidden;
-        }
 
-        #sidebar {
-            width: var(--sidebar-width);
-            background: var(--primary);
-            color: white;
-            height: 100vh;
-            position: fixed;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        #sidebar.collapsed {
-            margin-left: -var(--sidebar-width);
-        }
-
-        #sidebar .sidebar-header {
-            padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .brand-logo {
-            font-family: 'Playfair Display', serif;
-            font-weight: 900;
-            font-size: 1.5rem;
-        }
-
-        #sidebar ul.components {
-            padding: 1rem 0;
-        }
-
-        #sidebar ul li a {
-            padding: 1rem 1.5rem;
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            display: block;
-            transition: all 0.3s;
-            border-left: 3px solid transparent;
-        }
-
-        #sidebar ul li a:hover {
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            border-left-color: var(--accent);
-        }
-
-        #sidebar ul li.active>a {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-left-color: var(--accent);
-        }
-
-        #sidebar ul li a i {
-            margin-right: 10px;
-            width: 20px;
-            text-align: center;
-        }
-
-        #content {
-            margin-left: var(--sidebar-width);
-            padding: 20px;
-            transition: all 0.3s ease;
-            min-height: 100vh;
-        }
-
-        #content.expanded {
-            margin-left: 0;
-        }
-
-        .navbar {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        @media (max-width: 768px) {
-            #sidebar {
-                margin-left: -var(--sidebar-width);
-            }
-
-            #sidebar.active {
-                margin-left: 0;
-            }
-
-            #content {
-                margin-left: 0;
-            }
-
-            #content.active {
-                margin-left: var(--sidebar-width);
-            }
-        }
-
-        div#editor {
-            width: 81%;
-            margin: auto;
-            text-align: left;
-        }
-
-    </style>
 </head>
-
 <body>
-    <!-- Sidebar -->
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <div class="brand-logo text-center">
-                <a href="/"><span style="color: var(--accent);">Mag</span>azine</a>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+                <a class="navbar-brand brand-logo" href="/">Lumiere du monde </a>
+                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
             </div>
-            <small class="text-center d-block mt-2">Administration</small>
-        </div>
-
-        <ul class="list-unstyled components">
-            <li class="active">
-                <a href="{{ route('dashboard') }}">
-                    <i class="fas fa-tachometer-alt"></i> Tableau de bord
-                </a>
-            </li>
-            <li><a href="{{ route('posts.index') }}"><i class="fas fa-newspaper"></i> Articles</a></li>
-            <li><a href="{{ route('categories.index') }}"><i class="fas fa-tags"></i> Catégories</a></li>
-            <li><a href="{{ route('podcast.index') }}"><i class="fas fa-podcast"></i> Podcasts</a></li>
-            <li><a href="{{ route('admin.videos') }}"><i class="fas fa-video"></i> Vidéos</a></li>
-            <li><a href="{{ route("subscribers.index") }}"><i class="fas fa-envelope"></i> Newsletter</a></li>
-            <li><a href="{{ route('authors.index') }}"><i class="fas fa-video"></i> Les Auteurs</a></li>
-            <li><a href="{{ route('settings') }}"><i class="fas fa-cog"></i> Paramètres</a></li>
-        </ul>
-
-        <div class="position-absolute bottom-0 start-0 end-0 p-3 border-top border-secondary">
-            <div class="d-flex align-items-center">
-                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Admin" class="rounded-circle me-2" width="40" height="40">
-                <div class="flex-grow-1">
-                    <div class="small">Admin</div>
-                    <div class="small text-muted">Administrateur</div>
-                </div>
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-danger btn-sm">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Page Content -->
-    <div id="content">
-        <!-- Top Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white rounded-3 mb-4">
-            <div class="container-fluid">
-                <button type="button" id="sidebarToggle" class="btn btn-primary">
-                    <i class="fas fa-bars"></i>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-menu"></span>
                 </button>
-
-                <div class="d-flex align-items-center">
-                    <div class="input-group me-3" style="width: 300px;">
-                        <input type="text" class="form-control" placeholder="Rechercher...">
-                        <button class="btn btn-outline-secondary" type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
+                <div class="search-field d-none d-md-block">
+                    <form class="d-flex align-items-center h-100" action="#">
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-transparent">
+                                <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                            </div>
+                            <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+                        </div>
+                    </form>
                 </div>
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="nav-profile-img">
+                                <img src="assets/images/faces/face1.jpg" alt="image">
+                                <span class="availability-status online"></span>
+                            </div>
+                            <div class="nav-profile-text">
+                                <p class="mb-1 text-black">{{ auth()->user()->name }}</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                            <div class="dropdown-divider"></div>
+
+                            <i class="mdi mdi-logout me-2 text-primary">
+
+                            </i>
+                            <form action="{{ route('logout') }}" method="POST" class="dropdown-item"">
+
+                                    @csrf
+                                    <button class=" btn btn-danger btn-sm">
+                                <i class="fas fa-sign-out-alt"></i> se deconnecter
+                                </button>
+                            </form>
+
+
+                        </div>
+                    </li>
+
+                    <li class="nav-item nav-logout d-none d-lg-block">
+                        <a class="nav-link" href="#">
+                            <i class="mdi mdi-power"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-settings d-none d-lg-block">
+                        <a class="nav-link" href="#">
+                            <i class="mdi mdi-format-line-spacing"></i>
+                        </a>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
             </div>
         </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item nav-profile">
+                        <a href="{{ route('dashboard') }}" class="nav-link">
+                            <div class="nav-profile-image">
+                                <img src="assets/images/faces/face1.jpg" alt="profile" />
+                                <span class="login-status online"></span>
+                                <!--change to offline or busy as needed-->
+                            </div>
+                            <div class="nav-profile-text d-flex flex-column">
+                                <span class="font-weight-bold mb-2">{{ auth()->user()->name }}</span>
+                                <span class="text-secondary text-small"></span>
+                            </div>
+                            <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <span class="menu-title">Dashboard</span>
+                            <i class="mdi mdi-home menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+                            <span class="menu-title">Articles</span>
+                            <i class="mdi mdi-contacts menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="icons">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route("posts.index") }}">Liste des articles</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#forms" aria-expanded="false" aria-controls="forms">
+                            <span class="menu-title">categories</span>
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="forms">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('categories.index') }}">liste des articles</a>
 
-        <div id="page-content">
-            @yield('content')
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+                            <span class="menu-title">podcasts</span>
+                            <i class="mdi mdi-chart-bar menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="charts">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('podcast.index') }}">liste des podcasts</a>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+                            <span class="menu-title">Videos</span>
+                            <i class="mdi mdi-table-large menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="tables">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.videos') }}">liste des videos</a>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                            <span class="menu-title">Auteurs</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-lock menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="auth">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('authors.index') }}"> liste des auteurs </a>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('subscribers.index') }}">
+                            <span class="menu-title">Abonnes</span>
+                            <i class="mdi mdi-file-document-box menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button class="btn btn-danger btn-sm">
+                                <i class="fas fa-sign-out-alt"></i> se deconnecter
+                            </button>
+                        </form>
+
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                @yield('content')
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                {{-- <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+                    </div>
+                </footer> --}}
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
         </div>
+        <!-- page-body-wrapper ends -->
     </div>
-
-    <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const sidebar = document.getElementById('sidebar');
-        const content = document.getElementById('content');
-        const toggleBtn = document.getElementById('sidebarToggle');
-        const toggleIcon = toggleBtn.querySelector('i');
-
-        toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('collapsed');
-            content.classList.toggle('expanded');
-
-            // Change icon dynamically
-            if (sidebar.classList.contains('collapsed')) {
-                toggleIcon.classList.remove('fa-bars');
-                toggleIcon.classList.add('fa-times');
-            } else {
-                toggleIcon.classList.remove('fa-times');
-                toggleIcon.classList.add('fa-bars');
-            }
-        });
-
-    </script>
-
-
-    <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('flora/froala_editor.pkgd.min.js') }}"></script>
     <script>
         (function() {
-            new FroalaEditor("#edit", {
+
+            new FroalaEditor('#edit', {
                 // URL pour l'upload des images
                 imageUploadURL: 'articles/floara',
 
@@ -264,12 +254,46 @@
 
                 // Pour forcer la réponse en JSON attendue par Froala
                 imageUploadMethod: 'POST'
-
-            })
-
+            });
         })()
 
     </script>
 
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
+
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{{ asset('assets/vendors/chart.js/chart.umd.js') }}"></script>
+
+
+    <script src="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+
+
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
+
+
+    <script src="{{ asset('assets/js/misc.js') }}"></script>
+
+
+    <script src="assets/js/settings.jsc') }}"></script>
+
+    <script src="{{ asset('assets/js/todolist.js') }}"></script>
+
+
+    <script src="{{ asset('assets/js/jquery.cookie.js') }}"></script>
+
+
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+
+    <script src="{{ asset('flora/froala_editor.pkgd.min.js') }}"></script>
+
+
+    <!-- End custom js for this page -->
 </body>
 </html>

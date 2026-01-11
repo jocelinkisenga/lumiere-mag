@@ -7,100 +7,159 @@ use App\Models\Category;
 @endphp
 
 
-{{-- ok --}}
-            <!-- dashboard-content.html -->
-            <div class="container-fluid">
-                <!-- Page Header -->
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h1 class="h3 mb-0">Tableau de Bord</h1>
-                    {{-- <div class="btn-group">
-                        <button class="btn btn-outline-primary">Aujourd'hui</button>
-                        <button class="btn btn-outline-primary active">Cette semaine</button>
-                        <button class="btn btn-outline-primary">Ce mois</button>
-                    </div> --}}
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">
+            <span class="page-title-icon bg-gradient-primary text-white me-2">
+                <i class="mdi mdi-home"></i>
+            </span> Dashboard
+        </h3>
+        <nav aria-label="breadcrumb">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-3 stretch-card grid-margin">
+            <div class="card bg-gradient-danger card-img-holder text-white">
+                <div class="card-body">
+                    <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mb-3">Vos articles <i class="mdi mdi-chart-line mdi-24px float-end"></i>
+                    </h4>
+                    <h2 class="mb-5">{{ \App\Models\Post::count() }}</h2>
+                    <h6 class="card-text"></h6>
                 </div>
-
-                <!-- Statistics Cards -->
-                <div class="row mb-4">
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="stat-card">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <div class="stat-number">{{ \App\Models\Post::count()}}</div>
-
-                                    <div class="text-muted">Articles</div>
-                                </div>
-                                <div class="stat-icon bg-primary bg-opacity-10 text-primary">
-                                    <i class="fas fa-eye"></i>
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <small class="text-success">
-                                    <i class="fas fa-arrow-up"></i> {{ \App\Models\Category::count()}} categories
-
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="stat-card">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <div class="stat-number">{{ \App\Models\Podcast::count()}}</div>
-
-                                    <div class="text-muted">podcasts</div>
-                                </div>
-                                <div class="stat-icon bg-success bg-opacity-10 text-success">
-                                    <i class="fas fa-newspaper"></i>
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <small class="text-success">
-                                    <i class="fas fa-arrow-up"></i>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="stat-card">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <div class="stat-number">{{ \App\Models\Comment::count()}}</div>
-
-                                    <div class="text-muted">Commentaires</div>
-                                </div>
-                                <div class="stat-icon bg-info bg-opacity-10 text-info">
-                                    <i class="fas fa-comments"></i>
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <small class="text-danger">
-                                    <i class="fas fa-arrow-down"></i>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="stat-card">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <div class="stat-number">{{ \App\Models\Video::count()}}</div>
-
-                                    <div class="text-muted">videos</div>
-                                </div>
-                                <div class="stat-icon bg-warning bg-opacity-10 text-warning">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <small class="text-success">
-                                    <i class="fas fa-arrow-up"></i>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+        </div>
+        <div class="col-md-3 stretch-card grid-margin">
+            <div class="card bg-gradient-info card-img-holder text-white">
+                <div class="card-body">
+                    <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mb-3">Vos categories<i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
+                    </h4>
+                    <h2 class="mb-5">{{ \App\Models\Category::count() }}</h2>
+                    <h6 class="card-text">Decreased by 10%</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 stretch-card grid-margin">
+            <div class="card bg-gradient-success card-img-holder text-white">
+                <div class="card-body">
+                    <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mb-3">Vos podcasts <i class="mdi mdi-diamond mdi-24px float-end"></i>
+                    </h4>
+                    <h2 class="mb-5">{{ \App\Models\Podcast::count() }}</h2>
+                    <h6 class="card-text">Increased by 5%</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 stretch-card grid-margin">
+            <div class="card bg-gradient-success card-img-holder text-white">
+                <div class="card-body">
+                    <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mb-3">Vos videos <i class="mdi mdi-diamond mdi-24px float-end"></i>
+                    </h4>
+                    <h2 class="mb-5">{{ \App\Models\Video::count() }}</h2>
+                    <h6 class="card-text">Increased by 5%</h6>
+                </div>
+            </div>
+        </div>
 
+    </div>
+    {{-- <div class="row">
+        <div class="col-md-7 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="clearfix">
+                        <h4 class="card-title float-start">Visit And Sales Statistics</h4>
+                        <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-end"></div>
+                    </div>
+                    <canvas id="visit-sale-chart" class="mt-4"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Traffic Sources</h4>
+                    <div class="doughnutjs-wrapper d-flex justify-content-center">
+                        <canvas id="traffic-chart"></canvas>
+                    </div>
+                    <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Recent Tickets</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th> Assignee </th>
+                                    <th> Subject </th>
+                                    <th> Status </th>
+                                    <th> Last Update </th>
+                                    <th> Tracking ID </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="assets/images/faces/face1.jpg" class="me-2" alt="image"> David Grey
+                                    </td>
+                                    <td> Fund is not recieved </td>
+                                    <td>
+                                        <label class="badge badge-gradient-success">DONE</label>
+                                    </td>
+                                    <td> Dec 5, 2017 </td>
+                                    <td> WD-12345 </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="assets/images/faces/face2.jpg" class="me-2" alt="image"> Stella Johnson
+                                    </td>
+                                    <td> High loading time </td>
+                                    <td>
+                                        <label class="badge badge-gradient-warning">PROGRESS</label>
+                                    </td>
+                                    <td> Dec 12, 2017 </td>
+                                    <td> WD-12346 </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="assets/images/faces/face3.jpg" class="me-2" alt="image"> Marina Michel
+                                    </td>
+                                    <td> Website down for one week </td>
+                                    <td>
+                                        <label class="badge badge-gradient-info">ON HOLD</label>
+                                    </td>
+                                    <td> Dec 16, 2017 </td>
+                                    <td> WD-12347 </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="assets/images/faces/face4.jpg" class="me-2" alt="image"> John Doe
+                                    </td>
+                                    <td> Loosing control on server </td>
+                                    <td>
+                                        <label class="badge badge-gradient-danger">REJECTED</label>
+                                    </td>
+                                    <td> Dec 3, 2017 </td>
+                                    <td> WD-12348 </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+</div>
 @endsection
