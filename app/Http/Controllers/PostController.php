@@ -151,6 +151,7 @@ class PostController extends Controller
 
     public function floara(Request $request)
     {
+
         // 1. Validation basique
         if ($request->hasFile('file')) { // Froala envoie le fichier sous le nom 'file' par défaut
 

@@ -76,6 +76,7 @@
 
                         <button type="submit" class="btn btn-primary me-2">enregistrer</button>
                         <button class="btn btn-light">Annuler</button>
+
                     </form>
                 </div>
             </div>

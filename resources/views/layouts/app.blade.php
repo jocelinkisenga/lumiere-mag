@@ -4,7 +4,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
+    <title>Dasboard</title>
+
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
 
@@ -24,8 +28,12 @@
 
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('flora/froala_editor.pkgd.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('flora/froala_editor.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{asset('flora/css/froala_editor.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('flora/css/froala_editor.pkgd.min.css') }}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
+
 
     <!-- End plugin css for this page -->
     <!-- inject:css -->
@@ -237,63 +245,94 @@
         <!-- page-body-wrapper ends -->
     </div>
     <script>
-        (function() {
+        // (function() {
 
-            new FroalaEditor('#edit', {
-                // URL pour l'upload des images
-                imageUploadURL: 'articles/floara',
+        //     new FroalaEditor('#edit', {
+        //         // URL pour l'upload des images
+        //         imageUploadURL: 'articles/floara',
 
 
-                // URL pour l'upload des fichiers (documents PDF, etc.)
-                fileUploadURL: '/froala/upload-file',
+        //         // URL pour l'upload des fichiers (documents PDF, etc.)
+        //         fileUploadURL: '/froala/upload-file',
 
-                // Paramètres additionnels pour passer le CSRF Token de Laravel
-                requestHeaders: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                },
+        //         // Paramètres additionnels pour passer le CSRF Token de Laravel
+        //         requestHeaders: {
+        //             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        //         },
 
-                // Pour forcer la réponse en JSON attendue par Froala
-                imageUploadMethod: 'POST'
-            });
-        })()
+        //         // Pour forcer la réponse en JSON attendue par Froala
+        //         imageUploadMethod: 'POST'
+        //     });
+        // })()
 
     </script>
 
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('assets/vendors/js/vendor.bundle.base')}}') }}"></script>
 
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="{{ asset('assets/vendors/chart.js/chart.umd.js') }}"></script>
+    <script src="{{ asset('assets/vendors/chart')}}/chart.umd')}}') }}"></script>
 
 
-    <script src="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min')}}') }}"></script>
 
 
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('assets/js/off-canvas')}}') }}"></script>
 
 
-    <script src="{{ asset('assets/js/misc.js') }}"></script>
+    <script src="{{ asset('assets/js/misc')}}') }}"></script>
 
 
-    <script src="assets/js/settings.jsc') }}"></script>
+    <script src="assets/js/settings')}}c') }}"></script>
 
-    <script src="{{ asset('assets/js/todolist.js') }}"></script>
+    <script src="{{ asset('assets/js/todolist')}}') }}"></script>
 
 
-    <script src="{{ asset('assets/js/jquery.cookie.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.cookie')}}') }}"></script>
 
 
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+    <script src="{{ asset('assets/js/dashboard')}}') }}"></script>
 
-    <script src="{{ asset('flora/froala_editor.pkgd.min.js') }}"></script>
+    <script type="text/javascript" src="{{  asset('flora/js/froala_editor.pkgd.min.js')}}"></script>
 
+    {{-- <script>
+        // var FroalaEditor = require('froala-editor');
+
+        // // Load a plugin.
+        // require('frora/js/plugins/align.min');
+
+        (function() {
+            new FroalaEditor("#edit")
+        })()
+
+    </script> --}}
 
     <!-- End custom js for this page -->
+    <script>
+        new FroalaEditor('#edit', {
+            // URL pour l'upload des images
+            imageUploadURL: 'articles/floara',
+
+
+            // URL pour l'upload des fichiers (documents PDF, etc.)
+            fileUploadURL: '/froala/upload-file',
+
+            // Paramètres additionnels pour passer le CSRF Token de Laravel
+            requestHeaders: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+
+            // Pour forcer la réponse en JSON attendue par Froala
+            imageUploadMethod: 'POST'
+        });
+
+    </script>
+
 </body>
 </html>
