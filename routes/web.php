@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     Route::get("articles", [PostController::class, "index"])->name("posts.index");
     Route::get("article", [PostController::class, "create"])->name("posts.create");

@@ -106,7 +106,8 @@
 <div class="scroll-to-top">
     <i class="fas fa-arrow-up"></i>
 </div>
-<a href="https://wa.me/243977773924?text=Bonjour%2C%20j%27aimerais%20plus%20d%27infos" class="btn btn-success btn-lg rounded-circle mywhatsapp" target="_blank">
+<a href="https://wa.me/243999528338?text=Bonjour%2C%20j%27aimerais%20plus%20d%27infos" class="btn btn-success btn-lg rounded-circle mywhatsapp" target="_blank">
+
     <i class="fab fa-whatsapp" style="font-size: 2.5rem;"></i>
 
 </a>
