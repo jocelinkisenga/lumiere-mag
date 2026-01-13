@@ -44,6 +44,13 @@
 
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+    <style>
+        div#editor {
+            margin: auto;
+            text-align: left;
+        }
+
+    </style>
 
 
 </head>
@@ -269,35 +276,35 @@
 
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="{{ asset('assets/vendors/js/vendor.bundle.base')}}') }}"></script>
+    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
 
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="{{ asset('assets/vendors/chart')}}/chart.umd')}}') }}"></script>
+    <script src="{{ asset('assets/vendors/chart')}}/chart.umd.js') }}"></script>
 
 
-    <script src="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min')}}') }}"></script>
+    <script src="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
 
 
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="{{ asset('assets/js/off-canvas')}}') }}"></script>
+    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
 
 
-    <script src="{{ asset('assets/js/misc')}}') }}"></script>
+    <script src="{{ asset('assets/js/misc.js')}}"></script>
 
 
-    <script src="assets/js/settings')}}c') }}"></script>
+    <script src="assets/js/settings.js')}}"></script>
 
-    <script src="{{ asset('assets/js/todolist')}}') }}"></script>
+    <script src="{{ asset('assets/js/todolist.js') }}"></script>
 
 
-    <script src="{{ asset('assets/js/jquery.cookie')}}') }}"></script>
+    <script src="{{ asset('assets/js/jquery.cookie.js') }}"></script>
 
 
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="{{ asset('assets/js/dashboard')}}') }}"></script>
+    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
 
     <script type="text/javascript" src="{{  asset('flora/js/froala_editor.pkgd.min.js')}}"></script>
 

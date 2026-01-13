@@ -1,4 +1,4 @@
-@extends("layouts.main")
+u</li></li></li>@extends("layouts.main")
 @section("content")
 <!-- Page Header -->
 <header class="page-header">
@@ -23,41 +23,24 @@
                 <div class="col-lg-6">
                     <h2 class="section-title">Notre Mission : Servir la population en temps réel</h2>
 
-                    <p class="mb-4">Depuis sa création, Lumière du Monde Magazine se distingue par sa volonté de proximité avec le peuple. Nous relayons, en temps réel, les faits majeurs de l’actualité politique, sociale, culturelle et économique, tout en restant attentifs aux préoccupations quotidiennes des citoyens.</p>
+                    <p class="mb-4">Bienvenue sur Magazine Lumière du Monde, votre média en ligne de référence pour des informations certifiées et de qualité. Nous vous tenons informés des dernières actualités dans divers domaines, notamment :
+<ul>
+<li> Politique : Analyse des enjeux nationaux et internationaux.</li>
+<li> Sport : Couverture des événements sportifs et performances des athlètes.</li>
+<li> Société : Réflexions sur les dynamiques sociales et culturelles.</li>
+<li> Sécurité : Informations sur la sécurité et la paix dans notre région.</li>
+<li> Caricatur : Un regard satirique sur l’actualité.</li>
+<li>  Culture : Exploration des richesses culturelles de notre pays et du monde.</li>
+<li>  Religion : Éclairages sur les différentes croyances et pratiques.</li>
+<li>  Justice : Suivi des affaires judiciaires et des droits humains.</li>
+<li>  Monde et Afrique : Perspectives sur les événements globaux et africains.</li>
+</ul>
+</p>
 
 
-                    <p> Notre rédaction travaille sans relâche pour garantir une information exacte, impartiale et équilibrée, accessible à toutes les couches sociales.
-                        Chaque article, chaque reportage, chaque portrait est conçu avec un soin particulier, dans le respect de la déontologie journalistique et de la dignité humaine.</p>
-                    <p>
-                        Nous ne courons pas derrière le sensationnel : nous préférons éclairer plutôt qu’agiter, expliquer plutôt que juger, inspirer plutôt que diviser.
-                        C’est dans cet esprit que notre média est devenu un espace de référence pour la diffusion de l’excellence — qu’il s’agisse de la reconnaissance des acteurs publics, du secteur privé ou de la société civile.</p>
-
-                    <br>
-                    <p>
-
-                        Par nos différentes rubriques, nous promouvons les valeurs du travail, de la transparence, de la paix et du développement durable.
-                        Nous croyons que chaque citoyen mérite d’être informé avec respect et que l’information peut être un moteur de cohésion et de progrès collectif.
-                    </p>
-
-
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="section-title">Notre Vision : Faire rayonner la lumière du monde</h2>
-
-                    <p class="mb-4">Derrière chaque ligne publiée, se cache une conviction profonde : le journalisme est un acte de foi envers la société.
-                        Sous la direction de Monsieur Georges Senga, Lumière du Monde Magazine s’est fixé pour vision de bâtir un média de transformation sociale, où l’information devient un outil d’éducation, d’éveil et de changement.</p>
-                    <p>
-                        Nous voulons que nos lecteurs se reconnaissent dans ce que nous publions, qu’ils sentent que leurs réalités, leurs combats et leurs espoirs trouvent un écho dans nos pages.
-                        Ainsi, Lumière du Monde Magazine n’est pas seulement un site d’information — c’est une tribune citoyenne, une vitrine de l’excellence congolaise et un miroir du progrès africain.
-                        <br>
-                        Notre ambition est claire : apporter la lumière là où règne l’obscurité de la désinformation, donner la parole à ceux qu’on n’écoute pas toujours, et montrer que le Congo et l’Afrique ont des héros silencieux, des bâtisseurs, des modèles.</p>
-
-                    <br>
-                    <p>
-                        Nous accompagnons également des initiatives sociales et des événements de distinction, tels que les cérémonies de remise de diplômes et trophées d’excellence, organisées pour honorer les acteurs du changement, les leaders d’impact et les serviteurs dévoués du développement.
-                        Ces reconnaissances publiques illustrent notre credo : valoriser le mérite et encourager la responsabilité.</p>
 
                 </div>
+                
 
                 <div class="col-lg-12">
                     <h2 class="section-title">Notre engagement : vérité, excellence et service </h2>
@@ -77,9 +60,14 @@
                         Lumière du Monde Magazine — la voix qui éclaire, informe et élève.</p>
 
 
-                    <p>💡
-                        Éditeur principal : Georges Senga
-                        Siège : Haut-Katanga, République Démocratique du Congo.
+                    <p>
+                       Situés au cœur de Kinshasa, à l'adresse Lokolela 110, dans l'immeuble "Voici l'homme", au deuxième étage, notre équipe dynamique est prête à vous servir.
+
+Sous la direction de <strong> Jonathan Mwetende </strong> Directeur général, et de  Exaucé Mansi assistant personnel, nous nous engageons à fournir des informations pertinentes et fiables.
+
+Pour toute question ou demande d'information, n'hésitez pas à nous contacter au 0999528338 ou au 0834531053. 
+
+Magazine Lumière du Monde : Votre source d'information pour un avenir éclairé.
 
                     </p>
 

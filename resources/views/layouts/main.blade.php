@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield("title", "Lumiere du Monde Magazine | Votre source d'inspiration quotidienne")</title>
-    <link rel="shortcut icon" href="{{ asset("favicon.ico") }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset("l.jpg") }}" type="image/x-icon">
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -45,11 +45,22 @@
                 height: 65px;
             }
 
+            .whatsapp-float {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                animation: pulse 1.5s infinite;
+            }
+
     </style>
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
     {!! TwitterCard::generate() !!}
     @livewireStyles
+
+
 </head>
 <body>
 
@@ -62,6 +73,8 @@
             @yield("content")
         </div>
         @include("components.footer")
+
+
     </div>
 
     @livewireScripts

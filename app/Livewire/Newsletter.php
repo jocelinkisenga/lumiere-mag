@@ -3,10 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Subscriber;
+use Flasher\Laravel\Facade\Flasher;
+use Flasher\Prime\Aware\FlasherAwareTrait;
 use Livewire\Component;
 
 class Newsletter extends Component
 {
+    use FlasherAwareTrait;
     public $email;
 
 
@@ -17,6 +20,7 @@ class Newsletter extends Component
 
     public function subscribe()
     {
+        // flash("bonjour", 'success',);
         Subscriber::create(["email" => $this->email]);
         session()->flash("message", "Souscription envoyé avec succès nous vous enverrons un lien pour confirmer");
     }

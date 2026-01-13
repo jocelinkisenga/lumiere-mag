@@ -3,7 +3,7 @@
         <div class="container">
             <a class="navbar-brand" href="/">
 
-                <img src="{{ asset("logo.jpg") }}" alt="" class="img-logo">
+                <img src="{{ asset("l.jpg") }}" alt="" class="img-logo rounded">
 
             </a>
 

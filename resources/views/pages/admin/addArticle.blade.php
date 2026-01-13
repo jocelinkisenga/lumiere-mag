@@ -67,7 +67,8 @@
                         </div>
 
 
-                        <div class="mb-3">
+                        <div class="mb-3" id="editor">
+
                             <label for="" class="form-label">Description</label>
                             <textarea class="form-control" name="description" id="edit" rows="3"></textarea>
 

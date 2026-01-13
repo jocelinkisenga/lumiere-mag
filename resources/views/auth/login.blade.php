@@ -68,8 +68,8 @@
                 <div class="card shadow-lg p-4">
                     <div class="card-body">
 
-                        <div class="text-center mb-4">
-                            <img src="{{asset('Logo.jpg')}}" alt="Logo de l'entreprise" class="img-fluid mb-3 logo-login">
+                        <div class="text-center mb-3">
+                            <img src="{{asset('l.jpg')}}" alt="Logo de l'entreprise" class="img-fluid mb-3 mt-2 logo-login rounded-full">
 
                             <h5 class="fw-bold text-dark">Ravi de vous revoir !</h5>
                             <p class="text-muted">Connectez-vous pour accéder à votre espace.</p>
@@ -91,18 +91,18 @@
                                 <button type="submit" class="btn btn-primary btn-lg">Se connecter</button>
                             </div>
                         </form>
-                            @error("email")
-                                <span class="text-danger text-bold font-bold m-2">Mot de passe ou Email incorrecte</span>
-                            @enderror
+                        @error("email")
+                        <span class="text-danger text-bold font-bold m-2">Mot de passe ou Email incorrecte</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="text-center mt-3">
                     <a href="/mot-de-passe-oublie" class="text-muted text-decoration-none small">Mot de passe oublié ?</a>
                 </div>
 
-                                <div class="text-center mt-3">
-                                    <a href="{{ route("register") }}" class=" ">Créer votre compte ?</a>
-                                </div>
+                <div class="text-center mt-3">
+                    <a href="{{ route("register") }}" class=" ">Créer votre compte ?</a>
+                </div>
 
 
 
