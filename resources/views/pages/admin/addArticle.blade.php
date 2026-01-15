@@ -2,101 +2,134 @@
 
 @section("content")
 <style>
-    /* Optimisation de la mise en page générale */
-    .content-wrapper { padding: 1.5rem 1rem !important; background-color: #f8f9fa; }
-    .card { border: none; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .card-title { font-weight: 700; text-transform: capitalize; color: #333; margin-bottom: 0.5rem; }
+    /* Design global et aéré */
+    .content-wrapper { padding: 1.5rem 1rem !important; background-color: #f4f7f6; }
+    .card { border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
     
-    /* Style des champs de saisie */
-    .form-label { font-weight: 600; color: #555; margin-bottom: 0.5rem; display: block; }
-    .form-control { 
-        border-radius: 8px; 
-        border: 1px solid #e0e0e0; 
-        padding: 12px 15px;
-        transition: all 0.3s ease;
+    /* Barre de progression */
+    .step-indicator { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; }
+    .step { text-align: center; font-weight: 600; color: #adb5bd; transition: 0.3s; }
+    .step.active { color: #7d33ff; }
+    .step-number { 
+        width: 35px; height: 35px; line-height: 31px; border: 2px solid #dee2e6; 
+        border-radius: 50%; display: block; margin: 0 auto 5px; background: #fff; 
     }
-    .form-control:focus { border-color: #7d33ff; box-shadow: 0 0 0 0.2rem rgba(125, 51, 255, 0.1); }
+    .step.active .step-number { background: #7d33ff; color: #fff; border-color: #7d33ff; }
 
-    /* Correction de l'éditeur sur Mobile */
-    .ck-editor__editable { 
-        min-height: 300px !important; 
-        border-bottom-left-radius: 8px !important; 
-        border-bottom-right-radius: 8px !important; 
+    /* Formulaire et Steps */
+    .form-step { display: none; }
+    .form-step.active { display: block; animation: fadeIn 0.4s ease; }
+    .form-label { font-weight: 700; color: #444; }
+    .form-control { border-radius: 10px; padding: 12px; border: 1px solid #e2e8f0; }
+
+    /* --- ZONE DE PRÉVISUALISATION --- */
+    .preview-container {
+        margin-top: 15px;
+        position: relative;
+        display: none; /* Caché par défaut */
     }
-    .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) { border-color: #e0e0e0; }
+    #image-preview {
+        width: 100%;
+        max-height: 250px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 2px solid #7d33ff;
+    }
+    /* -------------------------------- */
 
-    /* Boutons élégants */
-    .btn-submit { background: #7d33ff; border: none; padding: 12px 30px; border-radius: 8px; font-weight: 600; color: white; }
-    .btn-submit:hover { background: #6622dd; }
-    
+    .is-invalid { border-color: #dc3545 !important; }
+    .error-msg { color: #dc3545; font-size: 0.8rem; display: none; }
+
+    .ck-editor__editable { min-height: 500px !important; border-radius: 0 0 10px 10px !important; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
     @media (max-width: 768px) {
-        .btn-group-mobile { display: flex; flex-direction: column; gap: 10px; }
-        .btn-group-mobile button { width: 100%; }
-        .card-body { padding: 1.25rem; }
+        .btn-mobile { width: 100%; margin-bottom: 10px; }
     }
 </style>
 
 <div class="content-wrapper">
     <div class="row justify-content-center">
-        <div class="col-lg-10 col-md-12 grid-margin stretch-card">
+        <div class="col-lg-10 col-md-12">
             <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Ajouter un article</h4>
-                    <p class="card-description text-muted mb-4">Remplissez les informations ci-dessous pour publier votre contenu.</p>
+                <div class="card-body p-4">
+                    
+                    <div class="step-indicator">
+                        <div class="step active" id="step-1-label">
+                            <span class="step-number">1</span><small>Infos</small>
+                        </div>
+                        <div class="step" id="step-2-label">
+                            <span class="step-number">2</span><small>Rédaction</small>
+                        </div>
+                    </div>
 
-                    <form class="forms-sample" method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+                    <form id="articleForm" method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                         @csrf
                         
-                        <div class="row">
-                            <div class="col-12 mb-3">
-                                <label class="form-label">Titre de l'article</label>
-                                <input type="text" name="title" class="form-control form-control-lg" placeholder="Ex: Les tendances du Web 2026">
-                            </div>
+                        <div class="form-step active" id="step-1">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <label class="form-label">Titre de l'article *</label>
+                                    <input type="text" name="title" id="title" class="form-control">
+                                    <div class="error-msg" id="err-title">Le titre est requis.</div>
+                                </div>
 
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Auteur</label>
-                                <select class="form-control" name="author_id">
-                                    <option value="" selected disabled>Sélectionner un auteur</option>
-                                    @foreach (\App\Models\Author::get() as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Auteur *</label>
+                                    <select class="form-control" name="author_id" id="author_id">
+                                        <option value="">Sélectionner...</option>
+                                        @foreach (\App\Models\Author::get() as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="error-msg" id="err-author">L'auteur est requis.</div>
+                                </div>
 
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Catégorie</label>
-                                <select class="form-control" name="category_id">
-                                    <option value="" selected disabled>Sélectionner une catégorie</option>
-                                    @foreach ($categories as $item)
-                                        <option value="{{ $item->id }}">{{ $item->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Catégorie *</label>
+                                    <select class="form-control" name="category_id" id="category_id">
+                                        <option value="">Sélectionner...</option>
+                                        @foreach ($categories as $item)
+                                            <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="error-msg" id="err-category">La catégorie est requise.</div>
+                                </div>
 
-                            <div class="col-12 mb-3">
-                                <label class="form-label">Image de couverture</label>
-                                <input type="file" class="form-control" name="image">
-                            </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Image de couverture</label>
+                                    <input type="file" class="form-control" name="image" id="image-input" accept="image/*">
+                                    
+                                    <div class="preview-container" id="preview-box">
+                                        <small class="text-muted d-block mb-1">Aperçu de la photo :</small>
+                                        <img id="image-preview" src="#" alt="Aperçu">
+                                    </div>
+                                </div>
 
-                            <div class="col-12 mb-3">
-                                <label class="form-label">Tags <small class="text-muted text-lowercase">(séparés par des virgules)</small></label>
-                                <input type="text" class="form-control" name="tags" placeholder="ex: technologie, culture, a la une">
-                            </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Tags (séparés par des virgules)</label>
+                                    <input type="text" class="form-control" name="tags" placeholder="ex: Culture, Sport, Tech">
+                                </div>
 
-                            <div class="col-12 mb-3">
-                                <label class="form-label">Petit sommaire</label>
-                                <textarea class="form-control" name="excerpt" rows="2" placeholder="Une courte introduction..."></textarea>
+                                <div class="col-12 mb-4">
+                                    <label class="form-label">Résumé court</label>
+                                    <textarea class="form-control" name="excerpt" rows="2"></textarea>
+                                </div>
                             </div>
-
-                            <div class="col-12 mb-4">
-                                <label class="form-label">Contenu de l'article</label>
-                                <textarea name="description" id="edt"></textarea>
+                            <div class="text-right">
+                                <button type="button" class="btn btn-primary btn-lg btn-mobile" onclick="validateStep1()">Suivant →</button>
                             </div>
                         </div>
 
-                        <div class="btn-group-mobile mt-2">
-                            <button type="submit" class="btn btn-submit me-2">Enregistrer l'article</button>
-                            <a href="#" class="btn btn-light" style="padding: 12px 30px; border-radius: 8px;">Annuler</a>
+                        <div class="form-step" id="step-2">
+                            <label class="form-label mb-3">Rédigez votre article ci-dessous</label>
+                            <textarea name="description" id="edit"></textarea>
+                            
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" class="btn btn-light btn-lg btn-mobile" onclick="goToStep(1)">← Retour</button>
+                                <button type="submit" class="btn btn-success btn-lg btn-mobile" style="background:#28a745; color:#fff; border:none;">🚀 Publier maintenant</button>
+                            </div>
                         </div>
 
                     </form>
@@ -108,15 +141,58 @@
 
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
 <script>
-    ClassicEditor
-        .create(document.querySelector('#edt'), {
-            toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'insertTable', 'undo', 'redo' ]
-        })
-        .then(editor => {
-            console.log('Editor was initialized');
-        })
-        .catch(error => {
-            console.error(error);
+    // 1. Initialisation CKEditor
+    ClassicEditor.create(document.querySelector('#edit')).catch(e => console.error(e));
+
+    // 2. LOGIQUE DE PRÉVISUALISATION DE L'IMAGE
+    document.getElementById('image-input').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const previewBox = document.getElementById('preview-box');
+        const previewImage = document.getElementById('image-preview');
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                previewImage.src = event.target.result;
+                previewBox.style.display = 'block'; // Affiche la zone d'aperçu
+            }
+            reader.readAsDataURL(file);
+        } else {
+            previewBox.style.display = 'none';
+        }
+    });
+
+    // 3. Validation et Navigation
+    function validateStep1() {
+        let valid = true;
+        const fields = ['title', 'author_id', 'category_id'];
+        
+        fields.forEach(f => {
+            const el = document.getElementById(f);
+            const err = document.getElementById('err-' + (f.includes('_') ? f.split('_')[0] : f));
+            if(!el.value.trim()) {
+                el.classList.add('is-invalid');
+                err.style.display = 'block';
+                valid = false;
+            } else {
+                el.classList.remove('is-invalid');
+                err.style.display = 'none';
+            }
         });
+
+        if(valid) goToStep(2);
+    }
+
+    function goToStep(step) {
+        document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+        document.getElementById('step-' + step).classList.add('active');
+        
+        if(step === 2) {
+            document.getElementById('step-2-label').classList.add('active');
+        } else {
+            document.getElementById('step-2-label').classList.remove('active');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 </script>
 @endsection

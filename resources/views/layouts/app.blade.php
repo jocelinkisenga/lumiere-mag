@@ -355,25 +355,6 @@
     </script> --}}
 
     <!-- End custom js for this page -->
-    <script>
-        new FroalaEditor('#edit', {
-            // URL pour l'upload des images
-            imageUploadURL: 'articles/floara',
-
-
-            // URL pour l'upload des fichiers (documents PDF, etc.)
-            fileUploadURL: '/froala/upload-file',
-
-            // Paramètres additionnels pour passer le CSRF Token de Laravel
-            requestHeaders: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            },
-
-            // Pour forcer la réponse en JSON attendue par Froala
-            imageUploadMethod: 'POST'
-        });
-
-    </script>
-
+    
 </body>
 </html>
