@@ -49,6 +49,40 @@
             margin: auto;
             text-align: left;
         }
+        
+        
+         /* Optimisation de la mise en page générale */
+    .content-wrapper { padding: 1.5rem 1rem !important; background-color: #f8f9fa; }
+    .card { border: none; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .card-title { font-weight: 700; text-transform: capitalize; color: #333; margin-bottom: 0.5rem; }
+    
+    /* Style des champs de saisie */
+    .form-label { font-weight: 600; color: #555; margin-bottom: 0.5rem; display: block; }
+    .form-control { 
+        border-radius: 8px; 
+        border: 1px solid #e0e0e0; 
+        padding: 12px 15px;
+        transition: all 0.3s ease;
+    }
+    .form-control:focus { border-color: #7d33ff; box-shadow: 0 0 0 0.2rem rgba(125, 51, 255, 0.1); }
+
+    /* Correction de l'éditeur sur Mobile */
+    .ck-editor__editable { 
+        min-height: 300px !important; 
+        border-bottom-left-radius: 8px !important; 
+        border-bottom-right-radius: 8px !important; 
+    }
+    .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) { border-color: #e0e0e0; }
+
+    /* Boutons élégants */
+    .btn-submit { background: #7d33ff; border: none; padding: 12px 30px; border-radius: 8px; font-weight: 600; color: white; }
+    .btn-submit:hover { background: #6622dd; }
+    
+    @media (max-width: 768px) {
+        .btn-group-mobile { display: flex; flex-direction: column; gap: 10px; }
+        .btn-group-mobile button { width: 100%; }
+        .card-body { padding: 1.25rem; }
+    }
 
     </style>
 

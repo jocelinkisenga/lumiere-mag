@@ -68,7 +68,7 @@ class PostController extends Controller
                 ->send(new NewsletterMail($request->title, $request->description));
         }
 
-        return redirect()->route("dashboard");
+        return redirect()->route("posts.index");
     }
 
     /**
