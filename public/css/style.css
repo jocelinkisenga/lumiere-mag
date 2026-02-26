@@ -14,7 +14,7 @@ body {
     font-family: "Roboto", sans-serif;
     color: #333;
     line-height: 1.6;
-    background-color: #f8f9fa; /* Fond gris très léger pour desktop */
+    background-color: hsl(210, 16%, 93%); /* Fond gris très léger pour desktop */
     padding-left: 10px;
     padding-right: 10px;
 }
