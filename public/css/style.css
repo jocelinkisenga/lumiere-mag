@@ -37,13 +37,12 @@ h6 {
 
 .hero-section {
     background: linear-gradient(
-            135deg,
-            hsl(219, 79%, 30%) 0%,     /* Bleu marine profond */
-            rgba(33, 37, 41, 0.85) 100% /* Gris anthracite transparent */
+            to right,
+            rgba(0, 0, 0, 0.7) 0%, 
+            rgba(0, 0, 0, 0.2) 100%
         ),
         url("https://images.unsplash.com/photo-1504711434969-e33886168f5c?...") 
         center/cover no-repeat;
-    /* ... reste du code ... */
 }
 
 .popup {
