@@ -9,7 +9,7 @@
 
             <a class="navbar-toggler text-primary btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 {{-- <span class="navbar-toggler-icon"></span> --}}
-                <i class="fas fa-bars text-secondary fs-5 text-primary"></i>
+                <i class="fas fa-bars text-secondary fs-5" style="color:red;"></i>
 
             </a>
 
