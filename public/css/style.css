@@ -864,7 +864,7 @@ h6 {
 
     .nav-link-custom {
         display: inline-block;
-        color: #555;
+        color: red;
         text-decoration: none;
         padding: 10px 15px;
         font-size: 0.95rem;
