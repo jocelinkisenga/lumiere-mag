@@ -23,30 +23,24 @@
     .form-control { border-radius: 10px; padding: 12px; border: 1px solid #e2e8f0; }
 
     /* --- ZONE DE PRÉVISUALISATION --- */
-    .preview-container {
-        margin-top: 15px;
-        position: relative;
-        display: none; /* Caché par défaut */
-    }
-    #image-preview {
-        width: 100%;
-        max-height: 250px;
-        object-fit: cover;
-        border-radius: 12px;
-        border: 2px solid #7d33ff;
-    }
-    /* -------------------------------- */
+    .preview-container { margin-top: 15px; position: relative; display: none; }
+    #image-preview { width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; border: 2px solid #7d33ff; }
 
     .is-invalid { border-color: #dc3545 !important; }
     .error-msg { color: #dc3545; font-size: 0.8rem; display: none; }
-
     .ck-editor__editable { min-height: 500px !important; border-radius: 0 0 10px 10px !important; }
+
+    /* Animation Pulse pour le bouton final */
+    @keyframes pulse-save {
+        0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+    }
+    .pulse-btn { animation: pulse-save 2s infinite; }
 
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    @media (max-width: 768px) {
-        .btn-mobile { width: 100%; margin-bottom: 10px; }
-    }
+    @media (max-width: 768px) { .btn-mobile { width: 100%; margin-bottom: 10px; } }
 </style>
 
 <div class="content-wrapper">
@@ -69,13 +63,13 @@
                         
                         <div class="form-step active" id="step-1">
                             <div class="row">
-                                <div class="col-12 mb-3">
+                                <div class="col-12 mb-3" id="tour-title">
                                     <label class="form-label">Titre de l'article *</label>
                                     <input type="text" name="title" id="title" class="form-control">
                                     <div class="error-msg" id="err-title">Le titre est requis.</div>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-3" id="tour-author">
                                     <label class="form-label">Auteur *</label>
                                     <select class="form-control" name="author_id" id="author_id">
                                         <option value="">Sélectionner...</option>
@@ -86,7 +80,7 @@
                                     <div class="error-msg" id="err-author">L'auteur est requis.</div>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-3" id="tour-category">
                                     <label class="form-label">Catégorie *</label>
                                     <select class="form-control" name="category_id" id="category_id">
                                         <option value="">Sélectionner...</option>
@@ -97,7 +91,7 @@
                                     <div class="error-msg" id="err-category">La catégorie est requise.</div>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-3" id="tour-image">
                                     <label class="form-label">Image de couverture</label>
                                     <input type="file" class="form-control" name="image" id="image-input" accept="image/*">
                                     
@@ -107,28 +101,30 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-3" id="tour-tags">
                                     <label class="form-label">Tags (séparés par des virgules)</label>
                                     <input type="text" class="form-control" name="tags" placeholder="ex: Culture, Sport, Tech">
                                 </div>
 
-                                <div class="col-12 mb-4">
+                                <div class="col-12 mb-4" id="tour-excerpt">
                                     <label class="form-label">Résumé court</label>
                                     <textarea class="form-control" name="excerpt" rows="2"></textarea>
                                 </div>
                             </div>
                             <div class="text-right">
-                                <button type="button" class="btn btn-primary btn-lg btn-mobile" onclick="validateStep1()">Suivant →</button>
+                                <button type="button" id="btn-next-step" class="btn btn-primary btn-lg btn-mobile" onclick="validateStep1()">Suivant →</button>
                             </div>
                         </div>
 
                         <div class="form-step" id="step-2">
-                            <label class="form-label mb-3">Rédigez votre article ci-dessous</label>
-                            <textarea name="description" id="edit"></textarea>
+                            <div id="tour-editor-container">
+                                <label class="form-label mb-3">Rédigez votre article ci-dessous</label>
+                                <textarea name="description" id="edit"></textarea>
+                            </div>
                             
                             <div class="d-flex justify-content-between mt-4">
                                 <button type="button" class="btn btn-light btn-lg btn-mobile" onclick="goToStep(1)">← Retour</button>
-                                <button type="submit" class="btn btn-success btn-lg btn-mobile" style="background:#28a745; color:#fff; border:none;">🚀 Publier maintenant</button>
+                                <button type="submit" id="btn-publish" class="btn btn-success btn-lg btn-mobile" style="background:#28a745; color:#fff; border:none;">🚀 Publier maintenant</button>
                             </div>
                         </div>
 
@@ -154,7 +150,7 @@
             const reader = new FileReader();
             reader.onload = function(event) {
                 previewImage.src = event.target.result;
-                previewBox.style.display = 'block'; // Affiche la zone d'aperçu
+                previewBox.style.display = 'block';
             }
             reader.readAsDataURL(file);
         } else {
@@ -194,5 +190,62 @@
         }
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // 4. ONBOARDING DRIVER.JS
+    window.addEventListener('load', function() {
+        const driver = window.driver.js.driver;
+
+        const driverObj = driver({
+            showProgress: true,
+            nextBtnText: 'Suivant',
+            prevBtnText: 'Précédent',
+            doneBtnText: 'Compris !',
+            steps: [
+                {
+                    element: '#tour-title',
+                    popover: { title: 'Titre de l\'article', description: 'Donnez un nom percutant à votre sujet.', position: 'bottom' }
+                },
+                {
+                    element: '#tour-author',
+                    popover: { title: 'L\'Auteur', description: 'Attribuez cet article à un membre de votre équipe.', position: 'bottom' }
+                },
+                {
+                    element: '#tour-category',
+                    popover: { title: 'La Catégorie', description: 'Classez l\'article pour aider vos lecteurs à s\'y retrouver.', position: 'bottom' }
+                },
+                {
+                    element: '#tour-tags',
+                    popover: { title: 'Tags', description: 'Ajoutez des mots-clés pour le référencement (SEO).', position: 'top' }
+                },
+                {
+                    element: '#tour-excerpt',
+                    popover: { title: 'Le Résumé', description: 'Écrivez une phrase courte qui sera affichée sur la page d\'accueil.', position: 'top' }
+                },
+                {
+                    element: '#btn-next-step',
+                    popover: { title: 'Passer à la rédaction', description: 'Une fois ces infos saisies, cliquez ici pour ouvrir l\'éditeur.', position: 'top' },
+                    onDeselected: () => {
+                        // On force visuellement le passage au step 2 si le guide avance
+                        if(document.getElementById('step-1').classList.contains('active')) goToStep(2);
+                    }
+                },
+                {
+                    element: '#tour-editor-container',
+                    popover: { title: 'Votre contenu', description: 'Utilisez CKEditor pour mettre en forme votre texte et vos images.', position: 'top' }
+                },
+                {
+                    element: '#btn-publish',
+                    popover: { title: 'Mise en ligne 🚀', description: 'C\'est fini ! Publiez votre article sur le portail.', position: 'top' },
+                    onHighlighted: (el) => el.classList.add('pulse-btn'),
+                    onDeselected: (el) => el.classList.remove('pulse-btn')
+                }
+            ]
+        });
+
+        if (!localStorage.getItem('onboarding_create_post')) {
+            driverObj.drive();
+            localStorage.setItem('onboarding_create_post', 'true');
+        }
+    });
 </script>
 @endsection

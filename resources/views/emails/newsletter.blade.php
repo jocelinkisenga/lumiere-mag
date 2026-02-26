@@ -71,11 +71,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="{{ asset("Logo.jpg") }}" alt="">
+            
             <h1>{{ $subjectLine }}</h1>
         </div>
         <div class="content">
-            {!! nl2br(e($content)) !!}
+            {!! $content !!}
 
             <p style="margin-top: 20px;">
                 <a href="{{ url('/') }}" class="btn">Vister notre blog</a>

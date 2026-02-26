@@ -107,7 +107,7 @@ class PostController extends Controller
         $related = Post::where("category_id", $post->category_id)->where("id", "!=", $post->id)->latest()->limit(3)->get();
 
         SEOMeta::setTitle($post->title);
-        SEOMeta::setDescription(Str::limit(strip_tags($post->descrption), 160));
+        SEOMeta::setDescription(Str::limit(strip_tags($post->description), 160));
         SEOMeta::setCanonical($url);
 
         OpenGraph::setTitle($post->title)->setDescription(Str::limit(strip_tags($post->descrption), 160))->setUrl($url)->addImage(asset("storage/uploads/" . $post->image));

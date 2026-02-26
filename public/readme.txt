@@ -1,8 +1,17 @@
-Thank you for using our template!
 
-For more awesome templates please visit https://colorlib.com/wp/templates/
-
-Copyright information for the template can't be altered/removed unless you purchase a license.
-More information about the license is available here: https://colorlib.com/wp/licence/
-
-Removing copyright information without the license will result in suspension of your hosting and/or domain name(s).
+            <!--PWA-FACTORY.COM-->
+            <!--ADD THE FILES IN YOUR ROOT FOLDER & INCLUDE THIS IN YOUR HTML HEAD-->
+                <link rel="manifest" href="manifest.json">
+                <script>
+                    if ('serviceWorker' in navigator) {
+                        window.addEventListener("load", () => {
+                            navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+                                console.log('ServiceWorker registered');
+                              }).catch(function(err) {
+                                console.log('ServiceWorker error: ', err);
+                              });
+                        })
+                    }
+                </script>    
+            <!--PWA-FACTORY.COM-->
+            

@@ -69,7 +69,7 @@
                     <div class="card-body">
 
                         <div class="text-center mb-3">
-                            <img src="{{asset('l.jpg')}}" alt="Logo de l'entreprise" class="img-fluid mb-3 mt-2 logo-login rounded-full">
+                            <img src="{{asset('logo.jpg')}}" alt="Logo de l'entreprise" class="img-fluid mb-3 mt-2 logo-login rounded-full">
 
                             <h5 class="fw-bold text-dark">Ravi de vous revoir !</h5>
                             <p class="text-muted">Connectez-vous pour accéder à votre espace.</p>

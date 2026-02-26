@@ -23,7 +23,7 @@
                            <i class="fas fa-map-marker-alt"></i>
                        </div>
                        <h4>Notre Adresse</h4>
-                       <p class="text-muted">Kinshasa, à l'adresse Lokolela 110, dans l'immeuble</p>
+                       <p class="text-muted">123 Avenue des Champs<br>75008 Lubumbashi, France</p>
                    </div>
                </div>
                <div class="col-md-4 mb-4">
@@ -32,7 +32,7 @@
                            <i class="fas fa-phone"></i>
                        </div>
                        <h4>Téléphone</h4>
-                       <p class="text-muted">+243 999528338<br>Lun-Ven: 9h-18h</p>
+                       <p class="text-muted">+243 973 316 995<br>Lun-Ven: 9h-18h</p>
                    </div>
                </div>
                <div class="col-md-4 mb-4">
@@ -41,7 +41,7 @@
                            <i class="fas fa-envelope"></i>
                        </div>
                        <h4>Email</h4>
-                       <p class="text-muted">jonathanmwetende@gmail.com<br></p>
+                       <p class="text-muted">contact@magazine.fr<br>redaction@magazine.fr</p>
                    </div>
                </div>
            </div>

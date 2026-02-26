@@ -69,7 +69,7 @@
                      <div class="card-body">
 
                          <div class="text-center mb-4">
-                             <img src="{{asset('l.jpg')}}" alt="Logo de l'entreprise" class="img-fluid mb-2 mt-2 logo-login">
+                             <img src="{{asset('logo.jpg')}}" alt="Logo de l'entreprise" class="img-fluid mb-2 mt-2 logo-login">
 
                              <h5 class="fw-bold text-dark">Ravi de vous rencontrer !</h5>
                              <p class="text-muted">Creez votre compte et profitez de toutes bonnes tematiques.</p>
