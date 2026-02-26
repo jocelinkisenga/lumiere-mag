@@ -16,17 +16,17 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/">Accueil</a>
+                        <a class="nav-link active text-primary" href="/">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route("posts.front") }}">Tous les articles</a>
+                        <a class="nav-link text-primary" href="{{ route("posts.front") }}">Tous les articles</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route("about") }}">A propos</a>
+                        <a class="nav-link text-primary" href="{{ route("about") }}">A propos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route("contact") }}">Contact</a>
+                        <a class="nav-link  text-primary" href="{{ route("contact") }}">Contact</a>
                     </li>
 
                 </ul>
