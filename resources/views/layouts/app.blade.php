@@ -176,6 +176,20 @@
     <script type="text/javascript" src="{{ asset('flora/js/froala_editor.pkgd.min.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+    <script>
+    new FroalaEditor('#myEditor', {
+        // Définir la route Laravel pour l'upload d'images
+        imageUploadURL: '{{ route('froala.upload') }}',
+        
+        // Passer le token CSRF de Laravel
+        imageUploadParams: {
+            _token: '{{ csrf_token() }}'
+        },
+        
+        // Optionnel : Méthode HTTP (POST par défaut)
+        imageUploadMethod: 'POST'
+    });
+</script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
