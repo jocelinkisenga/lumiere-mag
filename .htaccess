@@ -2,6 +2,5 @@
     RewriteEngine On
 
 RewriteCond %{HTTP_HOST} ^l\.lumieredumonde-mag\.com$ [NC]
-RewriteCond %{REQUEST_URI} !^/lumiere/public/
-RewriteRule ^(.*)$ /lumiere/public/$1 [L]
+RewriteRule ^(.*)$ /lumiere/public/index.php [L]
 </IfModule>
