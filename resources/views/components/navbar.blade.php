@@ -7,9 +7,9 @@
 
             </a>
 
-            <a class="navbar-toggler text-primary btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-toggler text-danger btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 {{-- <span class="navbar-toggler-icon"></span> --}}
-                <i class="fas fa-bars text-secondary fs-5" style="color:red;"></i>
+                <i class="fas fa-bars text-danger fs-5" ></i>
 
             </a>
 
