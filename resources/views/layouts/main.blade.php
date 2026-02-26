@@ -48,6 +48,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+    /* On définit la couleur du logo */
+    --logo-color: #ff5733; 
+}
+
+/* Application aux liens */
+a {
+    color: var(--logo-color);
+    text-decoration: none; /* Optionnel : enlever le soulignement */
+}
+
+a:hover {
+    /* On assombrit légèrement au survol pour l'ergonomie */
+    color: #e64a19; 
+}
+
+/* Application au texte du logo dans la navbar */
+.navbar-brand {
+    color: var(--logo-color) !important;
+}
+        
         a {
             text-decoration: none;
         }
