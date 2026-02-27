@@ -1,13 +1,11 @@
 <div>
-    <section class="newsletter-section">
+    <section class="newsletter-section" style="background-color: #0047AB">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center" data-aos="fade-up">
-                    <h2 class="mb-4">Restez informé</h2>
+                    <h3 class="mb-4">Abonnez vous à notre newsletter</h>
                     <p class="lead mb-4">
-                        Recevez chaque semaine une sélection de nos
-                        meilleurs articles, podcasts et vidéos directement
-                        dans votre boîte mail.
+                        Recevez nos publications continuellement.
                     </p>
                     @if (session("message"))
                     <div class="m-4">
@@ -20,7 +18,7 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <input type="email" class="form-control form-control-lg" placeholder="Votre adresse email" wire:model="email" required />
-                                <button class="btn btn-warning btn-lg" type="submit">
+                                <button class="btn btn-primary btn-lg" type="submit">
                                     S'abonner
                                 </button>
                             </div>
