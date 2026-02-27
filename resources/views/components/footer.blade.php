@@ -2,7 +2,9 @@
 @livewire("newsletter")
 
 <!-- Footer -->
-<footer class="footer">
+<footer class="footer" style="background-color: #0047AB; color: #FFFFFF; position: fixed;
+  bottom: 0;
+  width: 100%; ">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 mb-4 mb-lg-0">
@@ -11,9 +13,7 @@
 
                 </h3>
                 <p class="mb-4">
-                    Votre source d'informations, d'inspiration et de
-                    découvertes. Des contenus de qualité pour les
-                    esprits curieux.
+                    Pour l'information fiable, véridique et vérifiée dans toutes thématiques 
                 </p>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook-f text-white"></i></a>
@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
                 <h5 class="mb-3">Rubriques</h5>
                 <ul class="list-unstyled">
                     @foreach(\App\Models\Category::limit(4)->get() as $category)
@@ -42,29 +42,8 @@
                 </ul>
             </div>
 
-            <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
-                <h5 class="mb-3">Contenus</h5>
-                <ul class="list-unstyled">
-                    <li class="mb-2">
-                        <a href="{{ route("posts.front") }}" class="text-light text-decoration-none">Articles</a>
-
-                    </li>
-                    <li class="mb-2">
-                        <a href="{{ route("podcast.front") }}" class="text-light text-decoration-none">Podcasts</a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="{{ route("video.front") }}" class="text-light text-decoration-none">Vidéos</a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">Newsletter</a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="#" class="text-light text-decoration-none">Archives</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-lg-2 col-md-4">
+            
+            <div class="col-lg-2 col-md-6">
                 <h5 class="mb-3">À propos</h5>
                 <ul class="list-unstyled">
                     <li class="mb-2">
