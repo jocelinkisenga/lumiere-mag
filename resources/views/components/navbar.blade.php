@@ -82,7 +82,7 @@
     <nav class="nav-scroller border-top ">
         @foreach(\App\Models\Category::all() as $category)
 
-        <a href="{{route("categorie.show",["slug" => $category->title,"id" => $category->id])}}" class="nav-link-custom " style="color:red;">{{ $category->title }}</a>
+        <a href="{{route("categorie.show",["slug" => $category->title,"id" => $category->id])}}" class="nav-link-custom " >{{ $category->title }}</a>
 
 
         @endforeach
