@@ -10,8 +10,8 @@
 
         <div class="row align-items-center">
             <div class="col-lg-6" data-aos="fade-right">
-                <span class="badge bg-warning text-dark mb-3">À la une</span>
-                <h1 class="hero-title">
+                <span class="badge bg-primary text-white mb-3">À la une</span>
+                <h1 class="hero-title text-dark" style="color:black;">
                     {{ $latestPost->title }}
 
                 </h1>
@@ -61,7 +61,7 @@
 <section class="py-5">
     <di v class="container">
         <h2 class="section-title" data-aos="fade-up">
-            Dernières Publications
+            ILS VIENNENT DE PARAÎTRE 
         </h2>
 
         <div class="row">
@@ -74,16 +74,12 @@
                         <img src="{{ asset("storage/uploads/".$item->image) }}" class="card-img-top article-image" alt="{{ $item->title }}" />
 
 
-                        <span class="category-badge bg-primary">{{ $item->category->title }}</span>
+                        <span class="category-badge bg-primary text-white">{{ $item->category->title }}</span>
 
                     </div>
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">
+                        <h5 class="card-title text-dark" style="black">
                             <a href="{{ route("posts.show", $item->slug) }}">{{ $item->title }}</a>
-
-
-
-
                         </h5>
                         <p class="card-text flex-grow-1">
                             {!! Str::limit($item->excerpt, 50 ) !!}
@@ -244,9 +240,9 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <span class="badge bg-danger mb-2">{{ $item->category->title }}</span>
+                                <span class="badge bg-primary text-white mb-2">{{ $item->category->title }}</span>
 
-                                <h5 class="card-title"><a href="{{ route("posts.show", $item->slug) }}">{{ $item->title }}</a>
+                                <h5 class="card-title text-dark" style="black"><a href="{{ route("posts.show", $item->slug) }}">{{ $item->title }}</a>
 
 
 
