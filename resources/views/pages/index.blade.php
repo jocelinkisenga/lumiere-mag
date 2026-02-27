@@ -74,11 +74,11 @@
                         <img src="{{ asset("storage/uploads/".$item->image) }}" class="card-img-top article-image" alt="{{ $item->title }}" />
 
 
-                        <span class="category-badge bg-primary">{{ $item->category->title }}</span>
+                        <span class="category-badge bg-primary text-white">{{ $item->category->title }}</span>
 
                     </div>
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">
+                        <h5 class="card-title text-dark">
                             <a href="{{ route("posts.show", $item->slug) }}">{{ $item->title }}</a>
 
 
@@ -244,9 +244,9 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <span class="badge bg-danger mb-2">{{ $item->category->title }}</span>
+                                <span class="badge bg-success text-white mb-2">{{ $item->category->title }}</span>
 
-                                <h5 class="card-title"><a href="{{ route("posts.show", $item->slug) }}">{{ $item->title }}</a>
+                                <h5 class="card-title text-dark"><a href="{{ route("posts.show", $item->slug) }}">{{ $item->title }}</a>
 
 
 
