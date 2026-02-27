@@ -34,7 +34,7 @@
 
                     {{-- <a href="#" class="btn btn-outline-light btn-lg">
                         <i class="fas fa-play-circle me-2"></i>Écouter
-                    </a> --}}
+                    </a> 
                 </div>
             </div>
             <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
