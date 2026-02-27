@@ -26,9 +26,9 @@ return new class extends Migration
         });
 
         User::create([
-            "name" => "Lumiere du  monde",
-            "email" => "lumieredumonde@gmail.com",
-            "password" => Hash::make("lumiere du monde 2025"),
+            "name" => "Georges Nsenga",
+            "email" => "georgeskabeya86@gmail.com",
+            "password" => Hash::make("lumiere du monde 2026"),
             "role_id" => true,
             "role" => 1
         ]);
