@@ -181,6 +181,14 @@ a:hover {
     shadow: 0 5px 15px rgba(0,123,255,0.3);
 }
 
+.card-title {
+color:black;
+}
+
+.card-title, a {
+color: black;
+}
+
 /* Variables pour faciliter la personnalisation */
 :
 
