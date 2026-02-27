@@ -1,7 +1,7 @@
 :root {
     --primary: hsl(219, 79%, 49%);
     --secondary: #95a5a6;
-    --accent: #e74c3c;
+    --accent: var(--lefigaro-blue);
     --light: #ecf0f1;
     --dark: #2c3e50;
     --success: #27ae60;
@@ -602,24 +602,22 @@ h6 {
     margin: 0;
 }
 
-.toc-list li {
+toc-list li {
     margin-bottom: 0.5rem;
 }
 
-.toc-list a {
+toc-list a {
     color: var(--dark);
     text-decoration: none;
     transition: all 0.3s ease;
     display: block;
     padding: 0.3rem 0;
 }
-
-.toc-list a:hover {
+toc-list a:hover {
     color: var(--accent);
     padding-left: 5px;
 }
-
-.toc-list a.active {
+toc-list a.active {
     color: var(--accent);
     font-weight: 600;
     border-left: 3px solid var(--accent);
@@ -814,7 +812,7 @@ h6 {
 
 .form-control:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.1);
+    box-shadow: 0 0 0 0.2rem rgba(15, 73, 160, 0.1);
 }
 
 /* le figaro */
@@ -942,56 +940,3 @@ h6 {
         font-weight: bold;
     }
 }
-
-@media (min-width: 992px) {
-    .navbar-nav .nav-link {
-        color: var(--primary) !important;
-        font-weight: 700;
-        transition: color 0.3s ease;
-        font-size: 1.5rem;
-    }
-    /* --- HEADER --- */
-    .main-header {
-        border-bottom: 1px solid #e0e0e0;
-        background: #fff;
-    }
-
-    .logo-text {
-        font-family: "Playfair Display", serif;
-        font-weight: 700;
-        color: var(--lefigaro-blue);
-        font-size: 1.5rem;
-        letter-spacing: -0.5px;
-    }
-
-    /* Navigation horizontale (Scrollable) */
-    .nav-scroller {
-        overflow-x: auto;
-        margin-top: 20px;
-        white-space: nowrap;
-        display: flex;
-        justify-content: center; /* Centre tous les liens */
-        border-bottom: 2px solid #e0e0e0; /* Mieux sur desktop */
-    }
-
-    .nav-scroller::-webkit-scrollbar {
-        display: none; /* Cacher la scrollbar */
-    }
-
-    .nav-link-custom {
-        display: block; /* Flexbox gère l'alignement, on n'a plus besoin du inline-block */
-        padding: 10px 15px;
-        color: #555;
-        text-decoration: none;
-        font-size: 1.5rem;
-        font-weight: 500;
-    }
-
-    .nav-link-custom:first-child {
-        padding-left: 20px;
-    }
-}
-
-.nav-link-custom {
-    text-transform: uppercase;
-    }
