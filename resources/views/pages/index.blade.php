@@ -172,7 +172,7 @@
 </section> --}}
 
 <!-- Vidéos Section -->
-{{- <section class="py-5 mt-4">
+{{-- <section class="py-5 mt-4">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">
             Reportages Vidéos
@@ -186,14 +186,14 @@
             @foreach ($recentVideos as $video)
             <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="video-card">
-                    {{-- <img src="{{ asset("storage/videos/covers/".$video->cover_video) }}" alt="Vidéo 1" class="img-fluid w-100" style="height: 300px; object-fit: cover" /> --}}
+                    {{-- <img src="{{ asset("storage/videos/covers/".$video->cover_video) }}" alt="Vidéo 1" class="img-fluid w-100" style="height: 300px; object-fit: cover" /> 
                     <video class="embeded-responsive w-100" controlsList="nodownload" controls preload="metadata" poster="{{ asset("storage/videos/covers/".$video->cover_video) }}">
                         <source src="{{ asset("storage/videos/".$video->video_name) }}" type="video/mp4">
 
                     </video>
 
 
-                    {{-- <iframe src="{{ asset("storage/videos/".$video->video_name) }}" frameborder="0"></iframe> --}}
+                    {{-- <iframe src="{{ asset("storage/videos/".$video->video_name) }}" frameborder="0"></iframe> 
 
 
 
