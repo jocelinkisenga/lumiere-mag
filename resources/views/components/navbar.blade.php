@@ -7,9 +7,8 @@
 
             </a>
 
-            <a class="navbar-toggler text-danger btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                {{-- <span class="navbar-toggler-icon"></span> --}}
-                <i class="fas fa-bars text-danger fs-5" ></i>
+            <a class="navbar-toggler text-white btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                {{-- <span class="navbar-toggler-icon"></span> --}}      MENU
 
             </a>
 
@@ -82,7 +81,7 @@
     <nav class="nav-scroller border-top ">
         @foreach(\App\Models\Category::all() as $category)
 
-        <a href="{{route("categorie.show",["slug" => $category->title,"id" => $category->id])}}" class="nav-link-custom " >{{ $category->title }}</a>
+        <a href="{{route("categorie.show",["slug" => $category->title,"id" => $category->id])}}" class="nav-link-customnav-link-custom text-black " >{{ $category->title }}</a>
 
 
         @endforeach
