@@ -2,7 +2,7 @@
 @livewire("newsletter")
 
 <!-- Footer -->
-<footer class="footer" style="background-color: #0047AB; color: #FFFFFF; position: fixed;
+<footer  style="background-color: #0047AB; color: #FFFFFF; width:100%;
   bottom: 0;
   width: 100%; ">
     <div class="container">
