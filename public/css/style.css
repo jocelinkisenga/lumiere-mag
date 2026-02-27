@@ -221,7 +221,7 @@ a {
 }
 
 .newsletter-section {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+    background-color: #0047AB;
     color: white;
     padding: 80px 0;
 }
@@ -287,12 +287,12 @@ a {
 
 .reading-time {
     font-size: 0.85rem;
-    color: var(--secondary);
+    color:#0047AB ;
 }
 
 .divider {
     height: 1px;
-    background: #e0e0e0;
+    background: #0047AB;
     margin: 2rem 0;
 }
 
