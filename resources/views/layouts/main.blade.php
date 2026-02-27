@@ -31,7 +31,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset("css/style.css") }}">
+    
     <link rel="stylesheet" href="{{ asset("bootstrap/css/bootstrap.min.css") }}">
     <link rel="stylesheet" href="{{ asset("fontawesome/css/all.min.css") }}">
 
@@ -186,6 +186,8 @@ a:hover {
 
 
     </style>
+
+ <link rel="stylesheet" href="{{ asset("css/style.css") }}">   
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
     {!! TwitterCard::generate() !!}
