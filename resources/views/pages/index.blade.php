@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
 <!-- Hero Section -->
-<section class="hero-section">
+{{-- <section class="hero-section">
     <div class="container">
         @empty($latestPost)
         <p>pas des donnees</p>
@@ -55,7 +55,7 @@
         </div>
         @endempty
     </div>
-</section>
+</section> --}}
 
 <!-- Articles Récents -->
 <section class="py-5">
@@ -116,7 +116,7 @@
 </section>
 
 <!-- Podcasts Section -->
-<section class="py-5 bg-light">
+{{- <section class="py-5 bg-light">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">Nos Podcasts</h2>
         <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">
@@ -169,10 +169,10 @@
 
         </div>
     </div>
-</section>
+</section> --}}
 
 <!-- Vidéos Section -->
-<section class="py-5 mt-4">
+{{- <section class="py-5 mt-4">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up">
             Reportages Vidéos
@@ -222,7 +222,7 @@
 
         </div>
     </div>
-</section>
+</section> --}}
 
 <!-- Articles Populaires -->
 <section class="py-5 bg-light">
