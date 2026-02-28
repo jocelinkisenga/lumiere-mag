@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -176,20 +175,7 @@
  
 
     <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
-    <script>
-    new FroalaEditor('#myEditor', {
-        // Définir la route Laravel pour l'upload d'images
-        imageUploadURL: '{{ route('froala.upload') }}',
-        
-        // Passer le token CSRF de Laravel
-        imageUploadParams: {
-            _token: '{{ csrf_token() }}'
-        },
-        
-        // Optionnel : Méthode HTTP (POST par défaut)
-        imageUploadMethod: 'POST'
-    });
-</script>
+  
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
