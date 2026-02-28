@@ -54,7 +54,13 @@
             @guest
                 <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Se connecter</a></li>
             @else
-                <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link text-danger">Déconnexion</a></li>
+                <li class="nav-item">
+<form action="{{route('logout')}}" method="POST">
+@csrf
+<button type="submit" class="nav-link text-danger">Déconnexion</button>
+</form>
+
+</li>
             @endguest
         </ul>
     </div>
