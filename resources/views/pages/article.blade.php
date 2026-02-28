@@ -1,5 +1,29 @@
 @extends("layouts.main")
+@push('styles')
+<style>
+    /* Ce code ne s'appliquera QU'À cette page */
+    .article-body img {
+        max-width: 100% !important;
+        height: auto !important;
+        display: block;
+        margin: 20px auto;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
 
+    .article-image {
+        width: 100%;
+        height: 450px;
+        object-fit: cover;
+    }
+
+    /* Pour éviter que le contenu CKEditor ne casse le design */
+    .article-body {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+</style>
+@endpush
 @section('content')
 <div class="progress-bar" id="progressBar"></div>
 
@@ -62,7 +86,7 @@
                         <figcaption class="text-center text-muted mt-2">{{$post->title}}</figcaption>
 
                     </figure>
-                    <div>{!! $post->description !!}</div>
+                    <div class="ck-content">{!! $post->description !!}</div>
 
 
                 </div>
