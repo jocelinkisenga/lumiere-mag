@@ -136,20 +136,18 @@
 </div>
 
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
 <script>
-    <script>
     let myEditor;
 
+    // 1. Initialisation avec l'adaptateur natif CKFinder
     ClassicEditor
         .create(document.querySelector('#edit'), {
-            // Configuration de l'adaptateur d'upload
-            simpleUpload: {
-                uploadUrl: "{{ route('ckeditor.upload') }}",
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                }
+            ckfinder: {
+                // On passe le token CSRF en paramètre GET dans l'URL
+                uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}"
             },
-            // Ajoute 'uploadImage' dans la barre d'outils
             toolbar: [ 
                 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 
                 '|', 'uploadImage', 'insertTable', 'blockQuote', 'undo', 'redo' 
@@ -161,6 +159,34 @@
         .catch(error => {
             console.error('Erreur CKEditor:', error);
         });
+
+    // 2. Prévisualisation de l'image de couverture
+    document.getElementById('image-input').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const previewBox = document.getElementById('preview-box');
+        const previewImage = document.getElementById('image-preview');
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                previewImage.src = event.target.result;
+                previewBox.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // 3. Validation et Synchro avant envoi
+    document.getElementById('articleForm').onsubmit = function() {
+        const data = myEditor.getData();
+        if(data.trim() === '') {
+            alert("Le corps de l'article ne peut pas être vide.");
+            return false;
+        }
+        return true; 
+    };
+
+    // (Garde tes fonctions validateStep1() et goToStep() ici)
 </script>
 <script>
     // 1. Initialisation CKEditor
