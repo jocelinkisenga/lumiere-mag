@@ -152,23 +152,26 @@ class PostController extends Controller
     public function ckeditor(Request $request)
     {
     
-        if ($request->hasFile('upload')) {
+if ($request->hasFile('upload')) {
             $file = $request->file('upload');
             $fileName = time() . '_' . $file->getClientOriginalName();
             
-            // Stockage dans public/media
+            // Stockage dans le dossier public/media
             $file->move(public_path('media'), $fileName);
 
             $url = asset('media/' . $fileName);
 
+            // Format JSON exact attendu par CKFinder
             return response()->json([
-                'uploaded' => true,
+                'uploaded' => 1,
+                'fileName' => $fileName,
                 'url' => $url
             ]);
         }
 
-        return response()->json(['uploaded' => false, 'error' => ['message' => 'Upload échoué.']]);
-    
-        
+        return response()->json([
+            'uploaded' => 0, 
+            'error' => ['message' => 'Erreur lors de l\'envoi de l\'image.']
+        ]);
     }
 }
