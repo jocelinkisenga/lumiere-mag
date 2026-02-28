@@ -1,14 +1,29 @@
 @extends("layouts.main")
 @push('styles')
 <style>
+    .article-content-container {
+        width: 100%;
+        max-width: 900px; /* Élargit la zone de lecture sur PC */
+        margin: 0 auto;
+        padding: 20px;
+        background: #fff;
+    }
     /* Ce code ne s'appliquera QU'À cette page */
+/* 2. Correction MAGIQUE pour les images de CKEditor */
     .article-body img {
-        max-width: 100% !important;
-        height: auto !important;
+        max-width: 100% !important; /* Empêche l'image de déborder du cadre */
+        height: auto !important;    /* Garde les proportions */
         display: block;
-        margin: 20px auto;
-        border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        margin: 20px auto;          /* Centre l'image avec un peu d'espace */
+        border-radius: 12px;        /* Pour un look moderne et arrondi */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .article-body {
+        font-size: 1.1rem;
+        line-height: 1.8; /* Plus d'espace entre les lignes pour le confort */
+        color: #333;
+        word-wrap: break-word;
     }
 
     .article-image {
@@ -17,11 +32,21 @@
         object-fit: cover;
     }
 
+    /* 4. Responsive Mobile : On réduit les marges inutiles sur petit écran */
+    @media (max-width: 768px) {
+        .article-content-container {
+            padding: 10px; /* On gagne de la place sur les côtés sur téléphone */
+        }
+        .article-body {
+            font-size: 1rem;
+        }
+    }
+
     /* Pour éviter que le contenu CKEditor ne casse le design */
-    .article-body {
+    /* .article-body {
         overflow-wrap: break-word;
         word-wrap: break-word;
-    }
+    } */
 </style>
 @endpush
 @section('content')
