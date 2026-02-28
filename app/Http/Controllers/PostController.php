@@ -149,24 +149,34 @@ class PostController extends Controller
         return redirect()->back();
     }
 
-    public function floara(Request $request)
+    public function ckeditor(Request $request)
     {
+    namespace App\Http\Controllers;
 
-        // 1. Validation basique
-        if ($request->hasFile('file')) { // Froala envoie le fichier sous le nom 'file' par défaut
+use Illuminate\Http\Request;
 
-            // 2. Stockage de l'image (dans storage/app/public/uploads)
-            $path = $request->file('file')->store('public/uploads');
+class ImageUploadController extends Controller
+{
+    public function upload(Request $request)
+    {
+        if ($request->hasFile('upload')) {
+            $file = $request->file('upload');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            
+            // Stockage dans public/media
+            $file->move(public_path('media'), $fileName);
 
-            // 3. Génération de l'URL accessible (nécessite php artisan storage:link)
-            $url = Storage::url($path);
+            $url = asset('media/' . $fileName);
 
-            // 4. Retourner le JSON attendu par Froala
             return response()->json([
-                'link' => $url
+                'uploaded' => true,
+                'url' => $url
             ]);
         }
 
-        return response()->json(['error' => 'Aucun fichier reçu'], 400);
+        return response()->json(['uploaded' => false, 'error' => ['message' => 'Upload échoué.']]);
+    }
+}
+        
     }
 }
