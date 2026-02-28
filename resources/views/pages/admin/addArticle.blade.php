@@ -164,7 +164,7 @@
 </script>
 <script>
     // 1. Initialisation CKEditor
-   ClassicEditor.create(document.querySelector('#edit')).catch(e => console.error(e));
+   //ClassicEditor.create(document.querySelector('#edit')).catch(e => console.error(e));
 
     // 2. LOGIQUE DE PRÉVISUALISATION DE L'IMAGE
     document.getElementById('image-input').addEventListener('change', function(e) {
