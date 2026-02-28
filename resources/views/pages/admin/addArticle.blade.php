@@ -162,6 +162,7 @@
             console.error('Erreur CKEditor:', error);
         });
 </script>
+<script>
     // 1. Initialisation CKEditor
    // ClassicEditor.create(document.querySelector('#edit')).catch(e => console.error(e));
 
