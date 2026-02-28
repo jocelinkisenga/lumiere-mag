@@ -151,14 +151,7 @@ class PostController extends Controller
 
     public function ckeditor(Request $request)
     {
-    namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
-class ImageUploadController extends Controller
-{
-    public function upload(Request $request)
-    {
+    
         if ($request->hasFile('upload')) {
             $file = $request->file('upload');
             $fileName = time() . '_' . $file->getClientOriginalName();
@@ -175,8 +168,7 @@ class ImageUploadController extends Controller
         }
 
         return response()->json(['uploaded' => false, 'error' => ['message' => 'Upload échoué.']]);
-    }
-}
+    
         
     }
 }
