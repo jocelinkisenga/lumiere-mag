@@ -54,6 +54,10 @@
             @guest
                 <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Se connecter</a></li>
             @else
+  <li class="nav-item"><a href="{{ route('dashboard') }}" class="nav-link">dashboard</a></li>
+            
+
+
                 <li class="nav-item">
 <form action="{{route('logout')}}" method="POST">
 @csrf
