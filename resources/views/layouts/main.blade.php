@@ -31,9 +31,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    
-    <link rel="stylesheet" href="{{ asset("bootstrap/css/bootstrap.min.css") }}">
-    <link rel="stylesheet" href="{{ asset("fontawesome/css/all.min.css") }}">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
@@ -182,10 +179,71 @@ a:hover {
 }
 
 /* Variables pour faciliter la personnalisation */
-:
 
+    /* Reset et Espacement global */
+    .main-header { z-index: 1030; }
+    
+    .logo-text {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+        color: #333;
+    }
 
-    </style>
+    /* Barre de catégories scrollable */
+    .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .nav-link-custom {
+        padding: 0.5rem 1rem;
+        color: #555;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        transition: color 0.2s;
+    }
+
+    .nav-link-custom:hover, .nav-link-custom.active {
+        color: #7d33ff; /* Ta couleur primaire */
+    }
+
+    /* Gagner l'espace sur les côtés (Mobile) */
+    @media (max-width: 991px) {
+        .container {
+            max-width: 100% !important;
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
+        .navbar-brand img {
+            width: 40px !important;
+            height: 40px !important;
+        }
+    }
+
+    /* Style du menu burger mobile */
+    #navbarNav {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+</style>
+    
 
  <link rel="stylesheet" href="{{ asset("css/style.css") }}">   
     {!! SEOMeta::generate() !!}
