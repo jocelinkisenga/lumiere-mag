@@ -61,7 +61,7 @@
 <section class="py-5">
     <di v class="container">
         <h2 class="section-title" data-aos="fade-up">
-            ILS VIENNENT DE PARAÎTRE 
+            Ils viennent de paraître 
         </h2>
 
         <div class="row">
@@ -78,7 +78,7 @@
 
                     </div>
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-dark" style="black">
+                        <h5 class="card-title text-dark" style="color:black;">
                             <a href="{{ route("posts.show", $item->slug) }}">{{ $item->title }}</a>
                         </h5>
                         <p class="card-text flex-grow-1">
@@ -242,7 +242,7 @@
                             <div class="card-body">
                                 <span class="badge bg-primary text-white mb-2">{{ $item->category->title }}</span>
 
-                                <h5 class="card-title text-dark" style="black"><a href="{{ route("posts.show", $item->slug) }}">{{ $item->title }}</a>
+                                <h5 class="card-title text-dark" style="color:black;"><a href="{{ route("posts.show", $item->slug) }}">{{ $item->title }}</a>
 
 
 
