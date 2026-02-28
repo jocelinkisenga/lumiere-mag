@@ -137,8 +137,33 @@
 
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
 <script>
+    <script>
+    let myEditor;
+
+    ClassicEditor
+        .create(document.querySelector('#edit'), {
+            // Configuration de l'adaptateur d'upload
+            simpleUpload: {
+                uploadUrl: "{{ route('ckeditor.upload') }}",
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            },
+            // Ajoute 'uploadImage' dans la barre d'outils
+            toolbar: [ 
+                'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 
+                '|', 'uploadImage', 'insertTable', 'blockQuote', 'undo', 'redo' 
+            ]
+        })
+        .then(editor => {
+            myEditor = editor;
+        })
+        .catch(error => {
+            console.error('Erreur CKEditor:', error);
+        });
+</script>
     // 1. Initialisation CKEditor
-    ClassicEditor.create(document.querySelector('#edit')).catch(e => console.error(e));
+   // ClassicEditor.create(document.querySelector('#edit')).catch(e => console.error(e));
 
     // 2. LOGIQUE DE PRÉVISUALISATION DE L'IMAGE
     document.getElementById('image-input').addEventListener('change', function(e) {
