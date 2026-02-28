@@ -191,6 +191,7 @@ a:hover {
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
     {!! TwitterCard::generate() !!}
+    @stack('styles')
     @livewireStyles
  <script>
         if ('serviceWorker' in navigator) {
