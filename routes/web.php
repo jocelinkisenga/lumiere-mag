@@ -52,6 +52,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get("articles", [PostController::class, "index"])->name("posts.index");
     Route::get("article", [PostController::class, "create"])->name("posts.create");
     Route::post("articles", [PostController::class, "store"])->name("posts.store");
+    
+    Route::post("ckeditor", [PostController::class, "ckeditor"])->name("ckeditor.upload");
     Route::get("/dashboard", [HomeController::class, "dashboard"])->name("dashboard");
     Route::get("delete/article/{id}", [PostController::class, "delete"])->name("post.delete");
     Route::get("edit/article/{id}", [PostController::class, "edit"])->name("post.edit");
