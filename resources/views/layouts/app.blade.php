@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('flora/css/froala_editor.pkgd.min.css') }}">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -173,9 +172,10 @@
     <script src="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
     <script src="{{ asset('assets/js/misc.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('flora/js/froala_editor.pkgd.min.js') }}"></script>
+ 
 
     <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+  
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
