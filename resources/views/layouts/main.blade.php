@@ -10,17 +10,6 @@
 <meta name="author" content="Lumière du Monde Magazine" />
 <link rel="canonical" href="{{ url()->current() }}" />
     
-    
- <meta property="og:type" content="website" />
-<meta property="og:url" content="{{ url()->current() }}" />
-<meta property="og:title" content="Lumiere du Monde Magazine" />
-<meta property="og:description" content="Votre actualité au quotidien sur politique, sécurité, sport, culture, santé, etc." />
-<meta property="og:image" content="{{ asset("logo.jpg") }}" />
-
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Lumiere du Monde Magazine" />
-<meta name="twitter:description" content="Votre actualité au quotidien sur politique, sécurité, sport, culture, santé, etc." />
-<meta name="twitter:image" content="{{ asset("logo.jpg") }}" />
 
    <link rel="manifest" href="{{asset("manifest.json")}}"> 
     
