@@ -24,6 +24,7 @@ class PostController extends Controller
 {
 
     public function __construct(public PostService $postService) {}
+    
     /**
      * Display a listing of the resource.
      */
@@ -36,7 +37,6 @@ class PostController extends Controller
     public function front()
     {
         $articles = $this->postService->getAllPosts();
-
         return view("pages.articles", compact("articles"));
     }
 
@@ -54,12 +54,10 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-
         $imgName = Carbon::now()->timestamp . 'patrickngoy.' . $request->file('image')->extension();
         $path = $request->file("image")->storeAs('uploads', $imgName, 'public');
 
         $post = $this->postService->CreatePost($request, $imgName);
-        // tags pour chaque article
         $this->postService->createTags($post, $request->tags);
         $subscribers = Subscriber::all();
 
@@ -74,45 +72,54 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post,  Request $request)
+    public function show(Post $post, Request $request)
     {
-        // try {
-        //     ViewPost::updateOrCreate([
-        //         "post_id" => $post->id,
-        //         'view_post' => +1,
-        //         'ip_adress' => $request->ip()
-        //     ]);
-        // } catch (\Throwable $th) {
-        //     throw $th;
-        // }
-        // $views = ViewPost::where("post_id", $post->id)->where("ip_adress", $request->ip())->first();
-        // if($views) {
-        //     $views->increment("view_post");
-        // }
-        // else {
-        //         ViewPost::updateOrCreate([
-        //             "post_id" => $post->id,
-        //             'view_post' => 1,
-        //             'ip_adress' => $request->ip()
-        //         ]);
-        // }
         $url = route('posts.show', $post->slug);
 
+        // 🎯 Préparer le contenu pour les métadonnées
+        $description = $post->excerpt ?? Str::limit(strip_tags($post->descrption), 160);
+        $imageUrl = asset("storage/uploads/" . $post->image);
 
-
-        $sharedButtons = ShareFacade::page($url, $post->title)->facebook()->twitter()->linkedin()->whatsapp()->telegram();
-
-        $categories = Category::all();
-
-        $related = Post::where("category_id", $post->category_id)->where("id", "!=", $post->id)->latest()->limit(3)->get();
-
+        // 📱 SEO Meta (standard)
         SEOMeta::setTitle($post->title);
-        SEOMeta::setDescription(Str::limit(strip_tags($post->description), 160));
+        SEOMeta::setDescription($description);
         SEOMeta::setCanonical($url);
 
-        OpenGraph::setTitle($post->title)->setDescription(Str::limit(strip_tags($post->descrption), 160))->setUrl($url)->addImage(asset("storage/uploads/" . $post->image));
+        // 📘 Open Graph (Facebook, LinkedIn, WhatsApp, Telegram)
+        OpenGraph::setTitle($post->title)
+            ->setDescription($description)
+            ->setUrl($url)
+            ->setType('article')
+            ->addImage($imageUrl, [
+                'width' => 1200,
+                'height' => 630,
+                'type' => 'image/jpeg'
+            ])
+            ->addProperty('article:published_time', $post->created_at->toIso8601String())
+            ->addProperty('article:modified_time', $post->updated_at->toIso8601String())
+            ->addProperty('article:author', $post->author?->name ?? config('app.name'))
+            ->addProperty('article:section', $post->category?->name ?? 'News');
 
-        TwitterCard::setTitle($post->title)->setDescription(Str::limit(strip_tags($post->descrption), 160))->setImage(asset("storage/uploads/" . $post->image));
+        // 𝕏 Twitter Card (Twitter/X)
+        TwitterCard::setTitle($post->title)
+            ->setDescription($description)
+            ->setImage($imageUrl)
+            ->setType('summary_large_image');
+
+        // 🔗 Boutons de partage
+        $sharedButtons = ShareFacade::page($url, $post->title)
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->whatsapp()
+            ->telegram();
+
+        $categories = Category::all();
+        $related = Post::where("category_id", $post->category_id)
+            ->where("id", "!=", $post->id)
+            ->latest()
+            ->limit(3)
+            ->get();
 
         return view("pages.article", compact("post", "related", "categories", "sharedButtons"));
     }
@@ -122,24 +129,19 @@ class PostController extends Controller
      */
     public function edit(int $id)
     {
-
         $categories = Category::all();
         return view("pages.admin.editarticle", ["categories" => $categories, 'post' => Post::whereId($id)->with('author')->first()]);
     }
 
     public function ckeditor(Request $request)
     {
-    
-if ($request->hasFile('upload')) {
+        if ($request->hasFile('upload')) {
             $file = $request->file('upload');
             $fileName = time() . '_' . $file->getClientOriginalName();
             
-            // Stockage dans le dossier public/media
             $file->move(public_path('media'), $fileName);
-
             $url = asset('media/' . $fileName);
 
-            // Format JSON exact attendu par CKFinder
             return response()->json([
                 'uploaded' => 1,
                 'fileName' => $fileName,
@@ -162,7 +164,6 @@ if ($request->hasFile('upload')) {
         $path = $request->file("image")->storeAs('uploads', $imgName, 'public');
 
         $post = $this->postService->CreatePost($request, $imgName);
-        // tags pour chaque article
         $this->postService->createTags($post, $request->tags);
     }
 
@@ -177,17 +178,10 @@ if ($request->hasFile('upload')) {
 
     public function floara(Request $request)
     {
-
-        // 1. Validation basique
-        if ($request->hasFile('file')) { // Froala envoie le fichier sous le nom 'file' par défaut
-
-            // 2. Stockage de l'image (dans storage/app/public/uploads)
+        if ($request->hasFile('file')) {
             $path = $request->file('file')->store('public/uploads');
-
-            // 3. Génération de l'URL accessible (nécessite php artisan storage:link)
             $url = Storage::url($path);
 
-            // 4. Retourner le JSON attendu par Froala
             return response()->json([
                 'link' => $url
             ]);
