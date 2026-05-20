@@ -86,6 +86,19 @@
     }
 </style>
 @endpush
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ajoute des classes aux images CKEditor
+        const ckImages = document.querySelectorAll('.ck-content img');
+        ckImages.forEach(img => {
+            img.style.maxWidth = '100%';
+            img.style.height = 'auto';
+            img.parentElement.style.overflow = 'auto';
+        });
+    });
+</script>
+@endpush
 @section('content')
 <div class="progress-bar" id="progressBar"></div>
 
