@@ -3,25 +3,42 @@
 <style>
     .article-content-container {
         width: 100%;
-        max-width: 900px; /* Élargit la zone de lecture sur PC */
+        max-width: 900px;
         margin: 0 auto;
         padding: 20px;
         background: #fff;
     }
-    /* Ce code ne s'appliquera QU'À cette page */
-/* 2. Correction MAGIQUE pour les images de CKEditor */
-    .article-body img {
-        max-width: 100% !important; /* Empêche l'image de déborder du cadre */
-        height: auto !important;    /* Garde les proportions */
+
+    /* Images de l'article et CKEditor */
+    .article-body img,
+    .ck-content img {
+        max-width: 100% !important;
+        height: auto !important;
         display: block;
-        margin: 20px auto;          /* Centre l'image avec un peu d'espace */
-        border-radius: 12px;        /* Pour un look moderne et arrondi */
+        margin: 20px auto;
+        border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    /* Conteneur CKEditor responsive */
+    .ck-content {
+        overflow-x: auto; /* Scroll horizontal si nécessaire */
+    }
+
+    .ck-content p,
+    .ck-content h1,
+    .ck-content h2,
+    .ck-content h3,
+    .ck-content h4,
+    .ck-content h5,
+    .ck-content h6 {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .article-body {
         font-size: 1.1rem;
-        line-height: 1.8; /* Plus d'espace entre les lignes pour le confort */
+        line-height: 1.8;
         color: #333;
         word-wrap: break-word;
     }
@@ -32,21 +49,41 @@
         object-fit: cover;
     }
 
-    /* 4. Responsive Mobile : On réduit les marges inutiles sur petit écran */
+    /* Tableaux CKEditor responsive */
+    .ck-content table {
+        width: 100%;
+        overflow-x: auto;
+        display: block;
+    }
+
+    /* Mobile responsive */
     @media (max-width: 768px) {
         .article-content-container {
-            padding: 10px; /* On gagne de la place sur les côtés sur téléphone */
+            padding: 10px;
         }
         .article-body {
             font-size: 1rem;
         }
+        .article-image {
+            height: 300px;
+        }
+        /* Réduit l'espacement des images sur mobile */
+        .article-body img,
+        .ck-content img {
+            margin: 15px auto;
+        }
     }
 
-    /* Pour éviter que le contenu CKEditor ne casse le design */
-    /* .article-body {
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-    } */
+    /* Ultra mobile (< 480px) */
+    @media (max-width: 480px) {
+        .article-image {
+            height: 200px;
+        }
+        .article-body img,
+        .ck-content img {
+            margin: 10px auto;
+        }
+    }
 </style>
 @endpush
 @section('content')
