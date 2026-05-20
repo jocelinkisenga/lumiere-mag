@@ -127,6 +127,9 @@ class PostController extends Controller
         return view("pages.admin.editarticle", ["categories" => $categories, 'post' => Post::whereId($id)->with('author')->first()]);
     }
 
+    public function ckeditor(Request $request)
+}
+    
     /**
      * Update the specified resource in storage.
      */
