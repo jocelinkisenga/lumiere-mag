@@ -58,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post("articles/floara", [PostController::class, "floara"])->name("posts.floara");
 
     Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
-
+Route::post("ckeditor", [PostController::class, "ckeditor"])->name("ckeditor.upload");
     Route::get("categorie", [CategoryController::class, "create"])->name("categorie.create");
     Route::post("categorie", [CategoryController::class, "store"])->name("categorie.store");
 
