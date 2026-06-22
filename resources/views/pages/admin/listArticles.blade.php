@@ -54,7 +54,7 @@
                                         <div class="btn-group shadow-sm">
                                             <a href="{{ route('posts.edit', $item->id) }}" 
                                                class="btn btn-success btn-sm" 
-                                               onclick="return confirm('Supprimer cet article ?')">
+                                               onclick="return confirm('Editer cet article ?')">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <a href="{{ route('post.delete', ['id' => $item->id])}}" 
