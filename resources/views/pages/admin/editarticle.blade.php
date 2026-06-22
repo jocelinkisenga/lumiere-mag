@@ -102,13 +102,13 @@
                                     
                                     <div class="preview-container" id="preview-box" style="{{ $post->image ? 'display: block;' : 'display: none;' }}">
                                         <small class="text-muted d-block mb-1">Aperçu de la photo :</small>
-                                        <img id="image-preview" src="{{ $post->image ? asset('storage/' . $post->image) : '#' }}" alt="Aperçu">
+                                        <img id="image-preview" src="{{ $post->image ? asset("storage/uploads/".$post->image)  : '#' }}" alt="Aperçu">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 mb-3" id="tour-tags">
                                     <label class="form-label">Tags (séparés par des virgules)</label>
-                                    <input type="text" class="form-control" name="tags" placeholder="ex: Culture, Sport, Tech" value="{{ old('tags', $post->tags) }}">
+                                    <input type="text" class="form-control" name="tags" placeholder="ex: Culture, Sport, Tech" value="{{ old('tags', $post->tags->pluck('name')->implode(', ')) }}">
                                 </div>
 
                                 <div class="col-12 mb-4" id="tour-excerpt">
