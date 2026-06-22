@@ -122,7 +122,7 @@ public function edit(Post $post)
     {
         $categories = Category::all();
         
-        return view('pages.admin.editArticle', compact('post', 'categories'));
+        return view('pages.admin.editarticle', compact('post', 'categories'));
     }
 
     /**
