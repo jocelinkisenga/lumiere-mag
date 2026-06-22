@@ -52,7 +52,7 @@
                                     </td>
                                     <td class="text-end">
                                         <div class="btn-group shadow-sm">
-                                            <a href="{{ route('post.edit', ['id' => $item->id]) }}" 
+                                            <a href="{{ route('posts.edit', ['id' => $item->id]) }}" 
                                                class="btn btn-success btn-sm" 
                                                onclick="return confirm('Supprimer cet article ?')">
                                                 <i class="fas fa-edit"></i>
