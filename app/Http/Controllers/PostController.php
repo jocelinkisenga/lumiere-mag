@@ -143,9 +143,9 @@ public function edit(Post $post)
         // Gestion de l'image si une nouvelle est envoyée
         if ($request->hasFile('image')) {
             // Supprimer l'ancienne image si elle existe
-            if ($post->image && Storage::disk('public')->exists($post->image)) {
-                Storage::disk('public')->delete($post->image);
-            }
+            $imgName = Carbon::now()->timestamp . 'patrickngoy.' . $request->file('image')->extension();
+        $path = $request->file("image")->storeAs('uploads', $imgName, 'public');
+           
             $validated['image'] = $request->file('image')->store('posts', 'public');
         }
 
