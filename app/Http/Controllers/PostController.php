@@ -140,14 +140,20 @@ public function edit(Post $post)
             'description' => 'required',
         ]);
 
-        // Gestion de l'image si une nouvelle est envoyée
-        if ($request->hasFile('image')) {
-            // Supprimer l'ancienne image si elle existe
-            $imgName = Carbon::now()->timestamp . 'patrickngoy.' . $request->file('image')->extension();
-        $path = $request->file("image")->storeAs('uploads', $imgName, 'public');
-           
-            $validated['image'] = $request->file('image')->store('posts', 'public');
-        }
+        $ancienChemin = 'uploads/' . $post->image;
+
+    if ($post->image && Storage::disk('public')->exists($ancienChemin)) {
+        Storage::disk('public')->delete($ancienChemin);
+    }
+
+    // 2. Génération du nom personnalisé selon ta nomenclature
+    $imgName = Carbon::now()->timestamp . 'patrickngoy.' . $request->file('image')->extension();
+    
+    // 3. Sauvegarde physique du fichier dans le dossier 'uploads' du disque public
+    $request->file('image')->storeAs('uploads', $imgName, 'public');
+    
+    // 4. On stocke UNIQUEMENT le nom du fichier en BDD pour que ton code Blade actuel fonctionne
+    $validated['image'] = $imgName;
 
         $post->update($validated);
 
