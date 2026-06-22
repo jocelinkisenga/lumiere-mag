@@ -117,29 +117,42 @@ class PostController extends Controller
         return view("pages.article", compact("post", "related", "categories", "sharedButtons"));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(int $id)
+    
+public function edit(Post $post)
     {
-
         $categories = Category::all();
-        return view("pages.admin.editarticle", ["categories" => $categories, 'post' => Post::whereId($id)->with('author')->first()]);
+        
+        return view('pages.admin.editArticle', compact('post', 'categories'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Met à jour l'article dans la base de données.
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
-        $imgName = Carbon::now()->timestamp . 'patrickngoy.' . $request->file('image')->extension();
-        $path = $request->file("image")->storeAs('uploads', $imgName, 'public');
+        $validated = $request->validate([
+            'title'       => 'required|string|max:255',
+            'author_id'   => 'required|exists:authors,id',
+            'category_id' => 'required|exists:categories,id',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'tags'        => 'nullable|string',
+            'excerpt'     => 'nullable|string',
+            'description' => 'required',
+        ]);
 
-        $post = $this->postService->CreatePost($request, $imgName);
-        // tags pour chaque article
-        $this->postService->createTags($post, $request->tags);
+        // Gestion de l'image si une nouvelle est envoyée
+        if ($request->hasFile('image')) {
+            // Supprimer l'ancienne image si elle existe
+            if ($post->image && Storage::disk('public')->exists($post->image)) {
+                Storage::disk('public')->delete($post->image);
+            }
+            $validated['image'] = $request->file('image')->store('posts', 'public');
+        }
+
+        $post->update($validated);
+
+        return redirect()->route('posts.index')->with('success', 'Article mis à jour avec succès.');
     }
-
     /**
      * Remove the specified resource from storage.
      */
