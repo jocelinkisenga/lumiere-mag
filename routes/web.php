@@ -56,7 +56,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post("ckeditor", [PostController::class, "ckeditor"])->name("ckeditor.upload");
     Route::get("/dashboard", [HomeController::class, "dashboard"])->name("dashboard");
     Route::get("delete/article/{id}", [PostController::class, "delete"])->name("post.delete");
-    Route::get("edit/article/{id}", [PostController::class, "edit"])->name("post.edit");
+    Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
     Route::post("articles/floara", [PostController::class, "floara"])->name("posts.floara");
 
     Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
